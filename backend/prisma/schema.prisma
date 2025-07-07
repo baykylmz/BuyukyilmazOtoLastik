@@ -1,8 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -11,16 +9,15 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  role      Role     @default(STAFF)
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relations
-  appointments Appointment[]
+  id             String           @id @default(uuid())
+  email          String           @unique
+  password       String
+  role           Role             @default(STAFF)
+  name           String
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  appointments   Appointment[]
+  stockChangeLogs StockChangeLog[]
 }
 
 model Tire {
@@ -33,48 +30,83 @@ model Tire {
   imageURL      String?
   description   String?
   stockQuantity Int      @default(0)
+  qrCodeId      String   @unique @default(uuid())
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  stockChangeLogs StockChangeLog[]
+}
+
+model StockChangeLog {
+  id        String   @id @default(uuid())
+  tireId    String
+  change    Int      // Positive for additions, negative for reductions
+  reason    String
+  userId    String
+  createdAt DateTime @default(now())
+  tire      Tire     @relation(fields: [tireId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Service {
-  id            String   @id @default(uuid())
-  name          String
-  description   String
-  price         Float
+  id              String        @id @default(uuid())
+  name            String
+  description     String
+  price           Float
   durationMinutes Int
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  // Relations
-  appointments Appointment[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  appointments    Appointment[]
 }
 
 model Appointment {
-  id              String   @id @default(uuid())
-  serviceId       String
-  userId          String
-  customerName    String
-  customerPhone   String
-  vehicleModel    String
+  id                String            @id @default(uuid())
+  serviceId         String
+  userId            String
+  customerName      String
+  customerPhone     String
+  vehicleModel      String
   preferredDateTime DateTime
-  status          AppointmentStatus @default(PENDING)
-  notes           String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  locationId        String?           // For reservation conflict handling
+  status            AppointmentStatus @default(PENDING)
+  notes             String?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  service           Service           @relation(fields: [serviceId], references: [id])
+  user              User              @relation(fields: [userId], references: [id])
 
-  // Relations
-  service         Service  @relation(fields: [serviceId], references: [id])
-  user            User     @relation(fields: [userId], references: [id])
+  @@unique([preferredDateTime, locationId]) // Prevent double bookings
 }
 
 model ContactMessage {
-  id        String   @id @default(uuid())
-  name      String
-  email     String
-  subject   String
-  message   String
+  id         String   @id @default(uuid())
+  name       String
+  email      String
+  subject    String
+  message    String
   receivedAt DateTime @default(now())
+}
+
+model Customer {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  phone     String
+  address   String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  vehicles  Vehicle[]
+}
+
+model Vehicle {
+  id          String   @id @default(uuid())
+  make        String
+  model       String
+  year        Int
+  licensePlate String  @unique
+  customerId  String
+  customer    Customer @relation(fields: [customerId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 enum Role {
@@ -93,4 +125,4 @@ enum AppointmentStatus {
   CONFIRMED
   COMPLETED
   CANCELLED
-} 
+}

@@ -1,0 +1,276 @@
+{
+  "title": "Büyükyılmaz Oto Lastik",
+  "companyName": "Büyükyılmaz Oto Lastik",
+  
+  "public": {
+    "companyName": "Büyükyılmaz Oto Lastik",
+    "tagline": "Lastik Değişiminde Güvenilir Adresiniz",
+    "servicesTagline": "Yol yardımı, lastik değişimi, saklama hizmeti",
+    "ctaButton": "Hemen Randevu Al",
+    "navigation": {
+      "home": "Ana Sayfa",
+      "services": "Hizmetler",
+      "contact": "İletişim"
+    },
+    "auth": {
+      "login": "Giriş Yap",
+      "signup": "Başlayın"
+    },
+    "hero": {
+      "title": "Profesyonel Lastik Hizmetleri",
+      "subtitle": "Tüm otomotiv ihtiyaçlarınız için kaliteli lastik montajı, saklama ve 7/24 yol yardımı.",
+      "cta": "Hemen Başlayın"
+    },
+    "services": {
+      "title": "Hizmetlerimiz",
+      "subtitle": "Her ihtiyaca yönelik profesyonel otomotiv çözümleri",
+      "roadside": {
+        "title": "7/24 Yol Yardımı",
+        "description": "En çok ihtiyaç duyduğunuz anda acil lastik servisi."
+      },
+      "tireChange": {
+        "title": "Lastik Montaj ve Servis",
+        "description": "Profesyonel lastik montajı, balans ve bakım hizmetleri."
+      },
+      "storage": {
+        "title": "Lastik Saklama Çözümleri",
+        "description": "Envanter yönetim sistemi ile güvenli mevsimlik lastik saklama."
+      }
+    },
+    "brands": {
+      "title": "Güvenilir Lastik Markaları",
+      "subtitle": "Dünyanın önde gelen lastik üreticileriyle çalışıyoruz"
+    },
+    "testimonials": {
+      "title": "Müşterilerimizin Görüşleri",
+      "subtitle": "Memnun müşterilerimizden gerçek geri bildirimler",
+      "review1": "Mükemmel hizmet ve profesyonel personel. Lastiklerim hızlı ve mükemmel şekilde takıldı. Kesinlikle tavsiye ederim!",
+      "review2": "Gece geç saatlerde lastik patladığında 7/24 yol yardımı günümü kurtardı. Harika hizmet!",
+      "review3": "Lastik saklama hizmeti fantastik. Mevsimsel değişim zamanı geldiğinde lastiklerim hep hazır."
+    },
+    "contact": {
+      "title": "İletişime Geçin",
+      "subtitle": "Tüm lastik hizmeti ihtiyaçlarınız için bize ulaşın",
+      "address": {
+        "title": "Konumumuz",
+        "line1": "Osmanlı Caddesi",
+        "line2": "Bosna Hersek Mahallesi",
+        "line3": "Konya, Türkiye"
+      },
+      "phone": {
+        "title": "Bizi Arayın"
+      },
+      "hours": {
+        "title": "Çalışma Saatleri",
+        "weekdays": "Pazartesi - Cumartesi",
+        "time": "08:00 - 18:00",
+        "closed": "Pazar: Kapalı"
+      },
+      "form": {
+        "title": "Bize mesaj gönderin",
+        "name": "Ad Soyad",
+        "email": "E-posta Adresi",
+        "phone": "Telefon Numarası",
+        "message": "Mesaj",
+        "submit": "Mesaj Gönder",
+        "success": "Teşekkürler! Mesajınız başarıyla gönderildi."
+      }
+    },
+    "footer": {
+      "description": "Profesyonel lastik hizmetleri, saklama çözümleri ve 7/24 yol yardımı için güvenilir partneriniz.",
+      "servicesTitle": "Hizmetler",
+      "servicesList": {
+        "roadside": "Yol Yardımı",
+        "tireChange": "Lastik Montajı",
+        "storage": "Lastik Saklama",
+        "appointment": "Randevu Al"
+      },
+      "contactTitle": "İletişim Bilgileri",
+      "copyright": "© 2024 Büyükyılmaz Oto Lastik. Tüm hakları saklıdır."
+    }
+  },
+  
+  "auth": {
+    "title": "Hesabınıza Erişin",
+    "secure": "Güvenli ve Şifreli",
+    "instant": "Anında Erişim",
+    "login": {
+      "title": "Giriş Yap",
+      "subtitle": "Tekrar hoş geldiniz! Lütfen hesabınıza giriş yapın",
+      "email": "E-posta Adresi",
+      "password": "Şifre",
+      "button": "Giriş Yap",
+      "success": "Giriş başarılı! Tekrar hoş geldiniz."
+    },
+    "signup": {
+      "title": "Hesap Oluştur",
+      "subtitle": "Başlamak için hesabınızı oluşturun",
+      "name": "Ad Soyad",
+      "email": "E-posta Adresi",
+      "password": "Şifre",
+      "button": "Hesap Oluştur",
+      "passwordHint": "Şifre en az 6 karakter olmalıdır",
+      "success": "Hesap başarıyla oluşturuldu! Lütfen giriş yapın."
+    },
+    "placeholders": {
+      "name": "Adınızı ve soyadınızı girin",
+      "email": "E-posta adresinizi girin",
+      "password": "Şifrenizi girin"
+    },
+    "validation": {
+      "invalidEmail": "Lütfen geçerli bir e-posta adresi girin",
+      "passwordTooShort": "Şifre en az 6 karakter olmalıdır",
+      "nameTooShort": "Ad en az 2 karakter olmalıdır",
+      "loginFailed": "Giriş başarısız. Lütfen bilgilerinizi kontrol edip tekrar deneyin.",
+      "signupFailed": "Kayıt başarısız. Lütfen daha sonra tekrar deneyin."
+    },
+    "backToHome": "← Ana Sayfaya Dön"
+  },
+  
+  "navigation": {
+    "tires": "Lastikler",
+    "customers": "Müşteriler",
+    "qrScanner": "QR Tarayıcı",
+    "logout": "Çıkış Yap"
+  },
+  
+  "login": {
+    "title": "Hesabınıza giriş yapın",
+    "credentials": "Giriş yapmak için bu bilgileri kullanın:",
+    "email": "E-posta adresi",
+    "password": "Şifre",
+    "signIn": "Giriş yap",
+    "errorEmail": "admin@buyukyilmaz.com",
+    "errorPassword": "admin123"
+  },
+  
+  "tires": {
+    "title": "Lastik Envanteri",
+    "addNew": "Yeni Lastik Ekle",
+    "searchPlaceholder": "Lastiklerde ara...",
+    "allSeasons": "Tüm Sezonlar",
+    "summer": "Yaz",
+    "winter": "Kış",
+    "allSeason": "4 Mevsim",
+    "brand": "Marka",
+    "name": "İsim",
+    "size": "Boyut",
+    "season": "Sezon",
+    "price": "Fiyat",
+    "stock": "Stok",
+    "actions": "İşlemler",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "deleteConfirm": "Bu lastiği silmek istediğinizden emin misiniz?",
+    "imageURL": "Resim URL'si",
+    "description": "Açıklama",
+    "required": "Gerekli",
+    "optional": "İsteğe bağlı",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "editTire": "Lastik Düzenle",
+    "addTire": "Yeni Lastik Ekle",
+    "fillRequired": "Lütfen tüm gerekli alanları doldurun",
+    "saveFailed": "Lastik kaydedilemedi. Lütfen konsolu kontrol edin.",
+    "deleteFailed": "Lastik silinemedi",
+    "fetchFailed": "Lastikler getirilemedi",
+    "showQR": "QR Kodu Göster",
+    "stockHistory": "Stok Geçmişi",
+    "updateStock": "Stok Güncelle"
+  },
+  
+  "qr": {
+    "scannerTitle": "QR Kod Tarayıcı",
+    "pointCamera": "Kamerayı QR koduna yöneltin",
+    "scanInstructions": "QR kodu taramak için çerçeve içine yerleştirin",
+    "processing": "İşleniyor...",
+    "tireFound": "Lastik Bulundu",
+    "scanAnother": "Başka Tarama",
+    "tireNotFound": "Lastik bulunamadı",
+    "invalidQR": "Geçersiz QR kod",
+    "scanError": "QR kod taranamadı",
+    "cameraError": "Kamera erişim hatası",
+    "inStock": "stokta",
+    "recentStockChanges": "Son Stok Değişiklikleri",
+    "by": "tarafından",
+    "viewDetails": "Detayları Görüntüle",
+    "qrCodeTitle": "QR Kod",
+    "downloadQR": "QR Kodu İndir",
+    "printQR": "QR Kodu Yazdır"
+  },
+  
+  "stock": {
+    "updateTitle": "Stok Güncelle",
+    "currentStock": "Mevcut Stok",
+    "changeAmount": "Değişiklik Miktarı",
+    "reason": "Sebep",
+    "addStock": "Stok Ekle",
+    "removeStock": "Stok Çıkar",
+    "reasonPlaceholder": "Stok değişikliği sebebini girin...",
+    "insufficientStock": "Yetersiz stok",
+    "stockUpdated": "Stok başarıyla güncellendi",
+    "updateFailed": "Stok güncellenemedi"
+  },
+  
+  "customers": {
+    "title": "Müşteri Yönetimi",
+    "addNew": "Yeni Müşteri Ekle",
+    "searchPlaceholder": "Müşterilerde ara...",
+    "name": "İsim",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "address": "Adres",
+    "vehicles": "Araçlar",
+    "vehiclesUnit": "araç",
+    "actions": "İşlemler",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "deleteConfirm": "Bu müşteriyi silmek istediğinizden emin misiniz?",
+    "editCustomer": "Müşteri Düzenle",
+    "addCustomer": "Yeni Müşteri Ekle",
+    "fillRequired": "Lütfen tüm gerekli alanları doldurun",
+    "saveFailed": "Müşteri kaydedilemedi. Lütfen daha sonra tekrar deneyin.",
+    "deleteFailed": "Müşteri silinemedi. Lütfen daha sonra tekrar deneyin.",
+    "fetchFailed": "Müşteriler getirilemedi. Lütfen daha sonra tekrar deneyin.",
+    "noVehicles": "Kayıtlı araç yok",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "required": "Gerekli",
+    "optional": "İsteğe bağlı"
+  },
+  
+  "validation": {
+    "required": "Bu alan gereklidir",
+    "invalidEmail": "Lütfen geçerli bir e-posta adresi girin",
+    "invalidPhone": "Lütfen geçerli bir telefon numarası girin",
+    "minLength": "En az {min} karakter olmalıdır",
+    "maxLength": "En fazla {max} karakter olmalıdır",
+    "invalidNumber": "Lütfen geçerli bir sayı girin",
+    "positiveNumber": "Pozitif bir sayı olmalıdır",
+    "integerNumber": "Tam sayı olmalıdır"
+  },
+  
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "add": "Ekle",
+    "search": "Ara",
+    "actions": "İşlemler",
+    "required": "Gerekli",
+    "optional": "İsteğe bağlı",
+    "yes": "Evet",
+    "no": "Hayır",
+    "close": "Kapat",
+    "missing": "🔁 Eksik"
+  },
+  
+  "language": {
+    "turkish": "Türkçe",
+    "english": "English"
+  }
+} 

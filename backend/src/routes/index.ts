@@ -1,9 +1,6 @@
 import { Express } from 'express';
 import { tireRoutes } from './tire.routes';
-import { serviceRoutes } from './service.routes';
-import { appointmentRoutes } from './appointment.routes';
-import { authRoutes } from './auth.routes';
-import { contactRoutes } from './contact.routes';
+import authRoutes from './auth.routes';
 
 export const setupRoutes = (app: Express) => {
   // Health check
@@ -12,11 +9,8 @@ export const setupRoutes = (app: Express) => {
   });
 
   // API routes
-  app.use('/api/tires', tireRoutes);
-  app.use('/api/services', serviceRoutes);
-  app.use('/api/appointments', appointmentRoutes);
   app.use('/api/auth', authRoutes);
-  app.use('/api/contact', contactRoutes);
+  app.use('/api/tires', tireRoutes);
 
   // 404 handler
   app.use((req, res) => {

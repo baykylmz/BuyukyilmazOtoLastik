@@ -1,18 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { PrismaClient } from '@prisma/client';
 import { AppError } from './errorHandler';
+import prisma from '../lib/prisma';
 
-const prisma = new PrismaClient();
+// Extend Express Request type for user
+interface AuthUser {
+  id: string;
+  role: string;
+}
 
-declare global {
-  namespace Express {
-    interface Request {
-      user?: {
-        id: string;
-        role: string;
-      };
-    }
+declare module 'express-serve-static-core' {
+  interface Request {
+    user?: AuthUser;
   }
 }
 
@@ -63,13 +62,9 @@ export const authMiddleware = {
       if (!req.user) {
         return next(new AppError(401, 'Please log in to access this resource'));
       }
-
       if (!roles.includes(req.user.role)) {
-        return next(
-          new AppError(403, 'You do not have permission to perform this action')
-        );
+        return next(new AppError(403, 'You do not have permission to perform this action'));
       }
-
       next();
     };
   },

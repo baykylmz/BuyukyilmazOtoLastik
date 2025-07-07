@@ -1,0 +1,19 @@
+{
+  "name": "buyukyilmaz-oto-lastik",
+  "version": "1.0.0",
+  "description": "Büyükyılmaz Oto Lastik Management System",
+  "private": true,
+  "scripts": {
+    "dev": "docker-compose up",
+    "dev:build": "docker-compose up --build",
+    "dev:down": "docker-compose down",
+    "prod": "docker-compose -f docker-compose.prod.yml up -d",
+    "prod:down": "docker-compose -f docker-compose.prod.yml down",
+    "logs": "docker-compose logs -f",
+    "clean": "docker system prune -a"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}

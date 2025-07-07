@@ -1,19 +1,30 @@
 import { Router } from 'express';
-import { tireController } from '../controllers/tire.controller';
-import { authMiddleware } from '../middleware/auth.middleware';
 import { validateRequest } from '../middleware/validateRequest';
-import { tireValidation } from '../validations/tire.validation';
+import { authMiddleware } from '../middleware/auth.middleware';
+import { tireController } from '../controllers/tire.controller';
+import {
+  createTireSchema,
+  updateTireSchema,
+  tireIdSchema,
+  updateStockSchema,
+} from '../validations/tire.validation';
 
 const router = Router();
 
-// Public routes
-router.get('/', tireController.getAllTires);
-router.get('/:id', tireController.getTireById);
+// Public routes (for QR code scanning)
+router.get('/qr/:qrCodeId', tireController.getTireByQrCode);
 
 // Protected routes (admin only)
 router.use(authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'));
-router.post('/', validateRequest(tireValidation.createTire), tireController.createTire);
-router.put('/:id', validateRequest(tireValidation.updateTire), tireController.updateTire);
-router.delete('/:id', tireController.deleteTire);
 
-export const tireRoutes = router; 
+router.get('/', tireController.getAllTires);
+router.get('/:id', validateRequest(tireIdSchema), tireController.getTire);
+router.get('/:id/qr', validateRequest(tireIdSchema), tireController.generateQRCode);
+router.get('/:id/stock-history', validateRequest(tireIdSchema), tireController.getStockHistory);
+
+router.post('/', validateRequest(createTireSchema), tireController.createTire);
+router.put('/:id', validateRequest(updateTireSchema), tireController.updateTire);
+router.patch('/:id/stock', validateRequest(updateStockSchema), tireController.updateStock);
+router.delete('/:id', validateRequest(tireIdSchema), tireController.deleteTire);
+
+export { router as tireRoutes }; 
