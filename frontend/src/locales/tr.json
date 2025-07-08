@@ -100,6 +100,7 @@
       "email": "E-posta Adresi",
       "password": "Şifre",
       "button": "Giriş Yap",
+      "signingIn": "Giriş yapılıyor...",
       "success": "Giriş başarılı! Tekrar hoş geldiniz."
     },
     "signup": {
@@ -109,6 +110,7 @@
       "email": "E-posta Adresi",
       "password": "Şifre",
       "button": "Hesap Oluştur",
+      "creating": "Hesap Oluşturuluyor...",
       "passwordHint": "Şifre en az 6 karakter olmalıdır",
       "success": "Hesap başarıyla oluşturuldu! Lütfen giriş yapın."
     },
@@ -122,7 +124,8 @@
       "passwordTooShort": "Şifre en az 6 karakter olmalıdır",
       "nameTooShort": "Ad en az 2 karakter olmalıdır",
       "loginFailed": "Giriş başarısız. Lütfen bilgilerinizi kontrol edip tekrar deneyin.",
-      "signupFailed": "Kayıt başarısız. Lütfen daha sonra tekrar deneyin."
+      "signupFailed": "Kayıt başarısız. Lütfen daha sonra tekrar deneyin.",
+      "emailExists": "Bu e-posta adresi ile kayıtlı bir kullanıcı zaten mevcut"
     },
     "backToHome": "← Ana Sayfaya Dön"
   },
@@ -131,7 +134,78 @@
     "tires": "Lastikler",
     "customers": "Müşteriler",
     "qrScanner": "QR Tarayıcı",
-    "logout": "Çıkış Yap"
+    "myVehicles": "Araçlarım",
+    "myAppointments": "Randevularım",
+    "logout": "Çıkış"
+  },
+
+  "customer": {
+    "vehicles": {
+      "title": "Araçlarım",
+      "subtitle": "Kayıtlı araçlarınızı yönetin",
+      "addVehicle": "Araç Ekle",
+      "editVehicle": "Araç Düzenle",
+      "noVehicles": "Araç bulunamadı",
+      "noVehiclesDescription": "Henüz araç eklemediniz. İlk aracınızı ekleyerek başlayın.",
+      "addFirstVehicle": "İlk Aracınızı Ekleyin"
+    },
+    "appointments": {
+      "title": "Randevularım",
+      "subtitle": "Servis randevularınızı yönetin",
+      "addAppointment": "Randevu Ekle",
+      "editAppointment": "Randevu Düzenle",
+      "noAppointments": "Randevu bulunamadı",
+      "noAppointmentsDescription": "Henüz randevu almadınız. İlk randevunuzu alarak başlayın.",
+      "addFirstAppointment": "İlk Randevunuzu Alın",
+      "totalAppointments": "{{count}} randevu"
+    }
+  },
+
+  "vehicle": {
+    "make": "Marka",
+    "model": "Model",
+    "year": "Yıl",
+    "licensePlate": "Plaka"
+  },
+
+  "appointment": {
+    "service": "Servis",
+    "selectService": "Servis seçin",
+    "customerName": "Müşteri Adı",
+    "customerPhone": "Müşteri Telefonu",
+    "vehicleModel": "Araç Modeli",
+    "preferredDateTime": "Tercih Edilen Tarih & Saat",
+    "notes": "Notlar",
+    "createdAt": "Oluşturulma",
+    "status": {
+      "pending": "Beklemede",
+      "confirmed": "Onaylandı",
+      "completed": "Tamamlandı",
+      "cancelled": "İptal Edildi"
+    }
+  },
+
+  "common": {
+    "add": "Ekle",
+    "update": "Güncelle",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "edit": "Düzenle",
+    "delete": "Sil"
+  },
+
+  "errors": {
+    "failedToLoadVehicles": "Araçlar yüklenemedi",
+    "failedToSaveVehicle": "Araç kaydedilemedi",
+    "failedToDeleteVehicle": "Araç silinemedi",
+    "failedToLoadAppointments": "Randevular yüklenemedi",
+    "failedToSaveAppointment": "Randevu kaydedilemedi",
+    "failedToDeleteAppointment": "Randevu silinemedi"
+  },
+
+  "messages": {
+    "confirmDeleteVehicle": "Bu aracı silmek istediğinizden emin misiniz?",
+    "confirmDeleteAppointment": "Bu randevuyu iptal etmek istediğinizden emin misiniz?"
   },
   
   "login": {

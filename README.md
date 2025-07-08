@@ -1,31 +1,53 @@
 # Büyükyılmaz Oto Lastik Management System
 
-A full-stack web application for managing a tire shop's inventory, customers, and services with modern features including QR code scanning, stock logging, and internationalization.
+A full-stack web application for managing a tire shop's inventory, customers, services, and appointments with modern features including QR code scanning, stock logging, dual-user system, and internationalization.
 
 ## ✨ Features
 
 ### 🔐 Authentication & Security
-- JWT-based authentication system
-- Protected routes and middleware
-- Secure password hashing
-- Role-based access control
+- JWT-based authentication system with dual-user roles
+- **Admin Role**: Full access to all features (tires, customers, services, QR scanner)
+- **Customer Role**: Vehicle management and appointment booking
+- Protected routes and middleware with role-based access
+- Secure password hashing with bcrypt
 - Environment-based configuration for secrets
 - CORS protection
-- Input validation and sanitization
+- Input validation and sanitization with Zod
 
-### 🛞 Tire Management
+### 🛞 Tire Management (Admin Only)
 - Complete CRUD operations for tire inventory
 - QR code generation and scanning for tires
 - Stock quantity tracking with change logging
 - Season-based categorization (Summer, Winter, All-Season)
 - Image URL support for tire photos
 - Advanced filtering and sorting
+- Real-time stock updates with user attribution
 
-### 👥 Customer Management
+### 👥 Customer Management (Admin Only)
 - Customer profile management
 - Vehicle association system
 - Contact information tracking
 - Address management
+- Customer search and filtering
+
+### 🚗 Vehicle Management (Customer Users)
+- Add, edit, and delete personal vehicles
+- Vehicle details (make, model, year, license plate)
+- Personal vehicle dashboard
+- Vehicle history tracking
+
+### 📅 Appointment System (Customer Users)
+- Book appointments for tire services
+- View appointment history and status
+- Cancel or modify appointments
+- Service selection with pricing
+- Appointment conflict prevention
+
+### 🛠 Service Management (Admin Only)
+- Complete service catalog management
+- Service pricing and duration tracking
+- Service availability management
+- Integration with appointment system
 
 ### 📱 Modern UI/UX
 - **Dark/Light Mode** - Complete theme switching
@@ -34,14 +56,15 @@ A full-stack web application for managing a tire shop's inventory, customers, an
 - **Form Validation** - Visual indicators for required fields
 - **Loading States** - User-friendly loading indicators
 - **Error Handling** - Comprehensive error messages
+- **Role-based Navigation** - Different menus for admins and customers
 
-### 🔍 QR Code System
+### 🔍 QR Code System (Admin Only)
 - Generate QR codes for each tire
 - Mobile-friendly QR scanner
 - Real-time tire information lookup
 - Stock change history tracking
 
-### 📊 Stock Management
+### 📊 Stock Management (Admin Only)
 - Real-time stock quantity tracking
 - Stock change logging with reasons
 - User attribution for changes
@@ -72,6 +95,7 @@ A full-stack web application for managing a tire shop's inventory, customers, an
 - **Zod** for validation
 - **bcrypt** for password hashing
 - **CORS** enabled for cross-origin requests
+- **Swagger/OpenAPI** for API documentation
 
 ### Database
 - **PostgreSQL** with Prisma migrations
@@ -90,19 +114,21 @@ BuyukyilmazOtoLastik/
 ├── frontend/                    # React frontend application
 │   ├── src/
 │   │   ├── components/         # Reusable UI components
-│   │   │   ├── Header.tsx      # Navigation header
-│   │   │   ├── Navigation.tsx  # Main navigation
-│   │   │   ├── QRCodeDisplay.tsx # QR code component
-│   │   │   ├── StockUpdateModal.tsx # Stock update modal
-│   │   │   └── ThemeToggle.tsx # Dark/light mode toggle
+│   │   │   ├── Navigation.tsx  # Main navigation (role-based)
+│   │   │   ├── ThemeToggle.tsx # Dark/light mode toggle
+│   │   │   ├── LanguageSwitcher.tsx # Language switcher
+│   │   │   └── LoginButton.tsx # Login/logout button
 │   │   ├── contexts/           # React contexts
 │   │   │   ├── AuthContext.tsx # Authentication context
 │   │   │   └── ThemeContext.tsx # Theme management
 │   │   ├── pages/              # Page components
-│   │   │   ├── AuthPage.tsx    # Login/signup page
-│   │   │   ├── TireListPage.tsx # Tire management
-│   │   │   ├── CustomerListPage.tsx # Customer management
-│   │   │   └── QRScannerPage.tsx # QR scanner page
+│   │   │   ├── LoginPage.tsx   # Login/signup page
+│   │   │   ├── PublicHomePage.tsx # Public landing page
+│   │   │   ├── TireListPage.tsx # Tire management (admin)
+│   │   │   ├── CustomerListPage.tsx # Customer management (admin)
+│   │   │   ├── QRScannerPage.tsx # QR scanner (admin)
+│   │   │   ├── CustomerVehiclePage.tsx # Vehicle management (customer)
+│   │   │   └── CustomerAppointmentPage.tsx # Appointment management (customer)
 │   │   ├── services/           # API service functions
 │   │   ├── types/              # TypeScript type definitions
 │   │   ├── locales/            # Translation files
@@ -117,18 +143,38 @@ BuyukyilmazOtoLastik/
 │   │   ├── controllers/        # Route controllers
 │   │   │   ├── auth.controller.ts
 │   │   │   ├── tire.controller.ts
-│   │   │   └── customer.controller.ts
+│   │   │   ├── customer.controller.ts
+│   │   │   ├── customerUser.controller.ts
+│   │   │   └── service.controller.ts
 │   │   ├── middleware/         # Express middleware
 │   │   │   ├── auth.middleware.ts
 │   │   │   ├── errorHandler.ts
 │   │   │   └── validateRequest.ts
 │   │   ├── routes/             # API routes
+│   │   │   ├── auth.routes.ts
+│   │   │   ├── tire.routes.ts
+│   │   │   ├── customer.routes.ts
+│   │   │   ├── customerUser.routes.ts
+│   │   │   └── service.routes.ts
 │   │   ├── validations/        # Zod validation schemas
-│   │   └── lib/               # Shared utilities
+│   │   │   ├── tire.validation.ts
+│   │   │   ├── customer.validation.ts
+│   │   │   ├── customerUser.validation.ts
+│   │   │   └── service.validation.ts
+│   │   ├── lib/               # Shared utilities
+│   │   │   └── prisma.ts      # Prisma client
+│   │   ├── utils/             # Utility functions
+│   │   │   └── logger.ts      # Winston logger
+│   │   ├── swagger.ts         # Swagger/OpenAPI configuration
+│   │   └── index.ts           # Main application file
 │   ├── prisma/                # Prisma schema and migrations
 │   │   ├── schema.prisma      # Database schema
 │   │   ├── migrations/        # Database migrations
 │   │   └── seed.ts            # Database seeding
+│   ├── scripts/               # Utility scripts
+│   │   ├── addSampleCustomer.ts
+│   │   ├── checkUsers.ts
+│   │   └── addServices.ts
 │   ├── Dockerfile.dev         # Development Dockerfile
 │   └── package.json
 │
@@ -171,12 +217,19 @@ BuyukyilmazOtoLastik/
 
 4. **Access the application**
    - Frontend: http://localhost:3000
-   - Backend API: http://localhost:4000
+   - Backend API: http://localhost:3001
+   - Swagger Documentation: http://localhost:3001/api/docs
    - Database: localhost:5432
 
 5. **Login with default credentials**
+
+   **Admin User:**
    - Email: `admin@gmail.com`
-   - Password: `123`
+   - Password: `123456`
+   
+   **Customer User:**
+   - Email: `john.doe@example.com`
+   - Password: `123456`
    
    **⚠️ SECURITY WARNING**: Change these default credentials immediately after first login!
 
@@ -203,7 +256,7 @@ BuyukyilmazOtoLastik/
    ```bash
    cd frontend
    npm install
-   # Create .env file with VITE_API_URL=http://localhost:4000
+   # Create .env file with VITE_API_URL=http://localhost:3001
    npm run dev
    ```
 
@@ -229,7 +282,7 @@ POSTGRES_DB=buyukyilmaz
 JWT_SECRET=your-super-secure-jwt-secret-key-here
 
 # Frontend Configuration
-VITE_API_URL=http://localhost:4000
+VITE_API_URL=http://localhost:3001
 ```
 
 **Note**: The `.env` file is already included in `.gitignore` to prevent accidentally committing sensitive information.
@@ -238,22 +291,23 @@ VITE_API_URL=http://localhost:4000
 ```env
 DATABASE_URL="postgresql://username:password@localhost:5432/buyukyilmazotolastik"
 JWT_SECRET="your-super-secure-jwt-secret-key-here"
-PORT=4000
+PORT=3001
 NODE_ENV=development
 ```
 
 ### Frontend (.env)
 ```env
-VITE_API_URL=http://localhost:4000
+VITE_API_URL=http://localhost:3001
 ```
 
 ## 📡 API Endpoints
 
 ### Authentication
 - `POST /api/auth/login` - User login
+- `POST /api/auth/signup` - User registration
 - `POST /api/auth/logout` - User logout
 
-### Tires
+### Tires (Admin Only)
 - `GET /api/tires` - Get all tires with filtering
 - `POST /api/tires` - Create new tire
 - `PUT /api/tires/:id` - Update tire
@@ -261,33 +315,37 @@ VITE_API_URL=http://localhost:4000
 - `GET /api/tires/qr/:qrCodeId` - Get tire by QR code
 - `POST /api/tires/:id/stock` - Update stock quantity
 
-### Customers
+### Customers (Admin Only)
 - `GET /api/customers` - Get all customers
 - `POST /api/customers` - Create new customer
 - `PUT /api/customers/:id` - Update customer
 - `DELETE /api/customers/:id` - Delete customer
 
-### Vehicles
+### Vehicles (Admin Only)
 - `POST /api/customers/:customerId/vehicles` - Add vehicle to customer
 - `PUT /api/customers/:customerId/vehicles/:vehicleId` - Update vehicle
 - `DELETE /api/customers/:customerId/vehicles/:vehicleId` - Delete vehicle
 
-### Services (Schema exists, endpoints may not be implemented)
-- `GET /api/services` - Get all services
-- `POST /api/services` - Create new service
-- `PUT /api/services/:id` - Update service
-- `DELETE /api/services/:id` - Delete service
+### Customer Vehicles (Customer Users)
+- `GET /api/customer/vehicles` - Get user's vehicles
+- `POST /api/customer/vehicles` - Add new vehicle
+- `PUT /api/customer/vehicles/:id` - Update vehicle
+- `DELETE /api/customer/vehicles/:id` - Delete vehicle
 
-### Appointments (Schema exists, endpoints may not be implemented)
-- `GET /api/appointments` - Get all appointments
-- `POST /api/appointments` - Create new appointment
-- `PUT /api/appointments/:id` - Update appointment
-- `DELETE /api/appointments/:id` - Delete appointment
+### Customer Appointments (Customer Users)
+- `GET /api/customer/appointments` - Get user's appointments
+- `POST /api/customer/appointments` - Create new appointment
+- `PUT /api/customer/appointments/:id` - Update appointment
+- `DELETE /api/customer/appointments/:id` - Cancel appointment
 
-### Contact Messages (Schema exists, endpoints may not be implemented)
-- `GET /api/contact-messages` - Get all contact messages
-- `POST /api/contact-messages` - Create new contact message
-- `DELETE /api/contact-messages/:id` - Delete contact message
+### Services
+- `GET /api/services` - Get all services (public)
+- `POST /api/services` - Create new service (admin only)
+- `PUT /api/services/:id` - Update service (admin only)
+- `DELETE /api/services/:id` - Delete service (admin only)
+
+### Swagger Documentation
+- `GET /api/docs` - Interactive API documentation
 
 ## 🗄️ Data Models
 
@@ -298,9 +356,14 @@ VITE_API_URL=http://localhost:4000
   email: string
   password: string (hashed)
   name: string
-  role: 'ADMIN' | 'STAFF'
+  phone?: string
+  address?: string
+  role: 'ADMIN' | 'CUSTOMER'
   createdAt: Date
   updatedAt: Date
+  vehicles: Vehicle[]
+  appointments: Appointment[]
+  stockChangeLogs: StockChangeLog[]
 }
 ```
 
@@ -360,6 +423,8 @@ VITE_API_URL=http://localhost:4000
   licensePlate: string
   customerId: string
   customer: Customer
+  userId?: string
+  user?: User
   createdAt: Date
   updatedAt: Date
 }
@@ -373,6 +438,7 @@ VITE_API_URL=http://localhost:4000
   description: string
   price: number
   durationMinutes: number
+  appointments: Appointment[]
   createdAt: Date
   updatedAt: Date
 }
@@ -391,6 +457,8 @@ VITE_API_URL=http://localhost:4000
   locationId?: string
   status: 'PENDING' | 'CONFIRMED' | 'COMPLETED' | 'CANCELLED'
   notes?: string
+  service: Service
+  user: User
   createdAt: Date
   updatedAt: Date
 }
@@ -427,7 +495,22 @@ Complete dark/light mode support across all components:
 - **Persistent theme selection** across sessions
 - **Consistent styling** for all UI elements
 
-## 📱 QR Code System
+## 👥 Dual-User System
+
+### Admin Role Features
+- **Tire Management**: Full CRUD operations, QR codes, stock tracking
+- **Customer Management**: Customer profiles and vehicle management
+- **Service Management**: Service catalog and pricing
+- **QR Scanner**: Mobile QR code scanning for tire lookup
+- **Stock Management**: Real-time stock tracking and logging
+
+### Customer Role Features
+- **Vehicle Management**: Add, edit, delete personal vehicles
+- **Appointment Booking**: Book, modify, cancel appointments
+- **Service Selection**: Choose from available services
+- **Personal Dashboard**: View vehicles and appointment history
+
+## 📱 QR Code System (Admin Only)
 
 ### Features
 - **Automatic QR generation** for each tire
@@ -437,12 +520,12 @@ Complete dark/light mode support across all components:
 - **Change history** for scanned tires
 
 ### Usage
-1. Navigate to QR Scanner page
+1. Navigate to QR Scanner page (admin only)
 2. Point camera at tire QR code
 3. View real-time tire information
 4. Check stock change history
 
-## 📊 Stock Management
+## 📊 Stock Management (Admin Only)
 
 ### Features
 - **Real-time stock tracking**
@@ -455,6 +538,22 @@ Complete dark/light mode support across all components:
 - **High Stock**: > 10 units (Green)
 - **Medium Stock**: 1-10 units (Yellow)
 - **Out of Stock**: 0 units (Red)
+
+## 📅 Appointment System (Customer Users)
+
+### Features
+- **Service Booking**: Select from available services
+- **Appointment Scheduling**: Choose preferred date and time
+- **Conflict Prevention**: Automatic conflict detection
+- **Status Tracking**: PENDING, CONFIRMED, COMPLETED, CANCELLED
+- **Modification**: Update or cancel appointments
+
+### Appointment Flow
+1. Customer selects service
+2. Chooses preferred date/time
+3. Provides vehicle information
+4. System checks for conflicts
+5. Appointment is created with PENDING status
 
 ## ✅ Validation Rules
 
@@ -473,6 +572,26 @@ Complete dark/light mode support across all components:
 - `email`: Required, valid email format
 - `phone`: Required, non-empty string
 - `address`: Optional string
+
+### Vehicle Creation/Update
+- `make`: Required, non-empty string
+- `model`: Required, non-empty string
+- `year`: Required, integer between 1900 and current year + 1
+- `licensePlate`: Required, non-empty string, unique
+
+### Appointment Creation/Update
+- `serviceId`: Required, valid UUID
+- `customerName`: Required, non-empty string
+- `customerPhone`: Required, non-empty string
+- `vehicleModel`: Required, non-empty string
+- `preferredDateTime`: Required, valid datetime
+- `notes`: Optional string
+
+### Service Creation/Update
+- `name`: Required, non-empty string
+- `description`: Required, non-empty string
+- `price`: Required, positive number
+- `durationMinutes`: Required, positive integer
 
 ### Stock Update
 - `change`: Required, integer (positive or negative)
@@ -534,20 +653,23 @@ docker system df
 6. **Dark Mode** - Ensure all new components support dark mode
 7. **Testing** - Test API endpoints before committing
 8. **Documentation** - Update documentation for new features
+9. **Role-based Access** - Implement proper role checks for new features
 
 ## 🔒 Security Considerations
 
 ### Production Deployment Security
-1. **Change Default Credentials**: Immediately change the default admin credentials after first login
+1. **Change Default Credentials**: Immediately change the default admin and customer credentials after first login
 2. **Secure JWT Secret**: Use a strong, randomly generated JWT secret in production
 3. **Environment Variables**: Never commit `.env` files to version control
 4. **Database Security**: Use strong database passwords and restrict access
 5. **HTTPS**: Always use HTTPS in production with valid SSL certificates
 6. **Rate Limiting**: Implement rate limiting for API endpoints
 7. **Input Validation**: All user inputs are validated using Zod schemas
+8. **Role-based Access**: Proper role verification on all protected endpoints
 
 ### Security Checklist
-- [ ] Change default admin credentials (`admin@gmail.com` / `123`)
+- [ ] Change default admin credentials (`admin@gmail.com` / `123456`)
+- [ ] Change default customer credentials (`john.doe@example.com` / `123456`)
 - [ ] Set a strong JWT_SECRET environment variable
 - [ ] Configure HTTPS for production
 - [ ] Set up proper database access controls
@@ -612,30 +734,31 @@ VITE_API_URL=https://your-domain.com/api
 NODE_ENV=production
 DATABASE_URL=your-production-database-url
 JWT_SECRET=your-super-secure-production-jwt-secret
-PORT=4000
+PORT=3001
 CORS_ORIGIN=https://your-domain.com
 ```
 
-## 📈 Future Improvements
+## 📈 Feature Status
 
-### Currently Implemented Features
-- ✅ **Tire Management** - Complete CRUD with QR codes
-- ✅ **Customer Management** - Customer profiles with vehicles
-- ✅ **Stock Management** - Real-time tracking with logging
-- ✅ **Authentication System** - JWT-based security
-- ✅ **QR Code System** - Generation and scanning
-- ✅ **Internationalization** - Turkish and English support
-- ✅ **Dark/Light Mode** - Complete theme switching
+### ✅ Fully Implemented Features
+- **Authentication System** - JWT-based with dual-user roles
+- **Tire Management** - Complete CRUD with QR codes and stock tracking
+- **Customer Management** - Customer profiles with vehicle management
+- **Vehicle Management** - Customer vehicle management system
+- **Appointment System** - Complete booking and management system
+- **Service Management** - Service catalog and pricing
+- **Stock Management** - Real-time tracking with logging
+- **QR Code System** - Generation and scanning
+- **Internationalization** - Turkish and English support
+- **Dark/Light Mode** - Complete theme switching
+- **Role-based UI** - Different interfaces for admins and customers
+- **API Documentation** - Swagger/OpenAPI documentation
 
-### Schema Ready (Backend Only)
-- 🔄 **Services** - Database schema exists, frontend not implemented
-- 🔄 **Appointments** - Database schema exists, frontend not implemented  
-- 🔄 **Contact Messages** - Database schema exists, frontend not implemented
+### 🔄 Schema Ready (Backend Only)
+- **Contact Messages** - Database schema exists, frontend not implemented
 
-### Planned Features
+### 🚧 Planned Features
 - [ ] **User Management System** - Admin panel for user management
-- [ ] **Appointment Scheduling** - Customer appointment booking (schema ready)
-- [ ] **Service Management** - Service catalog and pricing (schema ready)
 - [ ] **Contact Form** - Customer contact message handling (schema ready)
 - [ ] **Invoice Generation** - PDF invoice creation
 - [ ] **Inventory Alerts** - Low stock notifications
@@ -647,48 +770,7 @@ CORS_ORIGIN=https://your-domain.com
 - [ ] **Advanced Search** - Full-text search capabilities
 - [ ] **Data Export** - CSV/Excel export functionality
 - [ ] **Backup System** - Automated database backups
-
-### Technical Improvements
-- [ ] **Unit Testing** - Jest and React Testing Library
-- [ ] **E2E Testing** - Cypress or Playwright
-- [ ] **CI/CD Pipeline** - GitHub Actions
-- [ ] **Performance Optimization** - Code splitting and lazy loading
-- [ ] **Security Enhancements** - Rate limiting, input sanitization
-- [ ] **Monitoring** - Application performance monitoring
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Workflow
-1. Follow the existing code style
-2. Add TypeScript types for new features
-3. Include translations for new text
-4. Test dark mode compatibility
-5. Update documentation
-6. Write meaningful commit messages
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Team
-
-- **Developer**: Full-stack development and system architecture
-- **Design**: UI/UX design and user experience
-- **Testing**: Quality assurance and testing
-
-## 📞 Support
-
-For support and questions:
-- Create an issue in the repository
-- Contact the development team
-- Check the documentation
-
----
-
-**Büyükyılmaz Oto Lastik Management System** - Modern tire shop management solution with QR codes, stock tracking, and internationalization support. 
+- [ ] **Email Notifications** - Appointment confirmations and reminders
+- [ ] **Payment Integration** - Online payment processing
+- [ ] **Multi-location Support** - Multiple shop locations
+- [ ] **Inventory Forecasting** - Predictive stock management 

@@ -8,17 +8,17 @@ export async function getTires(): Promise<Tire[]> {
 
 export async function getTireById(id: string): Promise<Tire> {
   const response = await axios.get(`/api/tires/${id}`);
-  return response.data.data.tire;
+  return response.data.data;
 }
 
 export async function createTire(tire: Omit<Tire, 'id' | 'createdAt' | 'updatedAt'>): Promise<Tire> {
   const response = await axios.post('/api/tires', tire);
-  return response.data.data.tire;
+  return response.data.data;
 }
 
 export async function updateTire(id: string, tire: Partial<Tire>): Promise<Tire> {
   const response = await axios.put(`/api/tires/${id}`, tire);
-  return response.data.data.tire;
+  return response.data.data;
 }
 
 export async function deleteTire(id: string): Promise<void> {

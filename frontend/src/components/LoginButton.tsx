@@ -20,9 +20,9 @@ const LoginButton: React.FC<LoginButtonProps> = ({
 
   const handleClick = () => {
     if (mode === 'signup') {
-      navigate('/auth?tab=signup');
+      navigate('/login?tab=signup');
     } else {
-      navigate('/auth?tab=login');
+      navigate('/login');
     }
   };
 

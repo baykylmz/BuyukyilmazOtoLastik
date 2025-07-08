@@ -12,12 +12,15 @@ model User {
   id             String           @id @default(uuid())
   email          String           @unique
   password       String
-  role           Role             @default(STAFF)
+  role           Role             @default(CUSTOMER)
   name           String
+  phone          String?          // For customer users
+  address        String?          // For customer users
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
   appointments   Appointment[]
   stockChangeLogs StockChangeLog[]
+  vehicles       Vehicle[]        // Customer vehicles
 }
 
 model Tire {
@@ -105,6 +108,8 @@ model Vehicle {
   licensePlate String  @unique
   customerId  String
   customer    Customer @relation(fields: [customerId], references: [id])
+  userId      String?  // Link to customer user account
+  user        User?    @relation(fields: [userId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -112,6 +117,7 @@ model Vehicle {
 enum Role {
   ADMIN
   STAFF
+  CUSTOMER
 }
 
 enum Season {

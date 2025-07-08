@@ -100,6 +100,7 @@
       "email": "Email",
       "password": "Password",
       "button": "Login",
+      "signingIn": "Signing in...",
       "success": "Login successful! (Mock)"
     },
     "signup": {
@@ -109,6 +110,7 @@
       "email": "Email",
       "password": "Password",
       "button": "Sign Up",
+      "creating": "Creating Account...",
       "success": "Registration successful! (Mock)",
       "passwordHint": "Must be at least 6 characters"
     },
@@ -117,7 +119,8 @@
       "passwordTooShort": "Password must be at least 6 characters",
       "nameTooShort": "Name must be at least 2 characters",
       "loginFailed": "Login failed. Please check your credentials and try again.",
-      "signupFailed": "Registration failed. Please try again later."
+      "signupFailed": "Registration failed. Please try again later.",
+      "emailExists": "A user with this email already exists"
     },
     "placeholders": {
       "email": "example@email.com",
@@ -131,7 +134,78 @@
     "tires": "Tires",
     "customers": "Customers",
     "qrScanner": "QR Scanner",
+    "myVehicles": "My Vehicles",
+    "myAppointments": "My Appointments",
     "logout": "Logout"
+  },
+
+  "customer": {
+    "vehicles": {
+      "title": "My Vehicles",
+      "subtitle": "Manage your registered vehicles",
+      "addVehicle": "Add Vehicle",
+      "editVehicle": "Edit Vehicle",
+      "noVehicles": "No vehicles found",
+      "noVehiclesDescription": "You haven't added any vehicles yet. Add your first vehicle to get started.",
+      "addFirstVehicle": "Add Your First Vehicle"
+    },
+    "appointments": {
+      "title": "My Appointments",
+      "subtitle": "Manage your service appointments",
+      "addAppointment": "Add Appointment",
+      "editAppointment": "Edit Appointment",
+      "noAppointments": "No appointments found",
+      "noAppointmentsDescription": "You haven't scheduled any appointments yet. Schedule your first appointment to get started.",
+      "addFirstAppointment": "Schedule Your First Appointment",
+      "totalAppointments": "{{count}} appointment(s)"
+    }
+  },
+
+  "vehicle": {
+    "make": "Make",
+    "model": "Model",
+    "year": "Year",
+    "licensePlate": "License Plate"
+  },
+
+  "appointment": {
+    "service": "Service",
+    "selectService": "Select a service",
+    "customerName": "Customer Name",
+    "customerPhone": "Customer Phone",
+    "vehicleModel": "Vehicle Model",
+    "preferredDateTime": "Preferred Date & Time",
+    "notes": "Notes",
+    "createdAt": "Created",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    }
+  },
+
+  "common": {
+    "add": "Add",
+    "update": "Update",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+
+  "errors": {
+    "failedToLoadVehicles": "Failed to load vehicles",
+    "failedToSaveVehicle": "Failed to save vehicle",
+    "failedToDeleteVehicle": "Failed to delete vehicle",
+    "failedToLoadAppointments": "Failed to load appointments",
+    "failedToSaveAppointment": "Failed to save appointment",
+    "failedToDeleteAppointment": "Failed to delete appointment"
+  },
+
+  "messages": {
+    "confirmDeleteVehicle": "Are you sure you want to delete this vehicle?",
+    "confirmDeleteAppointment": "Are you sure you want to cancel this appointment?"
   },
   
   "login": {

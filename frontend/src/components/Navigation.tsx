@@ -20,49 +20,85 @@ const Navigation: React.FC = () => {
 
   if (!user) return null;
 
+  // Determine if user is admin/staff or customer
+  const isAdmin = user.role === 'ADMIN' || user.role === 'STAFF';
+  const isCustomer = user.role === 'CUSTOMER';
+
   return (
     <nav className="bg-card/90 backdrop-blur-md shadow-sm border-b border-border dark:border-slate-700/50 dark:shadow-lg dark:shadow-black/10 fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link to="/tires" className="text-xl font-bold text-foreground dark:bg-gradient-to-r dark:from-white dark:to-blue-200 dark:bg-clip-text dark:text-transparent hover:scale-105 transition-transform duration-200">
+              <Link 
+                to={isAdmin ? "/tires" : "/vehicles"} 
+                className="text-xl font-bold text-foreground dark:bg-gradient-to-r dark:from-white dark:to-blue-200 dark:bg-clip-text dark:text-transparent hover:scale-105 transition-transform duration-200"
+              >
                 {t('companyName')}
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <Link
-                to="/tires"
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200 ${
-                  isActive('/tires')
-                    ? 'border-primary-500 text-primary-600 dark:text-blue-400 dark:border-blue-400 bg-primary-50/50 dark:bg-blue-500/10'
-                    : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-slate-300 dark:hover:border-slate-600'
-                }`}
-              >
-                {t('navigation.tires')}
-              </Link>
-              {user.role === 'ADMIN' && (
-                <Link
-                  to="/customers"
-                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200 ${
-                    isActive('/customers')
-                      ? 'border-primary-500 text-primary-600 dark:text-blue-400 dark:border-blue-400 bg-primary-50/50 dark:bg-blue-500/10'
-                      : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-slate-300 dark:hover:border-slate-600'
-                  }`}
-                >
-                  {t('navigation.customers')}
-                </Link>
+              {/* Admin/Staff Navigation */}
+              {isAdmin && (
+                <>
+                  <Link
+                    to="/tires"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200 ${
+                      isActive('/tires')
+                        ? 'border-primary-500 text-primary-600 dark:text-blue-400 dark:border-blue-400 bg-primary-50/50 dark:bg-blue-500/10'
+                        : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-slate-300 dark:hover:border-slate-600'
+                    }`}
+                  >
+                    {t('navigation.tires')}
+                  </Link>
+                  <Link
+                    to="/customers"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200 ${
+                      isActive('/customers')
+                        ? 'border-primary-500 text-primary-600 dark:text-blue-400 dark:border-blue-400 bg-primary-50/50 dark:bg-blue-500/10'
+                        : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-slate-300 dark:hover:border-slate-600'
+                    }`}
+                  >
+                    {t('navigation.customers')}
+                  </Link>
+                  <Link
+                    to="/qr-scanner"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200 ${
+                      isActive('/qr-scanner')
+                        ? 'border-primary-500 text-primary-600 dark:text-blue-400 dark:border-blue-400 bg-primary-50/50 dark:bg-blue-500/10'
+                        : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-slate-300 dark:hover:border-slate-600'
+                    }`}
+                  >
+                    {t('navigation.qrScanner')}
+                  </Link>
+                </>
               )}
-              <Link
-                to="/qr-scanner"
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200 ${
-                  isActive('/qr-scanner')
-                    ? 'border-primary-500 text-primary-600 dark:text-blue-400 dark:border-blue-400 bg-primary-50/50 dark:bg-blue-500/10'
-                    : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-slate-300 dark:hover:border-slate-600'
-                }`}
-              >
-                {t('navigation.qrScanner')}
-              </Link>
+
+              {/* Customer Navigation */}
+              {isCustomer && (
+                <>
+                  <Link
+                    to="/vehicles"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200 ${
+                      isActive('/vehicles')
+                        ? 'border-primary-500 text-primary-600 dark:text-blue-400 dark:border-blue-400 bg-primary-50/50 dark:bg-blue-500/10'
+                        : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-slate-300 dark:hover:border-slate-600'
+                    }`}
+                  >
+                    {t('navigation.myVehicles')}
+                  </Link>
+                  <Link
+                    to="/appointments"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200 ${
+                      isActive('/appointments')
+                        ? 'border-primary-500 text-primary-600 dark:text-blue-400 dark:border-blue-400 bg-primary-50/50 dark:bg-blue-500/10'
+                        : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-slate-300 dark:hover:border-slate-600'
+                    }`}
+                  >
+                    {t('navigation.myAppointments')}
+                  </Link>
+                </>
+              )}
             </div>
           </div>
           
@@ -96,38 +132,68 @@ const Navigation: React.FC = () => {
       {/* Mobile menu */}
       <div className="sm:hidden">
         <div className="pt-2 pb-3 space-y-1 bg-card/95 backdrop-blur-sm border-t border-border dark:border-slate-700/50 dark:bg-slate-900/95">
-          <Link
-            to="/tires"
-            className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-all duration-200 ${
-              isActive('/tires')
-                ? 'bg-primary-50 dark:bg-blue-900/20 border-primary-500 text-primary-700 dark:text-blue-300 dark:border-blue-400'
-                : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted hover:border-border dark:hover:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:border-slate-600'
-            }`}
-          >
-            {t('navigation.tires')}
-          </Link>
-          {user.role === 'ADMIN' && (
-            <Link
-              to="/customers"
-              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-all duration-200 ${
-                isActive('/customers')
-                  ? 'bg-primary-50 dark:bg-blue-900/20 border-primary-500 text-primary-700 dark:text-blue-300 dark:border-blue-400'
-                  : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted hover:border-border dark:hover:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:border-slate-600'
-              }`}
-            >
-              {t('navigation.customers')}
-            </Link>
+          {/* Admin/Staff Mobile Navigation */}
+          {isAdmin && (
+            <>
+              <Link
+                to="/tires"
+                className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-all duration-200 ${
+                  isActive('/tires')
+                    ? 'bg-primary-50 dark:bg-blue-900/20 border-primary-500 text-primary-700 dark:text-blue-300 dark:border-blue-400'
+                    : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted hover:border-border dark:hover:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:border-slate-600'
+                }`}
+              >
+                {t('navigation.tires')}
+              </Link>
+              <Link
+                to="/customers"
+                className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-all duration-200 ${
+                  isActive('/customers')
+                    ? 'bg-primary-50 dark:bg-blue-900/20 border-primary-500 text-primary-700 dark:text-blue-300 dark:border-blue-400'
+                    : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted hover:border-border dark:hover:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:border-slate-600'
+                }`}
+              >
+                {t('navigation.customers')}
+              </Link>
+              <Link
+                to="/qr-scanner"
+                className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-all duration-200 ${
+                  isActive('/qr-scanner')
+                    ? 'bg-primary-50 dark:bg-blue-900/20 border-primary-500 text-primary-700 dark:text-blue-300 dark:border-blue-400'
+                    : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted hover:border-border dark:hover:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:border-slate-600'
+                }`}
+              >
+                {t('navigation.qrScanner')}
+              </Link>
+            </>
           )}
-          <Link
-            to="/qr-scanner"
-            className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-all duration-200 ${
-              isActive('/qr-scanner')
-                ? 'bg-primary-50 dark:bg-blue-900/20 border-primary-500 text-primary-700 dark:text-blue-300 dark:border-blue-400'
-                : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted hover:border-border dark:hover:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:border-slate-600'
-            }`}
-          >
-            {t('navigation.qrScanner')}
-          </Link>
+
+          {/* Customer Mobile Navigation */}
+          {isCustomer && (
+            <>
+              <Link
+                to="/vehicles"
+                className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-all duration-200 ${
+                  isActive('/vehicles')
+                    ? 'bg-primary-50 dark:bg-blue-900/20 border-primary-500 text-primary-700 dark:text-blue-300 dark:border-blue-400'
+                    : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted hover:border-border dark:hover:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:border-slate-600'
+                }`}
+              >
+                {t('navigation.myVehicles')}
+              </Link>
+              <Link
+                to="/appointments"
+                className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-all duration-200 ${
+                  isActive('/appointments')
+                    ? 'bg-primary-50 dark:bg-blue-900/20 border-primary-500 text-primary-700 dark:text-blue-300 dark:border-blue-400'
+                    : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted hover:border-border dark:hover:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:border-slate-600'
+                }`}
+              >
+                {t('navigation.myAppointments')}
+              </Link>
+            </>
+          )}
+
           <div className="border-t border-border dark:border-slate-700/50 pt-4 pb-3">
             <div className="flex items-center px-4">
               <div className="text-base font-medium text-foreground dark:text-white bg-muted dark:bg-slate-800/50 px-3 py-2 rounded-md border dark:border-slate-700/50">{user.email}</div>

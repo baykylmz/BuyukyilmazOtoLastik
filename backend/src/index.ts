@@ -8,7 +8,10 @@ import { logger } from './utils/logger';
 import authRoutes from './routes/auth.routes';
 import { tireRoutes } from './routes/tire.routes';
 import customerRoutes from './routes/customer.routes';
+import { customerUserRoutes } from './routes/customerUser.routes';
+import { serviceRoutes } from './routes/service.routes';
 import { PrismaClient } from '@prisma/client';
+import { swaggerUi, swaggerSpec } from './swagger';
 
 const app = express();
 const prisma = new PrismaClient();
@@ -17,7 +20,8 @@ const port = parseInt(process.env.PORT || '4000', 10);
 // Security configuration
 const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [
   'http://localhost:3000',
-  'http://localhost:5173'
+  'http://localhost:5173',
+  'http://localhost:4000'
 ];
 
 // Middleware
@@ -71,6 +75,9 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/tires', tireRoutes);
 app.use('/api/customers', customerRoutes);
+app.use('/api/customer', customerUserRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // 404 handler
 app.use((req, res) => {

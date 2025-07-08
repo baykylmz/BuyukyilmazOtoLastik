@@ -39,4 +39,44 @@ export const updateVehicle = async (customerId: string, vehicleId: string, vehic
 
 export const deleteVehicle = async (customerId: string, vehicleId: string): Promise<void> => {
   await axios.delete(`${API_URL}/${customerId}/vehicles/${vehicleId}`);
-}; 
+};
+
+// Vehicle Management
+export async function getMyVehicles(): Promise<Vehicle[]> {
+  const response = await axios.get('/api/customer/vehicles');
+  return response.data.data;
+}
+
+export async function addMyVehicle(vehicle: Omit<Vehicle, 'id' | 'customerId' | 'userId' | 'createdAt' | 'updatedAt'>): Promise<Vehicle> {
+  const response = await axios.post('/api/customer/vehicles', vehicle);
+  return response.data.data;
+}
+
+export async function updateMyVehicle(id: string, vehicle: Partial<Vehicle>): Promise<Vehicle> {
+  const response = await axios.put(`/api/customer/vehicles/${id}`, vehicle);
+  return response.data.data;
+}
+
+export async function deleteMyVehicle(id: string): Promise<void> {
+  await axios.delete(`/api/customer/vehicles/${id}`);
+}
+
+// Appointment Management (placeholder for future implementation)
+export async function getMyAppointments(): Promise<any[]> {
+  const response = await axios.get('/api/customer/appointments');
+  return response.data.data;
+}
+
+export async function createMyAppointment(appointment: any): Promise<any> {
+  const response = await axios.post('/api/customer/appointments', appointment);
+  return response.data.data;
+}
+
+export async function updateMyAppointment(id: string, appointment: any): Promise<any> {
+  const response = await axios.put(`/api/customer/appointments/${id}`, appointment);
+  return response.data.data;
+}
+
+export async function cancelMyAppointment(id: string): Promise<void> {
+  await axios.delete(`/api/customer/appointments/${id}`);
+} 

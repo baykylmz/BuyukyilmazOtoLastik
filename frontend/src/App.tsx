@@ -7,7 +7,8 @@ import TireListPage from './pages/TireListPage';
 import CustomerListPage from './pages/CustomerListPage';
 import QRScannerPage from './pages/QRScannerPage';
 import PublicHomePage from './pages/PublicHomePage';
-import AuthPage from './pages/AuthPage';
+import CustomerVehiclePage from './pages/CustomerVehiclePage';
+import CustomerAppointmentPage from './pages/CustomerAppointmentPage';
 import Navigation from './components/Navigation';
 import { useTranslation } from 'react-i18next';
 import { PrivateRoute, AdminRoute, UnauthorizedMessage } from './components/PrivateRoute';
@@ -61,7 +62,15 @@ const AppContent: React.FC = () => {
     document.title = i18n.t('title');
   }, [i18n.language, location.pathname]);
 
-  const isPublicRoute = location.pathname === '/' || location.pathname === '/auth';
+  const isPublicRoute = location.pathname === '/';
+
+  // Determine default route based on user role
+  const getDefaultRoute = () => {
+    if (!user) return '/';
+    if (user.role === 'ADMIN' || user.role === 'STAFF') return '/tires';
+    if (user.role === 'CUSTOMER') return '/vehicles';
+    return '/';
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -71,13 +80,13 @@ const AppContent: React.FC = () => {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<PublicHomePage />} />
-            <Route path="/auth" element={<AuthPage />} />
             
             {/* Protected Routes */}
             <Route path="/login" element={
-              user ? <Navigate to="/tires" replace /> : <LoginPage />
+              user ? <Navigate to={getDefaultRoute()} replace /> : <LoginPage />
             } />
             
+            {/* Admin/Staff Routes */}
             <Route path="/tires" element={
               <PrivateRoute>
                 <TireListPage />
@@ -95,12 +104,25 @@ const AppContent: React.FC = () => {
                 <QRScannerPage />
               </PrivateRoute>
             } />
+
+            {/* Customer Routes */}
+            <Route path="/vehicles" element={
+              <PrivateRoute>
+                <CustomerVehiclePage />
+              </PrivateRoute>
+            } />
+            
+            <Route path="/appointments" element={
+              <PrivateRoute>
+                <CustomerAppointmentPage />
+              </PrivateRoute>
+            } />
             
             <Route path="/unauthorized" element={<UnauthorizedMessage />} />
             
-            {/* Redirect authenticated users from root to tires */}
+            {/* Redirect authenticated users to their default route */}
             <Route path="*" element={
-              user ? <Navigate to="/tires" replace /> : <Navigate to="/" replace />
+              user ? <Navigate to={getDefaultRoute()} replace /> : <Navigate to="/" replace />
             } />
           </Routes>
         </main>

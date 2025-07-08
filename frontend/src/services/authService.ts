@@ -10,12 +10,35 @@ interface LoginResponse {
       id: string;
       email: string;
       role: string;
+      name: string;
     };
   };
 }
 
-export const login = async (email: string, password: string): Promise<{ token: string; user: { id: string; email: string; role: string } }> => {
+interface SignupResponse {
+  status: string;
+  data: {
+    token: string;
+    user: {
+      id: string;
+      email: string;
+      role: string;
+      name: string;
+    };
+  };
+  message: string;
+}
+
+export const login = async (email: string, password: string): Promise<{ token: string; user: { id: string; email: string; role: string; name: string } }> => {
   const response = await axios.post<LoginResponse>(`${API_URL}/login`, { email, password });
+  return {
+    token: response.data.data.token,
+    user: response.data.data.user
+  };
+};
+
+export const signup = async (name: string, email: string, password: string): Promise<{ token: string; user: { id: string; email: string; role: string; name: string } }> => {
+  const response = await axios.post<SignupResponse>(`${API_URL}/signup`, { name, email, password });
   return {
     token: response.data.data.token,
     user: response.data.data.user
@@ -60,7 +83,7 @@ export const authService = {
     return localStorage.getItem('token');
   },
 
-  getUser(): { id: string; email: string; role: string } | null {
+  getUser(): { id: string; email: string; role: string; name: string } | null {
     const userData = localStorage.getItem('user');
     if (userData) {
       try {
