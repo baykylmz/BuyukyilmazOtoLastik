@@ -4,7 +4,7 @@ import { useAuth } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import LoginPage from './pages/LoginPage';
 import TireListPage from './pages/TireListPage';
-import CustomerListPage from './pages/CustomerListPage';
+import UserListPage from './pages/UserListPage';
 import QRScannerPage from './pages/QRScannerPage';
 import PublicHomePage from './pages/PublicHomePage';
 import CustomerVehiclePage from './pages/CustomerVehiclePage';
@@ -88,21 +88,21 @@ const AppContent: React.FC = () => {
             
             {/* Admin/Staff Routes */}
             <Route path="/tires" element={
-              <PrivateRoute>
-                <TireListPage />
-              </PrivateRoute>
-            } />
-            
-            <Route path="/customers" element={
               <AdminRoute>
-                <CustomerListPage />
+                <TireListPage />
               </AdminRoute>
             } />
             
             <Route path="/qr-scanner" element={
-              <PrivateRoute>
+              <AdminRoute>
                 <QRScannerPage />
-              </PrivateRoute>
+              </AdminRoute>
+            } />
+
+            <Route path="/users" element={
+              <AdminRoute>
+                <UserListPage />
+              </AdminRoute>
             } />
 
             {/* Customer Routes */}

@@ -19,8 +19,8 @@ A robust Node.js/Express backend API for the Büyükyılmaz Oto Lastik tire shop
 - Season-based categorization (SUMMER, WINTER, ALL_SEASON)
 - Advanced filtering and search capabilities
 
-### 👥 Customer Management
-- Customer profile management
+### 👥 User Management
+- User profile management
 - Vehicle association system
 - Contact information tracking
 - Address management
@@ -72,8 +72,7 @@ backend/
 │   ├── controllers/           # Route controllers
 │   │   ├── auth.controller.ts
 │   │   ├── tire.controller.ts
-│   │   ├── customer.controller.ts
-│   │   ├── customerUser.controller.ts
+│   │   ├── user.controller.ts
 │   │   └── service.controller.ts
 │   ├── middleware/            # Express middleware
 │   │   ├── auth.middleware.ts
@@ -82,13 +81,11 @@ backend/
 │   ├── routes/               # API routes
 │   │   ├── auth.routes.ts
 │   │   ├── tire.routes.ts
-│   │   ├── customer.routes.ts
-│   │   ├── customerUser.routes.ts
+│   │   ├── user.routes.ts
 │   │   └── service.routes.ts
 │   ├── validations/          # Zod validation schemas
 │   │   ├── tire.validation.ts
-│   │   ├── customer.validation.ts
-│   │   ├── customerUser.validation.ts
+│   │   ├── user.validation.ts
 │   │   └── service.validation.ts
 │   ├── lib/                  # Shared utilities
 │   │   └── prisma.ts         # Prisma client
@@ -168,28 +165,23 @@ docker run -p 3001:3001 backend-dev
 - `GET /api/tires/qr/:qrCodeId` - Get tire by QR code
 - `POST /api/tires/:id/stock` - Update stock quantity
 
-### Customers (Admin Only)
-- `GET /api/customers` - Get all customers
-- `POST /api/customers` - Create new customer
-- `PUT /api/customers/:id` - Update customer
-- `DELETE /api/customers/:id` - Delete customer
+### Users (Admin Only)
+- `GET /api/users` - Get all users
+- `POST /api/users` - Create new user
+- `PUT /api/users/:id` - Update user
+- `DELETE /api/users/:id` - Delete user
 
-### Vehicles (Admin Only)
-- `POST /api/customers/:customerId/vehicles` - Add vehicle to customer
-- `PUT /api/customers/:customerId/vehicles/:vehicleId` - Update vehicle
-- `DELETE /api/customers/:customerId/vehicles/:vehicleId` - Delete vehicle
+### My Vehicles (Customer Users)
+- `GET /api/users/me/vehicles` - Get user's vehicles
+- `POST /api/users/me/vehicles` - Add new vehicle
+- `PUT /api/users/me/vehicles/:id` - Update vehicle
+- `DELETE /api/users/me/vehicles/:id` - Delete vehicle
 
-### Customer Vehicles (Customer Users)
-- `GET /api/customer/vehicles` - Get user's vehicles
-- `POST /api/customer/vehicles` - Add new vehicle
-- `PUT /api/customer/vehicles/:id` - Update vehicle
-- `DELETE /api/customer/vehicles/:id` - Delete vehicle
-
-### Customer Appointments (Customer Users)
-- `GET /api/customer/appointments` - Get user's appointments
-- `POST /api/customer/appointments` - Create new appointment
-- `PUT /api/customer/appointments/:id` - Update appointment
-- `DELETE /api/customer/appointments/:id` - Cancel appointment
+### My Appointments (Customer Users)
+- `GET /api/users/me/appointments` - Get user's appointments
+- `POST /api/users/me/appointments` - Create new appointment
+- `PUT /api/users/me/appointments/:id` - Update appointment
+- `PATCH /api/users/me/appointments/:id/cancel` - Cancel appointment
 
 ### Services
 - `GET /api/services` - Get all services (public)

@@ -33,7 +33,7 @@ i18n
 
     // Enhanced missing key handling
     saveMissing: process.env.NODE_ENV === 'development',
-    missingKeyHandler: (lng, ns, key, fallbackValue) => {
+    missingKeyHandler: (lng, _ns, key, _fallbackValue) => {
       if (process.env.NODE_ENV === 'development') {
         console.warn(`Missing translation key: ${key} for language: ${lng}`);
       }

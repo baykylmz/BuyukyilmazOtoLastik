@@ -19,7 +19,7 @@
     "hero": {
       "title": "Profesyonel Lastik Hizmetleri",
       "subtitle": "Tüm otomotiv ihtiyaçlarınız için kaliteli lastik montajı, saklama ve 7/24 yol yardımı.",
-      "cta": "Hemen Başlayın"
+      "cta": "Hizmetleri Gör"
     },
     "services": {
       "title": "Hizmetlerimiz",
@@ -36,6 +36,12 @@
         "title": "Lastik Saklama Çözümleri",
         "description": "Envanter yönetim sistemi ile güvenli mevsimlik lastik saklama."
       }
+    },
+    "metrics": {
+      "years": "yıllık deneyim",
+      "customers": "mutlu müşteri",
+      "brands": "iş ortağı marka",
+      "services": "hizmet türü"
     },
     "brands": {
       "title": "Güvenilir Lastik Markaları",
@@ -125,7 +131,8 @@
       "nameTooShort": "Ad en az 2 karakter olmalıdır",
       "loginFailed": "Giriş başarısız. Lütfen bilgilerinizi kontrol edip tekrar deneyin.",
       "signupFailed": "Kayıt başarısız. Lütfen daha sonra tekrar deneyin.",
-      "emailExists": "Bu e-posta adresi ile kayıtlı bir kullanıcı zaten mevcut"
+      "emailExists": "Bu e-posta adresi ile kayıtlı bir kullanıcı zaten mevcut",
+      "emailAlreadyRegistered": "Bu e-posta başka bir müşteri tarafından zaten kullanılıyor."
     },
     "backToHome": "← Ana Sayfaya Dön"
   },
@@ -133,6 +140,7 @@
   "navigation": {
     "tires": "Lastikler",
     "customers": "Müşteriler",
+    "users": "Kullanıcılar",
     "qrScanner": "QR Tarayıcı",
     "myVehicles": "Araçlarım",
     "myAppointments": "Randevularım",
@@ -346,5 +354,31 @@
   "language": {
     "turkish": "Türkçe",
     "english": "English"
+  },
+
+  "users": {
+    "title": "Kullanıcı Yönetimi",
+    "addNew": "Yeni Kullanıcı Ekle",
+    "searchPlaceholder": "İsim, e-posta, telefon ara...",
+    "name": "İsim",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "address": "Adres",
+    "role": "Rol",
+    "actions": "İşlemler",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "editUser": "Kullanıcıyı Düzenle",
+    "addUser": "Kullanıcı Ekle",
+    "deleteConfirm": "Bu kullanıcıyı silmek istediğinizden emin misiniz?",
+    "fetchFailed": "Kullanıcılar getirilemedi.",
+    "saveFailed": "Kullanıcı kaydedilemedi.",
+    "deleteFailed": "Kullanıcı silinemedi.",
+    "fillRequired": "Lütfen gerekli tüm alanları doldurun.",
+    "passwordRequired": "Yeni kullanıcılar için şifre gereklidir.",
+    "emailAlreadyRegistered": "Bu e-posta zaten kayıtlı.",
+    "password": "Şifre",
+    "cancel": "İptal",
+    "save": "Kaydet"
   }
 } 

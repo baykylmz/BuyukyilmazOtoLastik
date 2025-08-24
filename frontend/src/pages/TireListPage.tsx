@@ -2,10 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { getTires, createTire, updateTire, deleteTire } from '../services/tireService';
 import { Tire } from '../types/tire';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../contexts/AuthContext';
 
 const TireListPage: React.FC = () => {
   const { t } = useTranslation();
+  const { user } = useAuth();
   const [tires, setTires] = useState<Tire[]>([]);
+
+  // Prevent customers from seeing tires
+  if (user?.role === 'CUSTOMER') {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded relative" role="alert">
+          <strong className="font-bold">{t('unauthorized.title', 'Yetkisiz')}</strong>
+          <span className="block sm:inline"> {t('unauthorized.tires', 'Bu sayfaya erişim yetkiniz yok.')}</span>
+        </div>
+      </div>
+    );
+  }
 
   // Helper function to translate season names
   const getSeasonTranslation = (season: string) => {
@@ -222,37 +236,37 @@ const TireListPage: React.FC = () => {
             <thead className="bg-gray-50 dark:bg-gray-800">
               <tr>
                 <th 
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 min-w-[120px]"
                   onClick={() => handleSort('brand')}
                 >
                   {t('tires.brand')} {sortField === 'brand' && (sortDirection === 'asc' ? '↑' : '↓')}
                 </th>
                 <th 
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 min-w-[120px]"
                   onClick={() => handleSort('name')}
                 >
                   {t('tires.name')} {sortField === 'name' && (sortDirection === 'asc' ? '↑' : '↓')}
                 </th>
                 <th 
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 min-w-[120px]"
                   onClick={() => handleSort('size')}
                 >
                   {t('tires.size')} {sortField === 'size' && (sortDirection === 'asc' ? '↑' : '↓')}
                 </th>
                 <th 
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 min-w-[120px]"
                   onClick={() => handleSort('season')}
                 >
                   {t('tires.season')} {sortField === 'season' && (sortDirection === 'asc' ? '↑' : '↓')}
                 </th>
                 <th 
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 min-w-[120px]"
                   onClick={() => handleSort('price')}
                 >
                   {t('tires.price')} {sortField === 'price' && (sortDirection === 'asc' ? '↑' : '↓')}
                 </th>
                 <th 
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 min-w-[120px]"
                   onClick={() => handleSort('stockQuantity')}
                 >
                   {t('tires.stock')} {sortField === 'stockQuantity' && (sortDirection === 'asc' ? '↑' : '↓')}

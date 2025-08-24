@@ -94,14 +94,14 @@ frontend/
 │   │   ├── LoginPage.tsx      # Login/signup page
 │   │   ├── PublicHomePage.tsx # Public landing page
 │   │   ├── TireListPage.tsx   # Tire management (admin)
-│   │   ├── CustomerListPage.tsx # Customer management (admin)
+│   │   ├── UserListPage.tsx # User management (admin)
 │   │   ├── QRScannerPage.tsx  # QR scanner (admin)
 │   │   ├── CustomerVehiclePage.tsx # Vehicle management (customer)
 │   │   └── CustomerAppointmentPage.tsx # Appointment management (customer)
 │   ├── services/              # API service functions
 │   │   ├── authService.ts     # Authentication API calls
 │   │   ├── tireService.ts     # Tire management API calls
-│   │   ├── customerService.ts # Customer management API calls
+│   │   ├── userService.ts # User management API calls
 │   │   └── appointmentService.ts # Appointment API calls
 │   ├── types/                 # TypeScript type definitions
 │   │   ├── tire.ts           # Tire-related types
@@ -250,7 +250,7 @@ className="bg-white dark:bg-gray-900 text-black dark:text-white"
 6. Redirect to appropriate dashboard
 
 ### Role-based Access
-- **Admin users** see: Tires, Customers, QR Scanner, Services
+- **Admin users** see: Tires, Users, QR Scanner, Services
 - **Customer users** see: Vehicles, Appointments
 
 ### Protected Routes

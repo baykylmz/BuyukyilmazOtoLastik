@@ -1,37 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { getCustomers, createCustomer, updateCustomer, deleteCustomer } from '../services/customerService';
-import { Customer } from '../types/customer';
+import { getUsers, updateUser, deleteUser, User, createUser } from '../services/userService';
 import { useTranslation } from 'react-i18next';
 
-const CustomerListPage: React.FC = () => {
+const UserListPage: React.FC = () => {
   const { t } = useTranslation();
-  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
+  const [editingUser, setEditingUser] = useState<User | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortField, setSortField] = useState<keyof Customer>('createdAt');
+  const [sortField, setSortField] = useState<keyof User>('createdAt');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
-  const [formData, setFormData] = useState<Partial<Customer>>({
+  const [formData, setFormData] = useState<Partial<User> & { password?: string }>({
     name: '',
     email: '',
     phone: '',
     address: '',
+    role: 'CUSTOMER',
+    password: '',
   });
 
-  const fetchCustomers = async () => {
+  const fetchUsers = async () => {
     try {
       setLoading(true);
-      const data = await getCustomers();
-      setCustomers(data);
+      const data = await getUsers();
+      setUsers(data);
       setError(null);
     } catch (err: any) {
-      console.error('Error fetching customers:', err);
+      console.error('Error fetching users:', err);
       if (err.response?.data?.message) {
         setError(err.response.data.message);
       } else {
-        setError(t('customers.fetchFailed'));
+        setError(t('users.fetchFailed'));
       }
     } finally {
       setLoading(false);
@@ -39,20 +40,22 @@ const CustomerListPage: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchCustomers();
+    fetchUsers();
   }, []);
 
-  const handleOpenModal = (customer?: Customer) => {
-    if (customer) {
-      setEditingCustomer(customer);
-      setFormData(customer);
+  const handleOpenModal = (user?: User) => {
+    if (user) {
+      setEditingUser(user);
+      setFormData(user);
     } else {
-      setEditingCustomer(null);
+      setEditingUser(null);
       setFormData({
         name: '',
         email: '',
         phone: '',
         address: '',
+        role: 'CUSTOMER',
+        password: '',
       });
     }
     setIsModalOpen(true);
@@ -60,64 +63,66 @@ const CustomerListPage: React.FC = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setEditingCustomer(null);
+    setEditingUser(null);
     setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      if (!formData.name || !formData.email || !formData.phone) {
-        setError(t('customers.fillRequired'));
+      if (!formData.name || !formData.email) {
+        setError(t('users.fillRequired'));
+        return;
+      }
+      
+      if (!editingUser && !formData.password) {
+        setError(t('users.passwordRequired'));
         return;
       }
 
-      const customerData = {
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim(),
-        address: formData.address?.trim() || '',
+      const userData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        role: formData.role,
+        password: formData.password,
       };
 
-      if (editingCustomer) {
-        await updateCustomer(editingCustomer.id, customerData);
+      if (editingUser) {
+        await updateUser(editingUser.id, userData);
       } else {
-        await createCustomer(customerData);
+        await createUser(userData);
       }
       handleCloseModal();
-      fetchCustomers();
+      fetchUsers();
     } catch (err: any) {
-      console.error('Error saving customer:', err);
+      console.error('Error saving user:', err);
       if (err.response?.data?.message) {
-        setError(err.response.data.message);
-      } else if (err.response?.data?.errors) {
-        const errorMessages = err.response.data.errors.map((error: any) => 
-          `${error.field}: ${error.message}`
-        ).join('\n');
-        setError(errorMessages);
+        if (err.response.data.message.includes('already registered')) {
+          setError(t('users.emailAlreadyRegistered'));
+        } else {
+          setError(err.response.data.message);
+        }
       } else {
-        setError(t('customers.saveFailed'));
+        setError(t('users.saveFailed'));
       }
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (window.confirm(t('customers.deleteConfirm'))) {
+    if (window.confirm(t('users.deleteConfirm'))) {
       try {
-        await deleteCustomer(id);
-        fetchCustomers();
+        await deleteUser(id);
+        fetchUsers();
       } catch (err: any) {
-        console.error('Error deleting customer:', err);
-        if (err.response?.data?.message) {
-          setError(err.response.data.message);
-        } else {
-          setError(t('customers.deleteFailed'));
-        }
+        console.error('Error deleting user:', err);
+        setError(t('users.deleteFailed'));
       }
     }
   };
 
-  const handleSort = (field: keyof Customer) => {
+  const handleSort = (field: keyof User) => {
     if (field === sortField) {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     } else {
@@ -126,23 +131,26 @@ const CustomerListPage: React.FC = () => {
     }
   };
 
-  const filteredCustomers = customers
-    .filter(customer => {
+  const filteredUsers = users
+    .filter(user => {
       const searchLower = searchTerm.toLowerCase();
       return (
-        customer.name.toLowerCase().includes(searchLower) ||
-        customer.email.toLowerCase().includes(searchLower) ||
-        customer.phone.toLowerCase().includes(searchLower) ||
-        (customer.address && customer.address.toLowerCase().includes(searchLower))
+        user.name.toLowerCase().includes(searchLower) ||
+        user.email.toLowerCase().includes(searchLower) ||
+        (user.phone && user.phone.toLowerCase().includes(searchLower)) ||
+        (user.address && user.address.toLowerCase().includes(searchLower))
       );
     })
     .sort((a, b) => {
-      const aValue = a[sortField];
-      const bValue = b[sortField];
+      const aValue = a[sortField] as string | number;
+      const bValue = b[sortField] as string | number;
       const direction = sortDirection === 'asc' ? 1 : -1;
       
       if (typeof aValue === 'string' && typeof bValue === 'string') {
         return direction * aValue.localeCompare(bValue);
+      }
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return direction * (aValue - bValue);
       }
       return 0;
     });
@@ -163,7 +171,7 @@ const CustomerListPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">{t('customers.title')}</h2>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">{t('users.title')}</h2>
         <button
           onClick={() => handleOpenModal()}
           className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 flex items-center"
@@ -171,7 +179,7 @@ const CustomerListPage: React.FC = () => {
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
           </svg>
-          {t('customers.addNew')}
+          {t('users.addNew')}
         </button>
       </div>
 
@@ -180,7 +188,7 @@ const CustomerListPage: React.FC = () => {
           <div className="relative">
             <input
               type="text"
-              placeholder={t('customers.searchPlaceholder')}
+              placeholder={t('users.searchPlaceholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -199,61 +207,64 @@ const CustomerListPage: React.FC = () => {
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                   onClick={() => handleSort('name')}
                 >
-                  {t('customers.name')} {sortField === 'name' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  {t('users.name')} {sortField === 'name' && (sortDirection === 'asc' ? '↑' : '↓')}
                 </th>
                 <th 
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                   onClick={() => handleSort('email')}
                 >
-                  {t('customers.email')} {sortField === 'email' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  {t('users.email')} {sortField === 'email' && (sortDirection === 'asc' ? '↑' : '↓')}
+                </th>
+                 <th 
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                  onClick={() => handleSort('role')}
+                >
+                  {t('users.role')} {sortField === 'role' && (sortDirection === 'asc' ? '↑' : '↓')}
                 </th>
                 <th 
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                   onClick={() => handleSort('phone')}
                 >
-                  {t('customers.phone')} {sortField === 'phone' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  {t('users.phone')} {sortField === 'phone' && (sortDirection === 'asc' ? '↑' : '↓')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                  {t('customers.address')}
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                  {t('customers.vehicles')}
+                  {t('users.address')}
                 </th>
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                  {t('customers.actions')}
+                  {t('users.actions')}
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
-              {filteredCustomers.map(customer => (
-                <tr key={customer.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
+              {filteredUsers.map(user => (
+                <tr key={user.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
-                    {customer.name}
+                    {user.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                    {customer.email}
+                    {user.email}
+                  </td>
+                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                    {user.role}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                    {customer.phone}
+                    {user.phone}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
-                    {customer.address || '-'}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                    {customer.vehicles?.length || 0} {t('customers.vehiclesUnit')}
+                    {user.address || '-'}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button
-                      onClick={() => handleOpenModal(customer)}
+                      onClick={() => handleOpenModal(user)}
                       className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
                     >
-                      {t('customers.edit')}
+                      {t('users.edit')}
                     </button>
                     <button
-                      onClick={() => handleDelete(customer.id)}
+                      onClick={() => handleDelete(user.id)}
                       className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
                     >
-                      {t('customers.delete')}
+                      {t('users.delete')}
                     </button>
                   </td>
                 </tr>
@@ -268,12 +279,12 @@ const CustomerListPage: React.FC = () => {
           <div className="relative top-20 mx-auto p-5 border dark:border-gray-600 w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
             <div className="mt-3">
               <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200 mb-4">
-                {editingCustomer ? t('customers.editCustomer') : t('customers.addCustomer')}
+                {editingUser ? t('users.editUser') : t('users.addUser')}
               </h3>
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="name">
-                    {t('customers.name')} <span className="text-red-500">*</span>
+                    {t('users.name')} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -286,7 +297,7 @@ const CustomerListPage: React.FC = () => {
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="email">
-                    {t('customers.email')} <span className="text-red-500">*</span>
+                    {t('users.email')} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -299,7 +310,7 @@ const CustomerListPage: React.FC = () => {
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="phone">
-                    {t('customers.phone')} <span className="text-red-500">*</span>
+                    {t('users.phone')}
                   </label>
                   <input
                     type="tel"
@@ -307,12 +318,24 @@ const CustomerListPage: React.FC = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="shadow appearance-none border dark:border-gray-600 rounded w-full py-2 px-3 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 leading-tight focus:outline-none focus:shadow-outline"
-                    required
+                  />
+                </div>
+                 <div className="mb-4">
+                  <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="password">
+                    {t('users.password')} {!editingUser && <span className="text-red-500">*</span>}
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    className="shadow appearance-none border dark:border-gray-600 rounded w-full py-2 px-3 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 leading-tight focus:outline-none focus:shadow-outline"
+                    required={!editingUser}
                   />
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="address">
-                    {t('customers.address')}
+                    {t('users.address')}
                   </label>
                   <textarea
                     id="address"
@@ -322,19 +345,34 @@ const CustomerListPage: React.FC = () => {
                     rows={3}
                   />
                 </div>
+                 <div className="mb-4">
+                  <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="role">
+                    {t('users.role')}
+                  </label>
+                  <select
+                    id="role"
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value as 'ADMIN' | 'CUSTOMER' | 'STAFF' })}
+                    className="shadow appearance-none border dark:border-gray-600 rounded w-full py-2 px-3 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 leading-tight focus:outline-none focus:shadow-outline"
+                  >
+                    <option value="CUSTOMER">Customer</option>
+                    <option value="STAFF">Staff</option>
+                    <option value="ADMIN">Admin</option>
+                  </select>
+                </div>
                 <div className="flex items-center justify-end">
                   <button
                     type="button"
                     onClick={handleCloseModal}
                     className="bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg mr-2 hover:bg-gray-400 dark:hover:bg-gray-500 transition-colors duration-200"
                   >
-                    {t('customers.cancel')}
+                    {t('users.cancel')}
                   </button>
                   <button
                     type="submit"
                     className="bg-blue-500 dark:bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors duration-200"
                   >
-                    {t('customers.save')}
+                    {t('users.save')}
                   </button>
                 </div>
               </form>
@@ -346,4 +384,4 @@ const CustomerListPage: React.FC = () => {
   );
 };
 
-export default CustomerListPage; 
+export default UserListPage; 

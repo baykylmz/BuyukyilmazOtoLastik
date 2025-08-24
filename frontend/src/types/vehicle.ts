@@ -4,8 +4,7 @@ export interface Vehicle {
   model: string;
   year: number;
   licensePlate: string;
-  customerId: string;
-  userId?: string;
+  userId: string;
   createdAt: string;
   updatedAt: string;
 } 

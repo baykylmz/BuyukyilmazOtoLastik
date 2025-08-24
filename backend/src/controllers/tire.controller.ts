@@ -131,17 +131,7 @@ export const tireController = {
       });
 
       // Generate base64 PNG QR code
-      const qrCodeBase64 = await QRCode.toDataURL(qrData, {
-        errorCorrectionLevel: 'M',
-        type: 'image/png',
-        quality: 0.92,
-        margin: 1,
-        color: {
-          dark: '#000000',
-          light: '#FFFFFF'
-        },
-        width: 256
-      });
+      const qrCodeBase64 = await QRCode.toDataURL(qrData);
 
       res.json({
         status: 'success',

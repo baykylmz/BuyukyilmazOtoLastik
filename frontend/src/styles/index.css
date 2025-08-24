@@ -1,56 +1,67 @@
+/* Tailwind CSS directives - these are valid and required for Tailwind to work */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Light theme colors */
-    --color-background: 255 255 255;
-    --color-foreground: 15 23 42;
-    --color-card: 255 255 255;
-    --color-card-foreground: 15 23 42;
-    --color-popover: 255 255 255;
-    --color-popover-foreground: 15 23 42;
-    --color-muted: 248 250 252;
-    --color-muted-foreground: 100 116 139;
-    --color-accent: 248 250 252;
-    --color-accent-foreground: 15 23 42;
-    --color-destructive: 239 68 68;
-    --color-destructive-foreground: 248 250 252;
-    --color-border: 226 232 240;
-    --color-input: 226 232 240;
-    --color-ring: 59 130 246;
+    /* Light theme colors - softer, less glare */
+    --color-background: 249 250 251;           /* slate-50 */
+    --color-foreground: 17 24 39;              /* slate-900 */
+    --color-card: 255 255 255;                 /* white */
+    --color-card-foreground: 17 24 39;         /* slate-900 */
+    --color-popover: 255 255 255;              /* white */
+    --color-popover-foreground: 17 24 39;      /* slate-900 */
+    --color-muted: 241 245 249;                /* slate-100 */
+    --color-muted-foreground: 100 116 139;     /* slate-500 */
+    --color-accent: 239 246 255;               /* sky-50 */
+    --color-accent-foreground: 17 24 39;       /* slate-900 */
+    --color-destructive: 239 68 68;            /* red-500 */
+    --color-destructive-foreground: 255 255 255; /* white */
+    --color-border: 226 232 240;               /* slate-200 */
+    --color-input: 241 245 249;                /* slate-100 */
+    --color-ring: 2 132 199;                   /* primary-600 */
   }
 
   .dark {
-    /* Enhanced dark theme colors - Modern and appealing */
-    --color-background: 3 7 18;        /* Deep navy background */
-    --color-foreground: 248 250 252;   /* Crisp white text */
-    --color-card: 15 23 42;            /* Slate card background */
-    --color-card-foreground: 248 250 252; /* White card text */
-    --color-popover: 15 23 42;         /* Slate popover */
-    --color-popover-foreground: 248 250 252; /* White popover text */
-    --color-muted: 30 41 59;           /* Muted slate background */
-    --color-muted-foreground: 148 163 184; /* Light gray muted text */
-    --color-accent: 51 65 85;          /* Accent slate */
-    --color-accent-foreground: 226 232 240; /* Light accent text */
-    --color-destructive: 239 68 68;    /* Red for errors */
-    --color-destructive-foreground: 254 226 226; /* Light red text */
-    --color-border: 51 65 85;          /* Subtle borders */
-    --color-input: 30 41 59;           /* Input backgrounds */
-    --color-ring: 96 165 250;          /* Blue focus rings */
+    /* Dark theme colors - high contrast, subdued surfaces */
+    --color-background: 2 6 23;                /* slate-950 */
+    --color-foreground: 248 250 252;           /* slate-50 */
+    --color-card: 15 23 42;                    /* slate-800 */
+    --color-card-foreground: 241 245 249;      /* slate-100 */
+    --color-popover: 15 23 42;                 /* slate-800 */
+    --color-popover-foreground: 241 245 249;   /* slate-100 */
+    --color-muted: 22 30 46;                   /* custom deep slate */
+    --color-muted-foreground: 148 163 184;     /* slate-400 */
+    --color-accent: 30 41 59;                  /* slate-700 */
+    --color-accent-foreground: 203 213 225;    /* slate-300 */
+    --color-destructive: 239 68 68;            /* red-500 */
+    --color-destructive-foreground: 254 226 226; /* red-100 */
+    --color-border: 45 64 89;                  /* subtle border */
+    --color-input: 17 24 39;                   /* slate-900 */
+    --color-ring: 56 189 248;                  /* sky-400 */
   }
 
   html {
-    @apply antialiased;
+    @apply antialiased overflow-x-hidden;
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-colors duration-300 overflow-x-hidden;
   }
 
   * {
     @apply border-border;
+  }
+
+  #root {
+    @apply overflow-x-hidden;
+  }
+
+  /* Ensure media never overflow viewport width */
+  img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -76,11 +87,11 @@
   }
 
   .card {
-    @apply rounded-lg border bg-card text-card-foreground shadow-sm dark:shadow-lg dark:shadow-black/10 backdrop-blur-sm;
+    @apply rounded-lg border bg-card text-card-foreground shadow md:shadow-lg dark:shadow-lg dark:shadow-black/10 backdrop-blur-sm;
   }
 
   .theme-toggle {
-    @apply inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all duration-200 hover:scale-105;
+    @apply inline-flex items-center justify-center rounded-md p-2 text-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all duration-200 hover:scale-105;
   }
 
   /* Enhanced gradients for dark mode */

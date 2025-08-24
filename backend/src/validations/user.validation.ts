@@ -1,5 +1,36 @@
 import { z } from 'zod';
 
+export const userIdSchema = z.object({
+  params: z.object({
+    id: z.string().uuid('Invalid user ID'),
+  }),
+});
+
+export const updateUserSchema = z.object({
+  params: z.object({
+    id: z.string().uuid('Invalid user ID'),
+  }),
+  body: z.object({
+    email: z.string().email('Invalid email address').optional(),
+    name: z.string().min(1, 'Name is required').optional(),
+    phone: z.string().min(1, 'Phone number is required').optional(),
+    address: z.string().optional(),
+    password: z.string().min(6, 'Password must be at least 6 characters').optional(),
+    role: z.enum(['ADMIN', 'CUSTOMER']).optional(),
+  }),
+});
+
+export const createUserSchema = z.object({
+  body: z.object({
+    email: z.string().email('Invalid email address'),
+    name: z.string().min(1, 'Name is required'),
+    phone: z.string().min(1, 'Phone number is required').optional(),
+    address: z.string().optional(),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
+    role: z.enum(['ADMIN', 'CUSTOMER', 'STAFF']).optional(),
+  }),
+});
+
 // Vehicle validation schemas
 export const createVehicleSchema = z.object({
   body: z.object({

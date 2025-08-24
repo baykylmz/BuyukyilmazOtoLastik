@@ -17,6 +17,34 @@ async function main() {
     },
   });
 
+  // Create sample customer users
+  const customerPassword = await bcrypt.hash('123456', 12);
+  const customer1 = await prisma.user.upsert({
+    where: { email: 'john.doe@example.com' },
+    update: {},
+    create: {
+      email: 'john.doe@example.com',
+      password: customerPassword,
+      name: 'John Doe',
+      phone: '+90 555 123 4567',
+      address: '123 Main Street, Istanbul',
+      role: 'CUSTOMER',
+    },
+  });
+
+  const customer2 = await prisma.user.upsert({
+    where: { email: 'jane.smith@example.com' },
+    update: {},
+    create: {
+      email: 'jane.smith@example.com',
+      password: customerPassword,
+      name: 'Jane Smith',
+      phone: '+90 555 987 6543',
+      address: '456 Oak Avenue, Ankara',
+      role: 'CUSTOMER',
+    },
+  });
+
   // Create sample tires
   const tires = await Promise.all([
     prisma.tire.create({
@@ -85,10 +113,70 @@ async function main() {
     }),
   ]);
 
+  // Create sample vehicles for customers
+  const vehicles = await Promise.all([
+    prisma.vehicle.create({
+      data: {
+        make: 'Toyota',
+        model: 'Corolla',
+        year: 2020,
+        licensePlate: '34 ABC 123',
+        userId: customer1.id,
+      },
+    }),
+    prisma.vehicle.create({
+      data: {
+        make: 'Honda',
+        model: 'Civic',
+        year: 2021,
+        licensePlate: '06 XYZ 789',
+        userId: customer1.id,
+      },
+    }),
+    prisma.vehicle.create({
+      data: {
+        make: 'Ford',
+        model: 'Focus',
+        year: 2019,
+        licensePlate: '35 DEF 456',
+        userId: customer2.id,
+      },
+    }),
+  ]);
+
+  // Create sample appointments for customers
+  const appointments = await Promise.all([
+    prisma.appointment.create({
+      data: {
+        serviceId: services[0].id, // Tire Mounting and Balancing
+        userId: customer1.id,
+        customerName: customer1.name,
+        customerPhone: customer1.phone!,
+        vehicleModel: 'Toyota Corolla 2020',
+        preferredDateTime: new Date('2024-07-15T10:00:00Z'),
+        notes: 'Front tires need replacement',
+      },
+    }),
+    prisma.appointment.create({
+      data: {
+        serviceId: services[1].id, // Wheel Alignment
+        userId: customer2.id,
+        customerName: customer2.name,
+        customerPhone: customer2.phone!,
+        vehicleModel: 'Ford Focus 2019',
+        preferredDateTime: new Date('2024-07-16T14:00:00Z'),
+        notes: 'Steering feels off-center',
+      },
+    }),
+  ]);
+
   console.log('Database has been seeded. 🌱');
   console.log('Admin user created:', admin.email);
+  console.log('Customer users created:', customer1.email, customer2.email);
   console.log('Sample tires created:', tires.length);
   console.log('Sample services created:', services.length);
+  console.log('Sample vehicles created:', vehicles.length);
+  console.log('Sample appointments created:', appointments.length);
 }
 
 main()

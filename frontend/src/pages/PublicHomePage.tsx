@@ -115,6 +115,21 @@ const PublicHomePage: React.FC = () => {
               {t('public.hero.subtitle')}
             </p>
 
+            {/* Hero CTAs */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <a
+                href="#services"
+                className="inline-flex items-center justify-center rounded-md bg-white text-blue-700 font-semibold px-6 py-3 shadow-sm hover:shadow md:hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 dark:bg-blue-500 dark:text-white"
+              >
+                {t('public.hero.cta')}
+              </a>
+              <a
+                href="/login"
+                className="inline-flex items-center justify-center rounded-md border border-white/70 text-white font-semibold px-6 py-3 hover:bg-white/10 transition-colors duration-200"
+              >
+                {t('public.auth.login')}
+              </a>
+            </div>
           </div>
         </div>
         
@@ -123,6 +138,30 @@ const PublicHomePage: React.FC = () => {
           <div className="absolute inset-0" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }} />
+        </div>
+      </section>
+
+      {/* Metrics Section */}
+      <section className="bg-background dark:bg-slate-900/60 border-b border-border/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            <div className="text-center card dark-card p-4">
+              <div className="text-3xl sm:text-4xl font-extrabold text-foreground dark:text-white">10+</div>
+              <div className="text-muted-foreground dark:text-slate-300 text-sm sm:text-base">{t('public.metrics.years')}</div>
+            </div>
+            <div className="text-center card dark-card p-4">
+              <div className="text-3xl sm:text-4xl font-extrabold text-foreground dark:text-white">2K+</div>
+              <div className="text-muted-foreground dark:text-slate-300 text-sm sm:text-base">{t('public.metrics.customers')}</div>
+            </div>
+            <div className="text-center card dark-card p-4">
+              <div className="text-3xl sm:text-4xl font-extrabold text-foreground dark:text-white">15+</div>
+              <div className="text-muted-foreground dark:text-slate-300 text-sm sm:text-base">{t('public.metrics.brands')}</div>
+            </div>
+            <div className="text-center card dark-card p-4">
+              <div className="text-3xl sm:text-4xl font-extrabold text-foreground dark:text-white">10+</div>
+              <div className="text-muted-foreground dark:text-slate-300 text-sm sm:text-base">{t('public.metrics.services')}</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -314,6 +353,8 @@ const PublicHomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+
 
       {/* Footer */}
       <footer className="bg-slate-900 dark:bg-gradient-to-br dark:from-slate-950 dark:to-slate-900 text-white py-12 relative overflow-hidden">

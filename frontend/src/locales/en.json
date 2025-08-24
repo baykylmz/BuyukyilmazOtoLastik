@@ -19,7 +19,7 @@
     "hero": {
       "title": "Your Trusted Address for Tire Changes",
       "subtitle": "Roadside assistance, tire change, storage service",
-      "cta": "Book Appointment Now"
+      "cta": "Explore Services"
     },
     "services": {
       "title": "Our Services",
@@ -36,6 +36,12 @@
         "title": "Storage Service",
         "description": "Secure storage for your tires"
       }
+    },
+    "metrics": {
+      "years": "years of experience",
+      "customers": "happy customers",
+      "brands": "partner brands",
+      "services": "service types"
     },
     "brands": {
       "title": "Trusted Tire Brands",
@@ -120,7 +126,8 @@
       "nameTooShort": "Name must be at least 2 characters",
       "loginFailed": "Login failed. Please check your credentials and try again.",
       "signupFailed": "Registration failed. Please try again later.",
-      "emailExists": "A user with this email already exists"
+      "emailExists": "A user with this email already exists",
+      "emailAlreadyRegistered": "This email is already registered to another customer."
     },
     "placeholders": {
       "email": "example@email.com",
@@ -133,6 +140,7 @@
   "navigation": {
     "tires": "Tires",
     "customers": "Customers",
+    "users": "Users",
     "qrScanner": "QR Scanner",
     "myVehicles": "My Vehicles",
     "myAppointments": "My Appointments",
@@ -347,5 +355,31 @@
     "turkish": "Türkçe",
     "english": "English",
     "switchTo": "Switch to"
+  },
+
+  "users": {
+    "title": "User Management",
+    "addNew": "Add New User",
+    "searchPlaceholder": "Search by name, email, phone...",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "role": "Role",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "editUser": "Edit User",
+    "addUser": "Add User",
+    "deleteConfirm": "Are you sure you want to delete this user?",
+    "fetchFailed": "Failed to fetch users.",
+    "saveFailed": "Failed to save user.",
+    "deleteFailed": "Failed to delete user.",
+    "fillRequired": "Please fill in all required fields.",
+    "passwordRequired": "Password is required for new users.",
+    "emailAlreadyRegistered": "This email is already registered.",
+    "password": "Password",
+    "cancel": "Cancel",
+    "save": "Save"
   }
 } 

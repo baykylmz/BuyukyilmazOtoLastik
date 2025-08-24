@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
 import { Vehicle } from '../types/vehicle';
-import { getMyVehicles, addMyVehicle, updateMyVehicle, deleteMyVehicle } from '../services/customerService';
+import { getMyVehicles, addMyVehicle, updateMyVehicle, deleteMyVehicle } from '../services/userService';
 
 const CustomerVehiclePage: React.FC = () => {
-  const { user } = useAuth();
   const { t } = useTranslation();
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [loading, setLoading] = useState(true);

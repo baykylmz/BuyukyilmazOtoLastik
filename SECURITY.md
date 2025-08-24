@@ -3,7 +3,7 @@
 ## 🔒 Security Checklist
 
 ### Before First Deployment
-- [ ] Change default admin credentials (`admin@gmail.com` / `123`)
+- [ ] Change default admin credentials (`admin@gmail.com` / `123456`)
 - [ ] Set a strong, randomly generated JWT_SECRET
 - [ ] Configure HTTPS with valid SSL certificates
 - [ ] Set up proper database access controls
@@ -45,6 +45,42 @@
 - Input validation using Zod schemas
 - CORS protection enabled
 - Rate limiting recommended for production
+
+## 🔐 Access Control & Route Protection
+
+### Role-Based Access Control (RBAC)
+- **Admin Role**: Full access to all system features
+  - Tire management (CRUD operations)
+  - Customer management
+  - QR scanner functionality
+  - User management
+  - Stock management
+- **Customer Role**: Limited access to personal features only
+  - Personal vehicle management
+  - Appointment booking and management
+  - No access to admin features
+
+### Route Protection Implementation
+```typescript
+// Admin-only routes (AdminRoute)
+- /tires - Tire inventory management
+- /qr-scanner - QR code scanning
+- /users - User management
+
+// Customer routes (PrivateRoute)
+- /vehicles - Personal vehicle management
+- /appointments - Personal appointment management
+
+// Public routes
+- / - Public homepage
+- /login - Authentication
+```
+
+### Security Features
+- **AdminRoute**: Protects admin-only functionality
+- **PrivateRoute**: Protects authenticated user functionality
+- **Role Validation**: Server-side role verification on all protected endpoints
+- **Unauthorized Handling**: Proper error messages and redirects for unauthorized access
 
 ## 🔧 Security Configuration
 

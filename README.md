@@ -8,7 +8,7 @@ A full-stack web application for managing a tire shop's inventory, customers, se
 - JWT-based authentication system with dual-user roles
 - **Admin Role**: Full access to all features (tires, customers, services, QR scanner)
 - **Customer Role**: Vehicle management and appointment booking
-- Protected routes and middleware with role-based access
+- Protected routes and middleware with role-based access control
 - Secure password hashing with bcrypt
 - Environment-based configuration for secrets
 - CORS protection
@@ -23,12 +23,12 @@ A full-stack web application for managing a tire shop's inventory, customers, se
 - Advanced filtering and sorting
 - Real-time stock updates with user attribution
 
-### 👥 Customer Management (Admin Only)
-- Customer profile management
+### 👥 User Management (Admin Only)
+- User profile management
 - Vehicle association system
 - Contact information tracking
 - Address management
-- Customer search and filtering
+- User search and filtering
 
 ### 🚗 Vehicle Management (Customer Users)
 - Add, edit, and delete personal vehicles
@@ -50,13 +50,16 @@ A full-stack web application for managing a tire shop's inventory, customers, se
 - Integration with appointment system
 
 ### 📱 Modern UI/UX
-- **Dark/Light Mode** - Complete theme switching
+- **Enhanced Color Palette** - Professional automotive industry colors with brand blue (#0056D2) and teal accent (#00B894)
+- **Dark/Light Mode** - Complete theme switching with WCAG AA contrast compliance
 - **Internationalization** - Turkish and English support
 - **Responsive Design** - Works on all devices
 - **Form Validation** - Visual indicators for required fields
 - **Loading States** - User-friendly loading indicators
 - **Error Handling** - Comprehensive error messages
 - **Role-based Navigation** - Different menus for admins and customers
+- **Semantic Color Tokens** - Consistent theming using CSS variables
+- **Subtle Depth** - Modern flat design with appropriate shadows and hover effects
 
 ### 🔍 QR Code System (Admin Only)
 - Generate QR codes for each tire
@@ -76,12 +79,27 @@ A full-stack web application for managing a tire shop's inventory, customers, se
 - Development and production configurations
 - Volume persistence for data
 
+## 🎨 Design System
+
+### Color Palette
+- **Brand Primary**: Blue (#0056D2 light, #3B82F6 dark) - Professional automotive feel
+- **Accent**: Teal (#00B894 light, #34D399 dark) - Call-to-action buttons
+- **Neutral Text**: Dark slate (#1E293B light, #E6EDF3 dark) - High readability
+- **Backgrounds**: Clean whites and deep slates for optimal contrast
+- **WCAG AA Compliance**: All color combinations meet accessibility standards
+
+### Component Styling
+- **Buttons**: Semantic styling with hover states and subtle shadows
+- **Cards**: Clean surfaces with appropriate depth and borders
+- **Navigation**: Role-based menu items with active state indicators
+- **Forms**: Consistent input styling with focus rings and validation states
+
 ## 🛠 Tech Stack
 
 ### Frontend
 - **React 18** with TypeScript
-- **React Router** for navigation
-- **Tailwind CSS** for styling with dark mode support
+- **React Router** for navigation with role-based route protection
+- **Tailwind CSS** for styling with semantic color tokens
 - **Axios** for API requests
 - **React i18next** for internationalization
 - **@yudiel/react-qr-scanner** for QR code scanning
@@ -125,7 +143,7 @@ BuyukyilmazOtoLastik/
 │   │   │   ├── LoginPage.tsx   # Login/signup page
 │   │   │   ├── PublicHomePage.tsx # Public landing page
 │   │   │   ├── TireListPage.tsx # Tire management (admin)
-│   │   │   ├── CustomerListPage.tsx # Customer management (admin)
+│   │   │   ├── UserListPage.tsx # User management (admin)
 │   │   │   ├── QRScannerPage.tsx # QR scanner (admin)
 │   │   │   ├── CustomerVehiclePage.tsx # Vehicle management (customer)
 │   │   │   └── CustomerAppointmentPage.tsx # Appointment management (customer)
@@ -143,8 +161,7 @@ BuyukyilmazOtoLastik/
 │   │   ├── controllers/        # Route controllers
 │   │   │   ├── auth.controller.ts
 │   │   │   ├── tire.controller.ts
-│   │   │   ├── customer.controller.ts
-│   │   │   ├── customerUser.controller.ts
+│   │   │   ├── user.controller.ts
 │   │   │   └── service.controller.ts
 │   │   ├── middleware/         # Express middleware
 │   │   │   ├── auth.middleware.ts
@@ -153,13 +170,11 @@ BuyukyilmazOtoLastik/
 │   │   ├── routes/             # API routes
 │   │   │   ├── auth.routes.ts
 │   │   │   ├── tire.routes.ts
-│   │   │   ├── customer.routes.ts
-│   │   │   ├── customerUser.routes.ts
+│   │   │   ├── user.routes.ts
 │   │   │   └── service.routes.ts
 │   │   ├── validations/        # Zod validation schemas
 │   │   │   ├── tire.validation.ts
-│   │   │   ├── customer.validation.ts
-│   │   │   ├── customerUser.validation.ts
+│   │   │   ├── user.validation.ts
 │   │   │   └── service.validation.ts
 │   │   ├── lib/               # Shared utilities
 │   │   │   └── prisma.ts      # Prisma client
@@ -315,28 +330,23 @@ VITE_API_URL=http://localhost:3001
 - `GET /api/tires/qr/:qrCodeId` - Get tire by QR code
 - `POST /api/tires/:id/stock` - Update stock quantity
 
-### Customers (Admin Only)
-- `GET /api/customers` - Get all customers
-- `POST /api/customers` - Create new customer
-- `PUT /api/customers/:id` - Update customer
-- `DELETE /api/customers/:id` - Delete customer
+### Users (Admin Only)
+- `GET /api/users` - Get all users
+- `POST /api/users` - Create new user
+- `PUT /api/users/:id` - Update user
+- `DELETE /api/users/:id` - Delete user
 
-### Vehicles (Admin Only)
-- `POST /api/customers/:customerId/vehicles` - Add vehicle to customer
-- `PUT /api/customers/:customerId/vehicles/:vehicleId` - Update vehicle
-- `DELETE /api/customers/:customerId/vehicles/:vehicleId` - Delete vehicle
+### My Vehicles (Customer Users)
+- `GET /api/users/me/vehicles` - Get user's vehicles
+- `POST /api/users/me/vehicles` - Add new vehicle
+- `PUT /api/users/me/vehicles/:id` - Update vehicle
+- `DELETE /api/users/me/vehicles/:id` - Delete vehicle
 
-### Customer Vehicles (Customer Users)
-- `GET /api/customer/vehicles` - Get user's vehicles
-- `POST /api/customer/vehicles` - Add new vehicle
-- `PUT /api/customer/vehicles/:id` - Update vehicle
-- `DELETE /api/customer/vehicles/:id` - Delete vehicle
-
-### Customer Appointments (Customer Users)
-- `GET /api/customer/appointments` - Get user's appointments
-- `POST /api/customer/appointments` - Create new appointment
-- `PUT /api/customer/appointments/:id` - Update appointment
-- `DELETE /api/customer/appointments/:id` - Cancel appointment
+### My Appointments (Customer Users)
+- `GET /api/users/me/appointments` - Get user's appointments
+- `POST /api/users/me/appointments` - Create new appointment
+- `PUT /api/users/me/appointments/:id` - Update appointment
+- `PATCH /api/users/me/appointments/:id/cancel` - Cancel appointment
 
 ### Services
 - `GET /api/services` - Get all services (public)
@@ -399,20 +409,6 @@ VITE_API_URL=http://localhost:3001
 }
 ```
 
-### Customer
-```typescript
-{
-  id: string
-  name: string
-  email: string
-  phone: string
-  address?: string
-  vehicles: Vehicle[]
-  createdAt: Date
-  updatedAt: Date
-}
-```
-
 ### Vehicle
 ```typescript
 {
@@ -421,10 +417,8 @@ VITE_API_URL=http://localhost:3001
   model: string
   year: number
   licensePlate: string
-  customerId: string
-  customer: Customer
-  userId?: string
-  user?: User
+  userId: string
+  user: User
   createdAt: Date
   updatedAt: Date
 }
@@ -499,7 +493,7 @@ Complete dark/light mode support across all components:
 
 ### Admin Role Features
 - **Tire Management**: Full CRUD operations, QR codes, stock tracking
-- **Customer Management**: Customer profiles and vehicle management
+- **User Management**: User profiles and vehicle management
 - **Service Management**: Service catalog and pricing
 - **QR Scanner**: Mobile QR code scanning for tire lookup
 - **Stock Management**: Real-time stock tracking and logging
@@ -741,17 +735,19 @@ CORS_ORIGIN=https://your-domain.com
 ## 📈 Feature Status
 
 ### ✅ Fully Implemented Features
-- **Authentication System** - JWT-based with dual-user roles
-- **Tire Management** - Complete CRUD with QR codes and stock tracking
-- **Customer Management** - Customer profiles with vehicle management
+- **Authentication System** - JWT-based with dual-user roles and proper route protection
+- **Tire Management** - Complete CRUD with QR codes and stock tracking (Admin only)
+- **User Management** - Customer profiles with vehicle management (Admin only)
 - **Vehicle Management** - Customer vehicle management system
 - **Appointment System** - Complete booking and management system
 - **Service Management** - Service catalog and pricing
 - **Stock Management** - Real-time tracking with logging
-- **QR Code System** - Generation and scanning
+- **QR Code System** - Generation and scanning (Admin only)
 - **Internationalization** - Turkish and English support
-- **Dark/Light Mode** - Complete theme switching
-- **Role-based UI** - Different interfaces for admins and customers
+- **Enhanced UI/UX** - Professional automotive color palette with WCAG AA compliance
+- **Dark/Light Mode** - Complete theme switching with semantic color tokens
+- **Role-based Navigation** - Proper access control and different interfaces for admins and customers
+- **Route Protection** - AdminRoute and PrivateRoute with proper role-based access
 - **API Documentation** - Swagger/OpenAPI documentation
 
 ### 🔄 Schema Ready (Backend Only)

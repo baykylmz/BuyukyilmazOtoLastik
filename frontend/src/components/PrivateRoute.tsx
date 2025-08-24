@@ -32,11 +32,15 @@ export const AdminRoute: React.FC<AdminRouteProps> = ({ children, fallback }) =>
   }
 
   if (user?.role !== 'ADMIN') {
-    // If a fallback component is provided, show it; otherwise redirect to home
+    // If a fallback component is provided, show it; otherwise redirect to appropriate default route
     if (fallback) {
       return <>{fallback}</>;
     }
-    return <Navigate to="/tires" replace />;
+    // Redirect to appropriate default route based on user role
+    if (user?.role === 'CUSTOMER') {
+      return <Navigate to="/vehicles" replace />;
+    }
+    return <Navigate to="/" replace />;
   }
 
   return <>{children}</>;

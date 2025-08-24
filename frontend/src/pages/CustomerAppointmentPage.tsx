@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
-import { getMyAppointments, createMyAppointment, updateMyAppointment, cancelMyAppointment } from '../services/customerService';
+import { getMyAppointments, createMyAppointment, updateMyAppointment, cancelMyAppointment } from '../services/userService';
 
 interface Appointment {
   id: string;
@@ -59,8 +59,8 @@ const CustomerAppointmentPage: React.FC = () => {
   const loadAppointments = async () => {
     try {
       setLoading(true);
-      const response = await getMyAppointments();
-      setAppointments(response.data || []);
+      const data = await getMyAppointments();
+      setAppointments(data || []);
       setError(null);
     } catch (err) {
       setError(t('errors.failedToLoadAppointments'));

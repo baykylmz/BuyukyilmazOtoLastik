@@ -7,9 +7,8 @@ import { errorHandler } from './middleware/errorHandler';
 import { logger } from './utils/logger';
 import authRoutes from './routes/auth.routes';
 import { tireRoutes } from './routes/tire.routes';
-import customerRoutes from './routes/customer.routes';
-import { customerUserRoutes } from './routes/customerUser.routes';
 import { serviceRoutes } from './routes/service.routes';
+import { userRoutes } from './routes/user.routes';
 import { PrismaClient } from '@prisma/client';
 import { swaggerUi, swaggerSpec } from './swagger';
 
@@ -74,9 +73,8 @@ app.get('/health', (req, res) => {
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/tires', tireRoutes);
-app.use('/api/customers', customerRoutes);
-app.use('/api/customer', customerUserRoutes);
 app.use('/api/services', serviceRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // 404 handler
