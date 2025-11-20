@@ -105,14 +105,15 @@ const LoginPage: React.FC = () => {
       await signup(signupData.name, signupData.email, signupData.password);
       // Redirect to the main application after successful signup
       navigate('/tires');
-    } catch (error: any) {
-      console.error('Signup error:', error);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      console.error('Signup error:', err);
       // Handle specific error messages from the backend
-      if (error.response?.data?.message) {
+      if (err.response?.data?.message) {
         setErrors({
-          general: error.response.data.message
+          general: err.response.data.message
         });
-      } else if (error.response?.status === 409) {
+      } else if (err.response?.status === 409) {
         setErrors({
           general: t('auth.validation.emailExists')
         });

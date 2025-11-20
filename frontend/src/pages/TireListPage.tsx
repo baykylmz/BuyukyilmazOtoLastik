@@ -9,31 +9,6 @@ const TireListPage: React.FC = () => {
   const { user } = useAuth();
   const [tires, setTires] = useState<Tire[]>([]);
 
-  // Prevent customers from seeing tires
-  if (user?.role === 'CUSTOMER') {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded relative" role="alert">
-          <strong className="font-bold">{t('unauthorized.title', 'Yetkisiz')}</strong>
-          <span className="block sm:inline"> {t('unauthorized.tires', 'Bu sayfaya erişim yetkiniz yok.')}</span>
-        </div>
-      </div>
-    );
-  }
-
-  // Helper function to translate season names
-  const getSeasonTranslation = (season: string) => {
-    switch (season) {
-      case 'SUMMER':
-        return t('tires.summer');
-      case 'WINTER':
-        return t('tires.winter');
-      case 'ALL_SEASON':
-        return t('tires.allSeason');
-      default:
-        return season;
-    }
-  };
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,7 +42,34 @@ const TireListPage: React.FC = () => {
 
   useEffect(() => {
     fetchTires();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Prevent customers from seeing tires
+  if (user?.role === 'CUSTOMER') {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded relative" role="alert">
+          <strong className="font-bold">{t('unauthorized.title', 'Yetkisiz')}</strong>
+          <span className="block sm:inline"> {t('unauthorized.tires', 'Bu sayfaya erişim yetkiniz yok.')}</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Helper function to translate season names
+  const getSeasonTranslation = (season: string) => {
+    switch (season) {
+      case 'SUMMER':
+        return t('tires.summer');
+      case 'WINTER':
+        return t('tires.winter');
+      case 'ALL_SEASON':
+        return t('tires.allSeason');
+      default:
+        return season;
+    }
+  };
 
   const handleOpenModal = (tire?: Tire) => {
     if (tire) {
@@ -123,7 +125,9 @@ const TireListPage: React.FC = () => {
       fetchTires();
     } catch (err: any) {
       console.error('Error saving tire:', err);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (err.response?.data?.errors) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const errorMessages = err.response.data.errors.map((error: any) => 
           `${error.field}: ${error.message}`
         ).join('\n');

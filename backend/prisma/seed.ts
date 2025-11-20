@@ -53,7 +53,7 @@ async function main() {
         brand: 'Michelin',
         size: '205/55R16',
         season: 'SUMMER',
-        price: 2500.00,
+        price: 2500.0,
         description: 'High-performance summer tire for passenger cars',
         stockQuantity: 20,
         imageURL: 'https://example.com/michelin-pilot-sport-4.jpg',
@@ -65,7 +65,7 @@ async function main() {
         brand: 'Bridgestone',
         size: '215/65R16',
         season: 'WINTER',
-        price: 2800.00,
+        price: 2800.0,
         description: 'Premium winter tire for all-season performance',
         stockQuantity: 15,
         imageURL: 'https://example.com/bridgestone-blizzak.jpg',
@@ -77,7 +77,7 @@ async function main() {
         brand: 'Continental',
         size: '225/45R17',
         season: 'ALL_SEASON',
-        price: 2200.00,
+        price: 2200.0,
         description: 'Versatile all-season tire for year-round use',
         stockQuantity: 25,
         imageURL: 'https://example.com/continental-allseason.jpg',
@@ -91,7 +91,7 @@ async function main() {
       data: {
         name: 'Tire Mounting and Balancing',
         description: 'Professional tire mounting and balancing service',
-        price: 150.00,
+        price: 150.0,
         durationMinutes: 60,
       },
     }),
@@ -99,7 +99,7 @@ async function main() {
       data: {
         name: 'Wheel Alignment',
         description: 'Precise wheel alignment service',
-        price: 200.00,
+        price: 200.0,
         durationMinutes: 90,
       },
     }),
@@ -107,7 +107,7 @@ async function main() {
       data: {
         name: 'Tire Rotation',
         description: 'Regular tire rotation service',
-        price: 100.00,
+        price: 100.0,
         durationMinutes: 45,
       },
     }),
@@ -186,4 +186,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
-  }); 
+  });

@@ -8,37 +8,37 @@ async function addSampleServices() {
       {
         name: 'Tire Rotation',
         description: 'Rotate tires for even wear and extended tire life',
-        price: 150.00,
+        price: 150.0,
         durationMinutes: 60,
       },
       {
         name: 'Tire Alignment',
         description: 'Align wheels for better handling and tire wear',
-        price: 200.00,
+        price: 200.0,
         durationMinutes: 90,
       },
       {
         name: 'Tire Balancing',
         description: 'Balance tires to prevent vibration and uneven wear',
-        price: 120.00,
+        price: 120.0,
         durationMinutes: 45,
       },
       {
         name: 'Tire Replacement',
         description: 'Replace old or damaged tires with new ones',
-        price: 800.00,
+        price: 800.0,
         durationMinutes: 120,
       },
       {
         name: 'Brake Service',
         description: 'Inspect and service brake system',
-        price: 300.00,
+        price: 300.0,
         durationMinutes: 90,
       },
       {
         name: 'Oil Change',
         description: 'Change engine oil and filter',
-        price: 250.00,
+        price: 250.0,
         durationMinutes: 45,
       },
     ];
@@ -66,4 +66,4 @@ async function addSampleServices() {
   }
 }
 
-addSampleServices(); 
+addSampleServices();

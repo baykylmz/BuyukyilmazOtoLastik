@@ -6,7 +6,7 @@ export class AppError extends Error {
     public statusCode: number,
     public message: string,
     public isOperational = true,
-    public errors?: any[]
+    public errors?: unknown[]
   ) {
     super(message);
     Object.setPrototypeOf(this, AppError.prototype);
@@ -17,7 +17,7 @@ export const errorHandler = (
   err: Error | AppError,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   if (err instanceof AppError) {
     logger.warn({
@@ -44,4 +44,4 @@ export const errorHandler = (
     status: 'error',
     message: 'Internal server error',
   });
-}; 
+};

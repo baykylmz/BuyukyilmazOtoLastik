@@ -64,7 +64,13 @@ const router = Router();
  *         description: Forbidden
  */
 router.get('/', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'), listUsers);
-router.post('/', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'), validateRequest(createUserSchema), createUser);
+router.post(
+  '/',
+  authMiddleware.requireAuth,
+  authMiddleware.restrictTo('ADMIN'),
+  validateRequest(createUserSchema),
+  createUser
+);
 
 /**
  * @openapi
@@ -189,9 +195,27 @@ router.post('/', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'),
  *       403:
  *         description: Forbidden
  */
-router.get('/:id', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'), validateRequest(userIdSchema), getUser);
-router.put('/:id', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'), validateRequest(updateUserSchema), updateUser);
-router.delete('/:id', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'), validateRequest(userIdSchema), deleteUser);
+router.get(
+  '/:id',
+  authMiddleware.requireAuth,
+  authMiddleware.restrictTo('ADMIN'),
+  validateRequest(userIdSchema),
+  getUser
+);
+router.put(
+  '/:id',
+  authMiddleware.requireAuth,
+  authMiddleware.restrictTo('ADMIN'),
+  validateRequest(updateUserSchema),
+  updateUser
+);
+router.delete(
+  '/:id',
+  authMiddleware.requireAuth,
+  authMiddleware.restrictTo('ADMIN'),
+  validateRequest(userIdSchema),
+  deleteUser
+);
 
 // --- CUSTOMER SELF-SERVICE ROUTES ---
 // All require authentication and CUSTOMER role
@@ -207,6 +231,10 @@ router.delete('/me/vehicles/:id', validateRequest(vehicleIdSchema), deleteMyVehi
 router.get('/me/appointments', getMyAppointments);
 router.post('/me/appointments', validateRequest(createAppointmentSchema), createMyAppointment);
 router.put('/me/appointments/:id', validateRequest(updateAppointmentSchema), updateMyAppointment);
-router.patch('/me/appointments/:id/cancel', validateRequest(appointmentIdSchema), cancelMyAppointment);
+router.patch(
+  '/me/appointments/:id/cancel',
+  validateRequest(appointmentIdSchema),
+  cancelMyAppointment
+);
 
-export { router as userRoutes }; 
+export { router as userRoutes };

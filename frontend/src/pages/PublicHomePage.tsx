@@ -250,7 +250,7 @@ const PublicHomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-muted-foreground dark:text-slate-300 italic leading-relaxed">"{t('public.testimonials.review1')}"</p>
+              <p className="text-muted-foreground dark:text-slate-300 italic leading-relaxed">&quot;{t('public.testimonials.review1')}&quot;</p>
             </div>
             
             <div className="card dark-card p-6 hover:shadow-lg dark:hover:shadow-xl transition-all duration-300">
@@ -267,7 +267,7 @@ const PublicHomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-muted-foreground dark:text-slate-300 italic leading-relaxed">"{t('public.testimonials.review2')}"</p>
+              <p className="text-muted-foreground dark:text-slate-300 italic leading-relaxed">&quot;{t('public.testimonials.review2')}&quot;</p>
             </div>
             
             <div className="card dark-card p-6 hover:shadow-lg dark:hover:shadow-xl transition-all duration-300">
@@ -284,7 +284,7 @@ const PublicHomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-muted-foreground dark:text-slate-300 italic leading-relaxed">"{t('public.testimonials.review3')}"</p>
+              <p className="text-muted-foreground dark:text-slate-300 italic leading-relaxed">&quot;{t('public.testimonials.review3')}&quot;</p>
             </div>
           </div>
         </div>

@@ -19,16 +19,16 @@ const Navigation: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  if (!user) return null;
-
   // Determine if user is admin/staff or customer
-  const isAdmin = user.role === 'ADMIN' || user.role === 'STAFF';
-  const isCustomer = user.role === 'CUSTOMER';
+  const isAdmin = user?.role === 'ADMIN' || user?.role === 'STAFF';
+  const isCustomer = user?.role === 'CUSTOMER';
 
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
+
+  if (!user) return null;
 
   return (
     <nav className="bg-card/90 backdrop-blur-md shadow-sm border-b border-border dark:border-slate-700/50 dark:shadow-lg dark:shadow-black/10 fixed top-0 left-0 right-0 z-50">

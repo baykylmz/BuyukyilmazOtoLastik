@@ -36,7 +36,11 @@ export const createVehicleSchema = z.object({
   body: z.object({
     make: z.string().min(1, 'Make is required'),
     model: z.string().min(1, 'Model is required'),
-    year: z.number().int().min(1900).max(new Date().getFullYear() + 1),
+    year: z
+      .number()
+      .int()
+      .min(1900)
+      .max(new Date().getFullYear() + 1),
     licensePlate: z.string().min(1, 'License plate is required'),
   }),
 });
@@ -48,7 +52,12 @@ export const updateVehicleSchema = z.object({
   body: z.object({
     make: z.string().min(1, 'Make is required').optional(),
     model: z.string().min(1, 'Model is required').optional(),
-    year: z.number().int().min(1900).max(new Date().getFullYear() + 1).optional(),
+    year: z
+      .number()
+      .int()
+      .min(1900)
+      .max(new Date().getFullYear() + 1)
+      .optional(),
     licensePlate: z.string().min(1, 'License plate is required').optional(),
   }),
 });
@@ -85,4 +94,4 @@ export const appointmentIdSchema = z.object({
   params: z.object({
     id: z.string().uuid('Invalid appointment ID'),
   }),
-}); 
+});

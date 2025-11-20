@@ -386,4 +386,4 @@ router.get('/:id/stock-history', validateRequest(tireIdSchema), tireController.g
  */
 router.patch('/:id/stock', validateRequest(updateStockSchema), tireController.updateStock);
 
-export { router as tireRoutes }; 
+export { router as tireRoutes };

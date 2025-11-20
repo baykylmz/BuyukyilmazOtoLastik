@@ -176,7 +176,8 @@ export const updateMyVehicle = async (req: Request, res: Response, next: NextFun
     // Check for license plate conflict
     if (licensePlate && licensePlate !== existingVehicle.licensePlate) {
       const conflictingVehicle = await prisma.vehicle.findUnique({ where: { licensePlate } });
-      if (conflictingVehicle) throw new AppError(409, 'Vehicle with this license plate already exists');
+      if (conflictingVehicle)
+        throw new AppError(409, 'Vehicle with this license plate already exists');
     }
     const vehicle = await prisma.vehicle.update({
       where: { id: vehicleId },
@@ -224,7 +225,8 @@ export const getMyAppointments = async (req: Request, res: Response, next: NextF
 export const createMyAppointment = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = req.user!.id;
-    const { serviceId, customerName, customerPhone, vehicleModel, preferredDateTime, notes } = req.body.body || req.body;
+    const { serviceId, customerName, customerPhone, vehicleModel, preferredDateTime, notes } =
+      req.body.body || req.body;
     // Check if service exists
     const service = await prisma.service.findUnique({ where: { id: serviceId } });
     if (!service) throw new AppError(404, 'Service not found');
@@ -250,9 +252,19 @@ export const updateMyAppointment = async (req: Request, res: Response, next: Nex
   try {
     const userId = req.user!.id;
     const appointmentId = req.params.id;
-    const { serviceId, customerName, customerPhone, vehicleModel, preferredDateTime, notes, status } = req.body.body || req.body;
+    const {
+      serviceId,
+      customerName,
+      customerPhone,
+      vehicleModel,
+      preferredDateTime,
+      notes,
+      status,
+    } = req.body.body || req.body;
     // Check if appointment belongs to user
-    const appointment = await prisma.appointment.findFirst({ where: { id: appointmentId, userId } });
+    const appointment = await prisma.appointment.findFirst({
+      where: { id: appointmentId, userId },
+    });
     if (!appointment) throw new AppError(404, 'Appointment not found');
     // Check if service exists (if updating)
     if (serviceId && serviceId !== appointment.serviceId) {
@@ -266,7 +278,9 @@ export const updateMyAppointment = async (req: Request, res: Response, next: Nex
         customerName: customerName ?? appointment.customerName,
         customerPhone: customerPhone ?? appointment.customerPhone,
         vehicleModel: vehicleModel ?? appointment.vehicleModel,
-        preferredDateTime: preferredDateTime ? new Date(preferredDateTime) : appointment.preferredDateTime,
+        preferredDateTime: preferredDateTime
+          ? new Date(preferredDateTime)
+          : appointment.preferredDateTime,
         notes: notes ?? appointment.notes,
         status: status ?? appointment.status,
       },
@@ -283,7 +297,9 @@ export const cancelMyAppointment = async (req: Request, res: Response, next: Nex
     const userId = req.user!.id;
     const appointmentId = req.params.id;
     // Check if appointment belongs to user
-    const appointment = await prisma.appointment.findFirst({ where: { id: appointmentId, userId } });
+    const appointment = await prisma.appointment.findFirst({
+      where: { id: appointmentId, userId },
+    });
     if (!appointment) throw new AppError(404, 'Appointment not found');
     const updated = await prisma.appointment.update({
       where: { id: appointmentId },
@@ -293,4 +309,4 @@ export const cancelMyAppointment = async (req: Request, res: Response, next: Nex
   } catch (error) {
     next(error);
   }
-}; 
+};

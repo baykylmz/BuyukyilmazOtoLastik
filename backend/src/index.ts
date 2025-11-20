@@ -20,7 +20,7 @@ const port = parseInt(process.env.PORT || '4000', 10);
 const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [
   'http://localhost:3000',
   'http://localhost:5173',
-  'http://localhost:4000'
+  'http://localhost:4000',
 ];
 
 // Middleware
@@ -63,10 +63,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'ok', 
+  res.json({
+    status: 'ok',
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
   });
 });
 
@@ -92,7 +92,7 @@ app.use(errorHandler);
 // Graceful shutdown
 const gracefulShutdown = async () => {
   logger.info('Starting graceful shutdown...');
-  
+
   try {
     await prisma.$disconnect();
     logger.info('Database disconnected');
@@ -121,4 +121,4 @@ process.on('uncaughtException', (error) => {
 app.listen(port, () => {
   logger.info(`Server running on port ${port} in ${process.env.NODE_ENV || 'development'} mode`);
   logger.info(`Allowed origins: ${allowedOrigins.join(', ')}`);
-}); 
+});

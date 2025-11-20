@@ -68,4 +68,4 @@ export const authMiddleware = {
       next();
     };
   },
-}; 
+};

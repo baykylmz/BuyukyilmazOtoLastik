@@ -118,4 +118,4 @@ export const authController = {
       next(error);
     }
   },
-}; 
+};

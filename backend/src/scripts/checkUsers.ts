@@ -23,7 +23,7 @@ async function checkUsers() {
       console.log('No users found in the database.');
     } else {
       console.log(`Found ${users.length} user(s):\n`);
-      
+
       users.forEach((user, index) => {
         console.log(`${index + 1}. User Details:`);
         console.log(`   ID: ${user.id}`);
@@ -57,7 +57,6 @@ async function checkUsers() {
         console.log(`${index + 1}. ${customer.name} (${customer.email})`);
       });
     }
-
   } catch (error) {
     console.error('Error checking users:', error);
   } finally {
@@ -65,4 +64,4 @@ async function checkUsers() {
   }
 }
 
-checkUsers(); 
+checkUsers();

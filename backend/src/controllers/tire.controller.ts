@@ -47,20 +47,20 @@ export const tireController = {
   async getTire(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      
+
       const tire = await prisma.tire.findUnique({
         where: { id },
         include: {
           stockChangeLogs: {
             include: {
               user: {
-                select: { name: true, email: true }
-              }
+                select: { name: true, email: true },
+              },
             },
             orderBy: { createdAt: 'desc' },
-            take: 10 // Get last 10 stock changes
-          }
-        }
+            take: 10, // Get last 10 stock changes
+          },
+        },
       });
 
       if (!tire) {
@@ -79,20 +79,20 @@ export const tireController = {
   async getTireByQrCode(req: Request, res: Response, next: NextFunction) {
     try {
       const { qrCodeId } = req.params;
-      
+
       const tire = await prisma.tire.findUnique({
         where: { qrCodeId },
         include: {
           stockChangeLogs: {
             include: {
               user: {
-                select: { name: true, email: true }
-              }
+                select: { name: true, email: true },
+              },
             },
             orderBy: { createdAt: 'desc' },
-            take: 5
-          }
-        }
+            take: 5,
+          },
+        },
       });
 
       if (!tire) {
@@ -111,10 +111,10 @@ export const tireController = {
   async generateQRCode(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      
+
       const tire = await prisma.tire.findUnique({
         where: { id },
-        select: { id: true, qrCodeId: true, name: true, brand: true }
+        select: { id: true, qrCodeId: true, name: true, brand: true },
       });
 
       if (!tire) {
@@ -127,7 +127,7 @@ export const tireController = {
         qrCodeId: tire.qrCodeId,
         name: tire.name,
         brand: tire.brand,
-        type: 'TIRE'
+        type: 'TIRE',
       });
 
       // Generate base64 PNG QR code
@@ -141,9 +141,9 @@ export const tireController = {
           tire: {
             id: tire.id,
             name: tire.name,
-            brand: tire.brand
-          }
-        }
+            brand: tire.brand,
+          },
+        },
       });
     } catch (error) {
       next(error);
@@ -153,7 +153,7 @@ export const tireController = {
   async createTire(req: Request, res: Response, next: NextFunction) {
     try {
       const tireData = req.body;
-      
+
       const tire = await prisma.tire.create({
         data: tireData,
       });
@@ -165,8 +165,8 @@ export const tireController = {
             tireId: tire.id,
             change: tireData.stockQuantity,
             reason: 'Initial stock',
-            userId: req.user.id
-          }
+            userId: req.user.id,
+          },
         });
       }
 
@@ -193,7 +193,7 @@ export const tireController = {
       // Get current tire data for stock comparison
       const currentTire = await prisma.tire.findUnique({
         where: { id },
-        select: { stockQuantity: true }
+        select: { stockQuantity: true },
       });
 
       if (!currentTire) {
@@ -208,17 +208,19 @@ export const tireController = {
         });
 
         // Log stock change if quantity changed
-        if (updateData.stockQuantity !== undefined && 
-            updateData.stockQuantity !== currentTire.stockQuantity && 
-            req.user) {
+        if (
+          updateData.stockQuantity !== undefined &&
+          updateData.stockQuantity !== currentTire.stockQuantity &&
+          req.user
+        ) {
           const stockChange = updateData.stockQuantity - currentTire.stockQuantity;
           await tx.stockChangeLog.create({
             data: {
               tireId: id,
               change: stockChange,
               reason: 'Manual update',
-              userId: req.user.id
-            }
+              userId: req.user.id,
+            },
           });
         }
 
@@ -258,7 +260,7 @@ export const tireController = {
         // Get current tire
         const tire = await tx.tire.findUnique({
           where: { id },
-          select: { stockQuantity: true, name: true }
+          select: { stockQuantity: true, name: true },
         });
 
         if (!tire) {
@@ -266,16 +268,19 @@ export const tireController = {
         }
 
         const newStock = tire.stockQuantity + change;
-        
+
         // Prevent negative stock
         if (newStock < 0) {
-          throw new AppError(400, `Insufficient stock. Current: ${tire.stockQuantity}, Requested change: ${change}`);
+          throw new AppError(
+            400,
+            `Insufficient stock. Current: ${tire.stockQuantity}, Requested change: ${change}`
+          );
         }
 
         // Update tire stock
         const updatedTire = await tx.tire.update({
           where: { id },
-          data: { stockQuantity: newStock }
+          data: { stockQuantity: newStock },
         });
 
         // Log the stock change
@@ -284,8 +289,8 @@ export const tireController = {
             tireId: id,
             change,
             reason,
-            userId: req.user!.id
-          }
+            userId: req.user!.id,
+          },
         });
 
         return updatedTire;
@@ -340,16 +345,16 @@ export const tireController = {
           where: { tireId: id },
           include: {
             user: {
-              select: { name: true, email: true }
-            }
+              select: { name: true, email: true },
+            },
           },
           orderBy: { createdAt: 'desc' },
           skip,
-          take: Number(limit)
+          take: Number(limit),
         }),
         prisma.stockChangeLog.count({
-          where: { tireId: id }
-        })
+          where: { tireId: id },
+        }),
       ]);
 
       res.json({
@@ -360,12 +365,12 @@ export const tireController = {
             page: Number(page),
             limit: Number(limit),
             total: totalCount,
-            pages: Math.ceil(totalCount / Number(limit))
-          }
-        }
+            pages: Math.ceil(totalCount / Number(limit)),
+          },
+        },
       });
     } catch (error) {
       next(error);
     }
-  }
-}; 
+  },
+};

@@ -27,6 +27,7 @@ const UserListPage: React.FC = () => {
       const data = await getUsers();
       setUsers(data);
       setError(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error('Error fetching users:', err);
       if (err.response?.data?.message) {
@@ -96,6 +97,7 @@ const UserListPage: React.FC = () => {
       }
       handleCloseModal();
       fetchUsers();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error('Error saving user:', err);
       if (err.response?.data?.message) {
@@ -115,6 +117,7 @@ const UserListPage: React.FC = () => {
       try {
         await deleteUser(id);
         fetchUsers();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         console.error('Error deleting user:', err);
         setError(t('users.deleteFailed'));
@@ -352,11 +355,10 @@ const UserListPage: React.FC = () => {
                   <select
                     id="role"
                     value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value as 'ADMIN' | 'CUSTOMER' | 'STAFF' })}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value as 'ADMIN' | 'CUSTOMER' })}
                     className="shadow appearance-none border dark:border-gray-600 rounded w-full py-2 px-3 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 leading-tight focus:outline-none focus:shadow-outline"
                   >
                     <option value="CUSTOMER">Customer</option>
-                    <option value="STAFF">Staff</option>
                     <option value="ADMIN">Admin</option>
                   </select>
                 </div>

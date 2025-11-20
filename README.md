@@ -232,8 +232,8 @@ BuyukyilmazOtoLastik/
 
 4. **Access the application**
    - Frontend: http://localhost:3000
-   - Backend API: http://localhost:3001
-   - Swagger Documentation: http://localhost:3001/api/docs
+   - Backend API: http://localhost:4000
+   - Swagger Documentation: http://localhost:4000/api/docs
    - Database: localhost:5432
 
 5. **Login with default credentials**
@@ -271,7 +271,7 @@ BuyukyilmazOtoLastik/
    ```bash
    cd frontend
    npm install
-   # Create .env file with VITE_API_URL=http://localhost:3001
+   # Create .env file with VITE_API_URL=http://localhost:4000
    npm run dev
    ```
 
@@ -297,7 +297,7 @@ POSTGRES_DB=buyukyilmaz
 JWT_SECRET=your-super-secure-jwt-secret-key-here
 
 # Frontend Configuration
-VITE_API_URL=http://localhost:3001
+VITE_API_URL=http://localhost:4000
 ```
 
 **Note**: The `.env` file is already included in `.gitignore` to prevent accidentally committing sensitive information.
@@ -306,13 +306,13 @@ VITE_API_URL=http://localhost:3001
 ```env
 DATABASE_URL="postgresql://username:password@localhost:5432/buyukyilmazotolastik"
 JWT_SECRET="your-super-secure-jwt-secret-key-here"
-PORT=3001
+PORT=4000
 NODE_ENV=development
 ```
 
 ### Frontend (.env)
 ```env
-VITE_API_URL=http://localhost:3001
+VITE_API_URL=http://localhost:4000
 ```
 
 ## 📡 API Endpoints
@@ -728,7 +728,7 @@ VITE_API_URL=https://your-domain.com/api
 NODE_ENV=production
 DATABASE_URL=your-production-database-url
 JWT_SECRET=your-super-secure-production-jwt-secret
-PORT=3001
+PORT=4000
 CORS_ORIGIN=https://your-domain.com
 ```
 

@@ -59,16 +59,19 @@ export async function deleteMyVehicle(id: string): Promise<void> {
 }
 
 // --- CUSTOMER SELF-SERVICE: APPOINTMENTS ---
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function getMyAppointments(): Promise<any[]> {
   const response = await axios.get('/api/users/me/appointments');
   return response.data.data;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function createMyAppointment(appointment: any): Promise<any> {
   const response = await axios.post('/api/users/me/appointments', appointment);
   return response.data.data;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function updateMyAppointment(id: string, appointment: any): Promise<any> {
   const response = await axios.put(`/api/users/me/appointments/${id}`, appointment);
   return response.data.data;
@@ -76,4 +79,4 @@ export async function updateMyAppointment(id: string, appointment: any): Promise
 
 export async function cancelMyAppointment(id: string): Promise<void> {
   await axios.patch(`/api/users/me/appointments/${id}/cancel`);
-} 
+}

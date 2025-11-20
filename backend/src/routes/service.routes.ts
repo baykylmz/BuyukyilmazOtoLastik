@@ -87,7 +87,13 @@ const router = Router();
  *         description: Service with this name already exists
  */
 router.get('/', getServices);
-router.post('/', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'), validateRequest(createServiceSchema), createService);
+router.post(
+  '/',
+  authMiddleware.requireAuth,
+  authMiddleware.restrictTo('ADMIN'),
+  validateRequest(createServiceSchema),
+  createService
+);
 
 /**
  * @openapi
@@ -203,7 +209,19 @@ router.post('/', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'),
  *         description: Service not found
  */
 router.get('/:id', validateRequest(serviceIdSchema), getService);
-router.put('/:id', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'), validateRequest(updateServiceSchema), updateService);
-router.delete('/:id', authMiddleware.requireAuth, authMiddleware.restrictTo('ADMIN'), validateRequest(serviceIdSchema), deleteService);
+router.put(
+  '/:id',
+  authMiddleware.requireAuth,
+  authMiddleware.restrictTo('ADMIN'),
+  validateRequest(updateServiceSchema),
+  updateService
+);
+router.delete(
+  '/:id',
+  authMiddleware.requireAuth,
+  authMiddleware.restrictTo('ADMIN'),
+  validateRequest(serviceIdSchema),
+  deleteService
+);
 
-export { router as serviceRoutes }; 
+export { router as serviceRoutes };

@@ -77,7 +77,7 @@ const options = {
             },
             price: {
               type: 'number',
-              example: 2500.00,
+              example: 2500.0,
             },
             imageURL: {
               type: 'string',
@@ -290,7 +290,7 @@ const options = {
             },
             price: {
               type: 'number',
-              example: 150.00,
+              example: 150.0,
             },
             durationMinutes: {
               type: 'integer',
@@ -343,4 +343,4 @@ const options = {
 };
 
 export const swaggerSpec = swaggerJSDoc(options);
-export { swaggerUi }; 
+export { swaggerUi };

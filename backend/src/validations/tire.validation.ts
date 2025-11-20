@@ -62,4 +62,4 @@ export const updateStockSchema = z.object({
 export const tireValidation = {
   createTire: baseTireSchema,
   updateTire: baseTireSchema.partial(),
-}; 
+};

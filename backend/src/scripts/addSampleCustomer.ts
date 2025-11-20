@@ -43,7 +43,6 @@ async function addSampleCustomer() {
     console.log(`Email: ${customer.email}`);
     console.log(`Password: ${customerData.password}`);
     console.log(`Role: ${customer.role}`);
-
   } catch (error) {
     console.error('Error adding sample customer:', error);
   } finally {
@@ -51,4 +50,4 @@ async function addSampleCustomer() {
   }
 }
 
-addSampleCustomer(); 
+addSampleCustomer();

@@ -25,4 +25,4 @@ export const serviceIdSchema = z.object({
   params: z.object({
     id: z.string().uuid('Invalid service ID'),
   }),
-}); 
+});
