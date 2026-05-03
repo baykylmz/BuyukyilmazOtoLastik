@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Anasayfa",
+    "services": "Hizmetler",
+    "brands": "Markalar",
+    "about": "Hakkımızda",
+    "contact": "İletişim"
+  },
+  "common": {
+    "callNow": "Hemen Ara",
+    "whatsapp": "WhatsApp",
+    "openMap": "Haritada Aç",
+    "getDirections": "Yol Tarifi",
+    "switchLanguage": "Dil"
+  },
+  "home": {
+    "heroEyebrow": "Konya Selçuklu",
+    "heroTitle": "Güvenli yolculuğun başladığı yer",
+    "heroDescription": "Yeni nesil lastik satışı, balans, rot ayarı ve montaj hizmetleri. Tüm marka binek ve ticari araçlar için uzman çözümler.",
+    "heroPrimary": "WhatsApp ile Yaz",
+    "heroSecondary": "Hizmetlerimiz",
+    "highlightsTitle": "Neden Büyükyılmaz?",
+    "highlights": {
+      "expertTitle": "30 Yılı Aşkın Deneyim",
+      "expertText": "Selçuklu'da uzun yıllardır binlerce sürücüye güvenilir lastik hizmeti sunuyoruz.",
+      "brandsTitle": "Tüm Premium Markalar",
+      "brandsText": "Michelin, Bridgestone, Continental, Pirelli ve daha fazlası stokta veya hızlı temin.",
+      "fastTitle": "Hızlı Servis",
+      "fastText": "Modern montaj ekipmanları ile randevulu ya da randevusuz aynı gün hizmet."
+    },
+    "ctaTitle": "Aracınız için doğru lastiği birlikte bulalım",
+    "ctaText": "Plakanızı veya araç modelinizi söyleyin, size uygun ebatları ve fiyat seçeneklerini paylaşalım.",
+    "ctaPrimary": "WhatsApp'tan Yaz",
+    "ctaSecondary": "Bizi Arayın"
+  },
+  "services": {
+    "title": "Hizmetlerimiz",
+    "subtitle": "Lastik satışından bakım ve onarıma kadar aracınızın ihtiyacı olan her şey tek noktada.",
+    "items": {
+      "saleTitle": "Lastik Satışı",
+      "saleText": "Yaz, kış ve dört mevsim lastik. Premium ve ekonomik markalarda geniş stok.",
+      "mountTitle": "Lastik Değişimi ve Montajı",
+      "mountText": "Modern montaj makineleri ile jant ve lastiğinize zarar vermeden hızlı değişim.",
+      "balanceTitle": "Balans Ayarı",
+      "balanceText": "Direksiyon titremesini önleyen, lastik ömrünü uzatan hassas balans ayarı.",
+      "alignmentTitle": "Rot Ayarı",
+      "alignmentText": "3D cihazlarla rot, kamber ve kaster açılarının fabrika değerine getirilmesi.",
+      "repairTitle": "Lastik Tamiri",
+      "repairText": "Yamalama, sıvı tıkaç değil; içten profesyonel kord yaması ile kalıcı tamir.",
+      "storageTitle": "Lastik Oteli",
+      "storageText": "Sezonluk değiştirdiğiniz lastiklerinizi uygun nem ve sıcaklıkta saklıyoruz.",
+      "rimTitle": "Jant Satışı",
+      "rimText": "OEM ve aftermarket çelik/alüminyum jant seçenekleri.",
+      "fleetTitle": "Filo Hizmeti",
+      "fleetText": "Şirket filolarına özel toplu fiyatlandırma ve periyodik bakım planı."
+    }
+  },
+  "brands": {
+    "title": "Çalıştığımız Markalar",
+    "subtitle": "Birinci sınıf lastik üreticileriyle uzun yıllara dayanan iş birliği.",
+    "note": "Listemizde göremediğiniz bir marka için lütfen iletişime geçin — özel sipariş alabiliyoruz."
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "lead": "Büyükyılmaz Oto Lastik, Konya Selçuklu'da köklü bir aile işletmesidir.",
+    "p1": "Üç kuşaktan bu yana lastik ve oto bakım sektöründe; binek araçtan ağır ticari araca uzanan geniş bir yelpazede güvenilir çözümler sunuyoruz.",
+    "p2": "İşimizin merkezinde dürüstlük, kalite ve kalıcı müşteri ilişkileri vardır. Her aracı kendi aracımızmış gibi ele alır, kullandığımız malzemeden uyguladığımız ücrete kadar şeffaf bir hizmet veririz.",
+    "p3": "Modern ekipmanlarımız ve sertifikalı teknik kadromuz sayesinde marka bağımsız, üretici standartlarında bir servis kalitesi yakalıyoruz."
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Bize ulaşmanın en hızlı yolu WhatsApp veya telefon. Yol tarifi için harita aşağıda.",
+    "phoneLabel": "Telefon",
+    "whatsappLabel": "WhatsApp",
+    "addressLabel": "Adres",
+    "hoursLabel": "Çalışma Saatleri",
+    "weekday": "Hafta içi",
+    "saturday": "Cumartesi",
+    "sunday": "Pazar",
+    "messagePresetTitle": "Hızlı mesaj örneği",
+    "messagePreset": "Merhaba, aracım için lastik fiyatı almak istiyorum."
+  },
+  "footer": {
+    "tagline": "Konya Selçuklu'da güvenilir lastik adresi",
+    "quickLinks": "Bağlantılar",
+    "contactInfo": "İletişim",
+    "rights": "Tüm hakları saklıdır."
+  }
+}
