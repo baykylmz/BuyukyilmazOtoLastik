@@ -24,9 +24,8 @@ export function LocalBusinessJsonLd() {
     },
     geo: {
       "@type": "GeoCoordinates",
-      // TODO: replace with exact coordinates from Google Maps pin
-      latitude: "37.9234",
-      longitude: "32.4899",
+      latitude: "38.009564",
+      longitude: "32.526168",
     },
     areaServed: { "@type": "City", name: "Konya" },
     openingHoursSpecification: [

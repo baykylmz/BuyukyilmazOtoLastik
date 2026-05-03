@@ -24,7 +24,7 @@ export const site = {
 
   // Google Maps > Paylaş > Haritayı yerleştir > src değeri
   mapsEmbedUrl:
-    "https://www.google.com/maps?q=Bosna+Hersek+Mahallesi+Osmanl%C4%B1+Cd+No+14+42250+Sel%C3%A7uklu+Konya&output=embed",
+    "https://www.google.com/maps?q=38.009564,32.526168&output=embed",
 
   // 7 gün açık, gece yarısına kadar
   hours: {
