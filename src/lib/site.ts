@@ -1,31 +1,56 @@
-// Central business config — fill in real values.
-// Phone is in international E.164 for tel: links; whatsappNumber is digits-only.
-
 export const site = {
   name: "Bosna Oto Lastik",
   legalName: "Bosna Oto Lastik",
-  url: "https://bosnaotolastik.com", // TODO: real domain when ready
+  url: "https://bosnaotolastik.com",
+  foundingYear: 2015,
+  founderYear: 1993, // Mahmut Büyükyılmaz'ın ustalık başlangıcı
+
   phone: "+905357855587",
   phoneDisplay: "0535 785 55 87",
+  phone2: "+905378475138",
+  phone2Display: "0537 847 51 38",
   whatsappNumber: "905357855587",
-  email: "info@bosnaotolastik.com", // TODO
+  email: "info@bosnaotolastik.com",
+
   address: {
-    street: "Bosna Hersek, Osmanlı Cd. No:14/20",
+    neighborhood: "Bosna Hersek Mahallesi",
+    street: "Osmanlı Cd. No:14/20",
     district: "Selçuklu",
     city: "Konya",
     postalCode: "42250",
     country: "TR",
+    full: "Bosna Hersek Mh., Osmanlı Cd. No:14/20, 42250 Selçuklu/Konya",
   },
-  mapsEmbedUrl: "https://www.google.com/maps?q=Bosna+Hersek+Osmal%C4%B1+Cd+No+14+Sel%C3%A7uklu+Konya&output=embed",
+
+  // Google Maps > Paylaş > Haritayı yerleştir > src değeri
+  mapsEmbedUrl:
+    "https://www.google.com/maps?q=Bosna+Hersek+Mahallesi+Osmanl%C4%B1+Cd+No+14+42250+Sel%C3%A7uklu+Konya&output=embed",
+
+  // 7 gün açık, gece yarısına kadar
   hours: {
-    weekday: "08:30 - 19:00",
-    saturday: "08:30 - 18:00",
-    sunday: "Kapalı",
+    weekday:  "08:30 – 00:00",
+    saturday: "08:30 – 00:00",
+    sunday:   "08:30 – 00:00",
   },
+
+  payment: {
+    cashOnly: false,
+    creditCard: true,
+    debitCard: true,
+    cards: ["Mastercard", "VISA"],
+  },
+
+  amenities: {
+    toilet:   true,
+    mechanic: true,
+    delivery: true,
+  },
+
   social: {
-    instagram: "", // TODO: full URL or empty
-    facebook: "",
+    instagram: "",
+    facebook:  "",
   },
+
   brands: [
     "Michelin",
     "Bridgestone",
@@ -43,6 +68,6 @@ export function whatsappLink(message?: string) {
   return `https://wa.me/${site.whatsappNumber}${text}`;
 }
 
-export function telLink() {
-  return `tel:${site.phone}`;
+export function telLink(secondary = false) {
+  return `tel:${secondary ? site.phone2 : site.phone}`;
 }

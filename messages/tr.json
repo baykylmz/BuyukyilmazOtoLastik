@@ -16,20 +16,20 @@
   "home": {
     "heroEyebrow": "Konya Selçuklu",
     "heroTitle": "Güvenli yolculuğun başladığı yer",
-    "heroDescription": "Yeni nesil lastik satışı, balans, rot ayarı ve montaj hizmetleri. Tüm marka binek ve ticari araçlar için uzman çözümler.",
+    "heroDescription": "2015'ten bu yana Konya'da lastik satışı, değişim, balans, rot ve onarım. Sıfır ve ikinci el lastik — aracınızın tüm ihtiyacı tek adreste.",
     "heroPrimary": "WhatsApp ile Yaz",
     "heroSecondary": "Hizmetlerimiz",
     "highlightsTitle": "Neden Bosna?",
     "highlights": {
-      "expertTitle": "30 Yılı Aşkın Deneyim",
-      "expertText": "Selçuklu'da uzun yıllardır binlerce sürücüye güvenilir lastik hizmeti sunuyoruz.",
-      "brandsTitle": "Tüm Premium Markalar",
-      "brandsText": "Michelin, Bridgestone, Continental, Pirelli ve daha fazlası stokta veya hızlı temin.",
-      "fastTitle": "Hızlı Servis",
-      "fastText": "Modern montaj ekipmanları ile randevulu ya da randevusuz aynı gün hizmet."
+      "expertTitle": "1993'ten Gelen Deneyim",
+      "expertText": "Mahmut Büyükyılmaz'ın 1993'te başlayan ustalık yolculuğu, bugün Bosna Oto Lastik çatısı altında Konya'ya hizmet veriyor.",
+      "brandsTitle": "Sıfır ve İkinci El",
+      "brandsText": "Michelin, Bridgestone, Pirelli ve daha fazlası — hem yeni hem de ikinci el geniş stok.",
+      "fastTitle": "7/24'e Yakın Hizmet",
+      "fastText": "Haftanın 7 günü sabah 08:30'dan gece yarısına kadar açık. Acil durumda da yanınızdayız."
     },
     "ctaTitle": "Aracınız için doğru lastiği birlikte bulalım",
-    "ctaText": "Plakanızı veya araç modelinizi söyleyin, size uygun ebatları ve fiyat seçeneklerini paylaşalım.",
+    "ctaText": "Plakanızı veya araç modelinizi söyleyin, uygun ebatları ve fiyat seçeneklerini paylaşalım.",
     "ctaPrimary": "WhatsApp'tan Yaz",
     "ctaSecondary": "Bizi Arayın"
   },
@@ -38,7 +38,7 @@
     "subtitle": "Lastik satışından bakım ve onarıma kadar aracınızın ihtiyacı olan her şey tek noktada.",
     "items": {
       "saleTitle": "Lastik Satışı",
-      "saleText": "Yaz, kış ve dört mevsim lastik. Premium ve ekonomik markalarda geniş stok.",
+      "saleText": "Yaz, kış ve dört mevsim lastik. Sıfır ve ikinci el — premium ve ekonomik markalarda geniş stok.",
       "mountTitle": "Lastik Değişimi ve Montajı",
       "mountText": "Modern montaj makineleri ile jant ve lastiğinize zarar vermeden hızlı değişim.",
       "balanceTitle": "Balans Ayarı",
@@ -62,26 +62,27 @@
   },
   "about": {
     "title": "Hakkımızda",
-    "lead": "Bosna Oto Lastik, Konya Selçuklu'da köklü bir aile işletmesidir.",
-    "p1": "Üç kuşaktan bu yana lastik ve oto bakım sektöründe; binek araçtan ağır ticari araca uzanan geniş bir yelpazede güvenilir çözümler sunuyoruz.",
-    "p2": "İşimizin merkezinde dürüstlük, kalite ve kalıcı müşteri ilişkileri vardır. Her aracı kendi aracımızmış gibi ele alır, kullandığımız malzemeden uyguladığımız ücrete kadar şeffaf bir hizmet veririz.",
-    "p3": "Modern ekipmanlarımız ve sertifikalı teknik kadromuz sayesinde marka bağımsız, üretici standartlarında bir servis kalitesi yakalıyoruz."
+    "lead": "Bosna Oto Lastik, 2015'ten bu yana Konya'da yollardaki güvenliğinizin ve konforunuzun adresi.",
+    "p1": "Ancak hikâyemiz, Mahmut Büyükyılmaz'ın 1993'te başlayan ustalık yolculuğuna kadar uzanıyor. Bugün, lastik değişiminden oto bakımına, sıfır ve ikinci el lastikten profesyonel onarım hizmetlerine kadar aracınızın tüm ihtiyaçlarını tek çatı altında karşılıyoruz.",
+    "p2": "Bizim için her müşteri, yolda kalmaması gereken bir dost. Bu yüzden amacımız, sizi en kısa sürede, güvenle ve iç huzuruyla yeniden yola çıkarmak.",
+    "p3": "Haftanın 7 günü sabah 08:30'dan gece yarısına kadar açığız. Kredi kartı ve banka kartıyla ödeme kabul ediyoruz."
   },
   "contact": {
     "title": "İletişim",
     "subtitle": "Bize ulaşmanın en hızlı yolu WhatsApp veya telefon. Yol tarifi için harita aşağıda.",
     "phoneLabel": "Telefon",
+    "phone2Label": "İkinci Hat",
     "whatsappLabel": "WhatsApp",
     "addressLabel": "Adres",
     "hoursLabel": "Çalışma Saatleri",
-    "weekday": "Hafta içi",
-    "saturday": "Cumartesi",
-    "sunday": "Pazar",
+    "everyDay": "Her gün",
     "messagePresetTitle": "Hızlı mesaj örneği",
-    "messagePreset": "Merhaba, aracım için lastik fiyatı almak istiyorum."
+    "messagePreset": "Merhaba, aracım için lastik fiyatı almak istiyorum.",
+    "paymentLabel": "Ödeme",
+    "paymentText": "Nakit · Kredi Kartı · Banka Kartı (Mastercard, VISA)"
   },
   "footer": {
-    "tagline": "Konya Selçuklu'da güvenilir lastik adresi",
+    "tagline": "Konya Selçuklu'da güvenilir lastik adresi — 2015'ten beri",
     "quickLinks": "Bağlantılar",
     "contactInfo": "İletişim",
     "rights": "Tüm hakları saklıdır."

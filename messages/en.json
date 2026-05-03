@@ -16,17 +16,17 @@
   "home": {
     "heroEyebrow": "Konya Selçuklu",
     "heroTitle": "Where every safe journey starts",
-    "heroDescription": "Modern tire sales, balancing, alignment and mounting. Expert solutions for all passenger and commercial vehicles.",
+    "heroDescription": "Tire sales, mounting, balancing, alignment and repair since 2015 in Konya. New and used tires — everything your vehicle needs in one place.",
     "heroPrimary": "Message on WhatsApp",
     "heroSecondary": "Our Services",
     "highlightsTitle": "Why Bosna?",
     "highlights": {
-      "expertTitle": "30+ Years of Experience",
-      "expertText": "Trusted by thousands of drivers in Selçuklu for decades.",
-      "brandsTitle": "All Premium Brands",
-      "brandsText": "Michelin, Bridgestone, Continental, Pirelli and more — in stock or quickly sourced.",
-      "fastTitle": "Fast Service",
-      "fastText": "Modern mounting equipment, same-day service with or without an appointment."
+      "expertTitle": "Experience Since 1993",
+      "expertText": "Mahmut Büyükyılmaz's craft journey started in 1993 — today serving Konya under the Bosna Oto Lastik name.",
+      "brandsTitle": "New & Used Tires",
+      "brandsText": "Michelin, Bridgestone, Pirelli and more — both brand-new and quality used tires in stock.",
+      "fastTitle": "Open 7 Days a Week",
+      "fastText": "Every day from 08:30 to midnight. We're here when you need us most."
     },
     "ctaTitle": "Let's find the right tire for your car",
     "ctaText": "Share your plate or vehicle model — we'll send matching sizes and price options.",
@@ -38,7 +38,7 @@
     "subtitle": "From tire sales to maintenance and repair — everything your vehicle needs in one place.",
     "items": {
       "saleTitle": "Tire Sales",
-      "saleText": "Summer, winter and all-season tires. Wide stock across premium and budget brands.",
+      "saleText": "Summer, winter and all-season tires. New and used — wide stock across premium and budget brands.",
       "mountTitle": "Tire Mounting",
       "mountText": "Modern mounting machines — fast change without damaging your wheels or tires.",
       "balanceTitle": "Wheel Balancing",
@@ -62,26 +62,27 @@
   },
   "about": {
     "title": "About Us",
-    "lead": "Bosna Oto Lastik is a long-established family business in Konya Selçuklu.",
-    "p1": "Three generations in the tire and auto care industry, serving everything from passenger cars to heavy commercial vehicles.",
-    "p2": "Honesty, quality and lasting customer relationships are at the center of our work. We treat every vehicle as our own and stay transparent — from the parts we use to the prices we quote.",
-    "p3": "With modern equipment and certified technicians we deliver brand-independent, manufacturer-grade service quality."
+    "lead": "Bosna Oto Lastik has been Konya's address for road safety and comfort since 2015.",
+    "p1": "But our story goes back to Mahmut Büyükyılmaz's craft journey that began in 1993. Today, under one roof, we cover everything from tire replacement and auto care to new and used tire sales and professional repair services.",
+    "p2": "For us, every customer is a friend who shouldn't be left stranded on the road. Our goal is to get you back on the road safely, quickly, and with peace of mind.",
+    "p3": "We're open 7 days a week from 08:30 to midnight. We accept credit and debit cards (Mastercard, VISA)."
   },
   "contact": {
     "title": "Contact",
     "subtitle": "WhatsApp or phone is the fastest way to reach us. Directions are on the map below.",
     "phoneLabel": "Phone",
+    "phone2Label": "Second Line",
     "whatsappLabel": "WhatsApp",
     "addressLabel": "Address",
     "hoursLabel": "Hours",
-    "weekday": "Weekdays",
-    "saturday": "Saturday",
-    "sunday": "Sunday",
+    "everyDay": "Every day",
     "messagePresetTitle": "Quick message",
-    "messagePreset": "Hi, I'd like a tire price quote for my car."
+    "messagePreset": "Hi, I'd like a tire price quote for my car.",
+    "paymentLabel": "Payment",
+    "paymentText": "Cash · Credit Card · Debit Card (Mastercard, VISA)"
   },
   "footer": {
-    "tagline": "Trusted tire shop in Konya Selçuklu",
+    "tagline": "Trusted tire shop in Konya Selçuklu — since 2015",
     "quickLinks": "Links",
     "contactInfo": "Contact",
     "rights": "All rights reserved."
