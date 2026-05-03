@@ -5,21 +5,18 @@ export const site = {
   name: "Bosna Oto Lastik",
   legalName: "Bosna Oto Lastik",
   url: "https://bosnaotolastik.com", // TODO: real domain when ready
-  // TODO: replace with real phone (E.164 format, e.g. "+905551234567")
-  phone: "+905555555555",
-  phoneDisplay: "+90 555 555 55 55",
-  // TODO: replace with real WhatsApp number (digits only, no +, e.g. "905551234567")
-  whatsappNumber: "905555555555",
+  phone: "+905357855587",
+  phoneDisplay: "0535 785 55 87",
+  whatsappNumber: "905357855587",
   email: "info@bosnaotolastik.com", // TODO
   address: {
-    street: "TODO: Sokak, No",
+    street: "Bosna Hersek, Osmanlı Cd. No:14/20",
     district: "Selçuklu",
     city: "Konya",
-    postalCode: "42000", // TODO
+    postalCode: "42250",
     country: "TR",
   },
-  // Maps embed: paste the URL from Google Maps "Share > Embed a map > HTML > src"
-  mapsEmbedUrl: "https://www.google.com/maps?q=Sel%C3%A7uklu+Konya&output=embed",
+  mapsEmbedUrl: "https://www.google.com/maps?q=Bosna+Hersek+Osmal%C4%B1+Cd+No+14+Sel%C3%A7uklu+Konya&output=embed",
   hours: {
     weekday: "08:30 - 19:00",
     saturday: "08:30 - 18:00",
