@@ -1,20 +1,13 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { RevealSection, AccentLine } from "@/components/motion";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
   return { title: t("title") };
 }
 
-export default async function AboutPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("about");
@@ -22,14 +15,22 @@ export default async function AboutPage({
   return (
     <section className="container-page py-16 md:py-24">
       <div className="mx-auto max-w-3xl">
-        <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
-          {t("title")}
-        </h1>
-        <p className="mt-6 text-xl leading-relaxed text-ink">{t("lead")}</p>
-        <div className="mt-8 space-y-5 text-base leading-relaxed text-ink-soft">
-          <p>{t("p1")}</p>
-          <p>{t("p2")}</p>
-          <p>{t("p3")}</p>
+        <RevealSection>
+          <span className="label-mech text-steel">— {t("title")}</span>
+          <h1 className="mt-2 text-5xl font-bold uppercase md:text-6xl">{t("title")}</h1>
+          <AccentLine />
+        </RevealSection>
+
+        <RevealSection delay={0.1}>
+          <p className="mt-8 text-xl leading-relaxed font-medium">{t("lead")}</p>
+        </RevealSection>
+
+        <div className="mt-8 space-y-5">
+          {(["p1", "p2", "p3"] as const).map((key, i) => (
+            <RevealSection key={key} delay={0.1 + i * 0.08}>
+              <p className="text-base leading-relaxed text-ink-muted">{t(key)}</p>
+            </RevealSection>
+          ))}
         </div>
       </div>
     </section>

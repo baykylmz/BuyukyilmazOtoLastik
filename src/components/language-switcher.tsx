@@ -13,40 +13,25 @@ export function LanguageSwitcher() {
 
   function setLocale(next: Locale) {
     if (next === locale) return;
-    startTransition(() => {
-      // pathname here is the locale-stripped pathname
-      router.replace(pathname, { locale: next });
-    });
+    startTransition(() => { router.replace(pathname, { locale: next }); });
   }
 
   return (
-    <div className="flex items-center rounded-md border border-line text-xs font-semibold">
-      <button
-        type="button"
-        onClick={() => setLocale("tr")}
-        disabled={pending}
-        aria-pressed={locale === "tr"}
-        className={`px-2.5 py-1.5 rounded-l-md ${
-          locale === "tr"
-            ? "bg-ink text-paper"
-            : "text-ink-soft hover:text-ink"
-        }`}
-      >
-        TR
-      </button>
-      <button
-        type="button"
-        onClick={() => setLocale("en")}
-        disabled={pending}
-        aria-pressed={locale === "en"}
-        className={`px-2.5 py-1.5 rounded-r-md ${
-          locale === "en"
-            ? "bg-ink text-paper"
-            : "text-ink-soft hover:text-ink"
-        }`}
-      >
-        EN
-      </button>
+    <div className="flex items-center border-2 border-line font-display text-xs font-bold uppercase">
+      {(["tr", "en"] as Locale[]).map((l, i) => (
+        <button
+          key={l}
+          type="button"
+          onClick={() => setLocale(l)}
+          disabled={pending}
+          aria-pressed={locale === l}
+          className={`px-2.5 py-1.5 transition-colors ${
+            locale === l ? "bg-ink text-paper" : "text-steel hover:text-ink"
+          } ${i === 0 ? "" : "border-l border-line"}`}
+        >
+          {l}
+        </button>
+      ))}
     </div>
   );
 }

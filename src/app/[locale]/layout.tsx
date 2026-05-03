@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Barlow_Condensed, Inter } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -11,13 +11,23 @@ import { WhatsappFab } from "@/components/whatsapp-fab";
 import { LocalBusinessJsonLd } from "@/components/json-ld";
 import { site } from "@/lib/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Body text — clean, legible
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
+// Headings + labels — industrial condensed
+const barlowCondensed = Barlow_Condensed({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
+
+// Monospace accents (specs, numbers)
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -50,10 +60,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: "/",
-      languages: {
-        tr: "/",
-        en: "/en",
-      },
+      languages: { tr: "/", en: "/en" },
     },
   };
 }
@@ -66,15 +73,13 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+  if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${barlowCondensed.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <NextIntlClientProvider>

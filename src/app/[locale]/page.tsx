@@ -1,8 +1,17 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowRight, ShieldCheck, Sparkles, Timer } from "lucide-react";
+import { ShieldCheck, Sparkles, Timer } from "lucide-react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { telLink, whatsappLink } from "@/lib/site";
+import {
+  StampHeadline,
+  RevealSection,
+  StaggerGrid,
+  StaggerItem,
+  AccentLine,
+  MotionButton,
+  motionPress,
+} from "@/components/motion";
 
 export default async function HomePage({
   params,
@@ -15,128 +24,126 @@ export default async function HomePage({
   const tc = await getTranslations("contact");
 
   const highlights = [
-    {
-      icon: ShieldCheck,
-      title: t("highlights.expertTitle"),
-      text: t("highlights.expertText"),
-    },
-    {
-      icon: Sparkles,
-      title: t("highlights.brandsTitle"),
-      text: t("highlights.brandsText"),
-    },
-    {
-      icon: Timer,
-      title: t("highlights.fastTitle"),
-      text: t("highlights.fastText"),
-    },
+    { icon: ShieldCheck, title: t("highlights.expertTitle"), text: t("highlights.expertText") },
+    { icon: Sparkles,    title: t("highlights.brandsTitle"), text: t("highlights.brandsText") },
+    { icon: Timer,       title: t("highlights.fastTitle"),   text: t("highlights.fastText") },
   ];
 
   return (
     <>
-      {/* Hero */}
+      {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-ink text-paper">
+        {/* Subtle mechanical grid overlay */}
         <div
           aria-hidden
-          className="absolute inset-0 opacity-[0.07]"
+          className="pointer-events-none absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 20%, white 0, transparent 35%), radial-gradient(circle at 80% 60%, white 0, transparent 30%)",
+            backgroundImage: "linear-gradient(var(--color-paper) 1px, transparent 1px), linear-gradient(90deg, var(--color-paper) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
           }}
         />
+
         <div className="container-page relative grid items-center gap-10 py-20 md:grid-cols-2 md:py-28">
           <div>
-            <span className="inline-flex items-center rounded-full border border-paper/20 px-3 py-1 text-xs font-medium uppercase tracking-wider text-paper/80">
-              {t("heroEyebrow")}
-            </span>
-            <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-              {t("heroTitle")}
-            </h1>
-            <p className="mt-5 max-w-xl text-base text-paper/75 md:text-lg">
-              {t("heroDescription")}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
+            {/* Eyebrow tag */}
+            <StampHeadline>
+              <span className="label-mech inline-flex items-center gap-2 border border-paper/20 px-3 py-1 text-paper/70">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-700" />
+                {t("heroEyebrow")}
+              </span>
+            </StampHeadline>
+
+            <StampHeadline>
+              <h1 className="mt-5 text-5xl font-bold uppercase md:text-7xl">
+                {t("heroTitle")}
+              </h1>
+            </StampHeadline>
+
+            <RevealSection delay={0.15}>
+              <p className="mt-5 max-w-xl text-base text-paper/70 md:text-lg">
+                {t("heroDescription")}
+              </p>
+            </RevealSection>
+
+            <RevealSection delay={0.25}>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <MotionButton
+                  href={whatsappLink(tc("messagePreset"))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-danger"
+                  {...motionPress}
+                >
+                  {t("heroPrimary")}
+                </MotionButton>
+                <Link href="/hizmetler" className="btn btn-ghost-inv">
+                  {t("heroSecondary")}
+                </Link>
+              </div>
+            </RevealSection>
+          </div>
+
+          {/* Logo block */}
+          <RevealSection delay={0.1}>
+            <div className="relative aspect-square w-full max-w-sm justify-self-center md:justify-self-end">
+              <div className="absolute inset-0 rounded-none bg-brand-700/10 blur-3xl" />
+              <div className="relative flex h-full w-full items-center justify-center border-2 border-paper/10 bg-paper p-8">
+                <Image src="/brand/logo.svg" alt="" fill className="object-contain p-4" priority />
+              </div>
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ── Highlights ───────────────────────────────────────────────── */}
+      <section className="container-page py-16 md:py-24">
+        <RevealSection>
+          <h2 className="text-4xl font-bold uppercase md:text-5xl">{t("highlightsTitle")}</h2>
+          <AccentLine />
+        </RevealSection>
+
+        <StaggerGrid className="mt-10 grid gap-4 md:grid-cols-3">
+          {highlights.map(({ icon: Icon, title, text }) => (
+            <StaggerItem key={title}>
+              <div className="group border-2 border-line bg-paper-dark p-6 transition-colors duration-150 hover:border-brand-700">
+                <div className="flex h-11 w-11 items-center justify-center border-2 border-ink bg-ink text-paper group-hover:bg-brand-700 group-hover:border-brand-700 transition-colors">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 text-xl font-bold uppercase">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{text}</p>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerGrid>
+      </section>
+
+      {/* ── CTA band ─────────────────────────────────────────────────── */}
+      <RevealSection>
+        <section className="bg-ink text-paper">
+          <div className="container-page grid items-center gap-6 py-14 md:grid-cols-[1fr_auto] md:py-20">
+            <div>
+              {/* Accent mark */}
+              <span className="label-mech text-brand-700">{t("heroEyebrow")}</span>
+              <h2 className="mt-2 text-3xl font-bold uppercase md:text-4xl">{t("ctaTitle")}</h2>
+              <p className="mt-3 max-w-2xl text-paper/70">{t("ctaText")}</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <MotionButton
                 href={whatsappLink(tc("messagePreset"))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-brand-700 px-5 py-3 text-sm font-semibold text-paper hover:bg-brand-600"
+                className="btn btn-danger"
+                {...motionPress}
               >
-                {t("heroPrimary")}
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <Link
-                href="/hizmetler"
-                className="inline-flex items-center gap-2 rounded-md border border-paper/30 px-5 py-3 text-sm font-semibold text-paper hover:bg-paper/10"
-              >
-                {t("heroSecondary")}
-              </Link>
+                {t("ctaPrimary")}
+              </MotionButton>
+              <MotionButton href={telLink()} className="btn btn-ghost-inv" {...motionPress}>
+                {t("ctaSecondary")}
+              </MotionButton>
             </div>
           </div>
-
-          <div className="relative aspect-square w-full max-w-md justify-self-center md:justify-self-end">
-            <div className="absolute inset-0 rounded-3xl bg-brand-700/15 blur-3xl" />
-            <div className="relative flex h-full w-full items-center justify-center rounded-3xl bg-paper p-8">
-              <Image
-                src="/brand/logo.svg"
-                alt=""
-                fill
-                className="object-contain p-6"
-                priority
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Highlights */}
-      <section className="container-page py-16 md:py-24">
-        <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-          {t("highlightsTitle")}
-        </h2>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {highlights.map(({ icon: Icon, title, text }) => (
-            <div
-              key={title}
-              className="rounded-xl border border-line bg-paper p-6 transition-shadow hover:shadow-md"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
-                <Icon className="h-6 w-6" />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-              <p className="mt-2 text-sm text-ink-soft">{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-brand-700 text-paper">
-        <div className="container-page grid items-center gap-6 py-14 md:grid-cols-[1.2fr_auto] md:py-20">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
-              {t("ctaTitle")}
-            </h2>
-            <p className="mt-3 max-w-2xl text-paper/85">{t("ctaText")}</p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={whatsappLink(tc("messagePreset"))}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-paper px-5 py-3 text-sm font-semibold text-brand-700 hover:bg-paper/90"
-            >
-              {t("ctaPrimary")}
-            </a>
-            <a
-              href={telLink()}
-              className="inline-flex items-center gap-2 rounded-md border border-paper/40 px-5 py-3 text-sm font-semibold text-paper hover:bg-paper/10"
-            >
-              {t("ctaSecondary")}
-            </a>
-          </div>
-        </div>
-      </section>
+        </section>
+      </RevealSection>
     </>
   );
 }

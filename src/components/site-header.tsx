@@ -9,49 +9,42 @@ import { LanguageSwitcher } from "./language-switcher";
 import { site, telLink } from "@/lib/site";
 
 const NAV = [
-  { href: "/", key: "home" },
-  { href: "/hizmetler", key: "services" },
-  { href: "/markalar", key: "brands" },
+  { href: "/",           key: "home" },
+  { href: "/hizmetler",  key: "services" },
+  { href: "/markalar",   key: "brands" },
   { href: "/hakkimizda", key: "about" },
-  { href: "/iletisim", key: "contact" },
+  { href: "/iletisim",   key: "contact" },
 ] as const;
 
 export function SiteHeader() {
-  const t = useTranslations("nav");
+  const t  = useTranslations("nav");
   const tc = useTranslations("common");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/70">
+    <header className="sticky top-0 z-40 border-b-2 border-ink bg-paper/95 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2" aria-label={site.name}>
-          <Image
-            src="/brand/logo-mark.svg"
-            alt=""
-            width={36}
-            height={36}
-            priority
-          />
-          <span className="hidden font-semibold tracking-tight text-ink sm:block">
+
+        <Link href="/" className="flex items-center gap-3" aria-label={site.name}>
+          <Image src="/brand/logo-mark.svg" alt="" width={34} height={34} priority />
+          <span className="hidden font-display text-lg font-bold uppercase tracking-wide sm:block">
             {site.name}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        {/* Desktop nav */}
+        <nav className="hidden items-center md:flex">
           {NAV.map((item) => {
-            const active =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
+            const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                className={`label-mech px-4 py-5 transition-colors border-b-2 ${
                   active
-                    ? "text-brand-700"
-                    : "text-ink-soft hover:text-ink"
+                    ? "border-brand-700 text-ink"
+                    : "border-transparent text-steel hover:text-ink hover:border-line-dark"
                 }`}
               >
                 {t(item.key)}
@@ -61,42 +54,40 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={telLink()}
-            className="hidden items-center gap-2 rounded-md bg-brand-700 px-3 py-2 text-sm font-medium text-paper hover:bg-brand-800 sm:flex"
-          >
-            <Phone className="h-4 w-4" />
-            <span>{tc("callNow")}</span>
+          <a href={telLink()} className="btn btn-primary hidden text-xs sm:inline-flex">
+            <Phone className="h-3.5 w-3.5" />
+            {tc("callNow")}
           </a>
           <LanguageSwitcher />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink hover:bg-line/50 md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center border-2 border-line text-ink hover:border-ink md:hidden"
             aria-label="Menu"
             aria-expanded={open}
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
       </div>
 
+      {/* Mobile menu */}
       {open && (
-        <nav className="border-t border-line bg-paper md:hidden">
-          <div className="container-page flex flex-col py-2">
+        <nav className="border-t-2 border-ink bg-paper md:hidden">
+          <div className="container-page flex flex-col py-3">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-3 text-base font-medium text-ink-soft hover:bg-line/40 hover:text-ink"
+                className="label-mech border-b border-line py-3 text-steel hover:text-ink"
               >
                 {t(item.key)}
               </Link>
             ))}
             <a
               href={telLink()}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-brand-700 px-3 py-3 text-sm font-semibold text-paper"
+              className="btn btn-primary mt-4 w-full justify-center"
             >
               <Phone className="h-4 w-4" />
               {tc("callNow")} · {site.phoneDisplay}

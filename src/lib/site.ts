@@ -2,15 +2,15 @@
 // Phone is in international E.164 for tel: links; whatsappNumber is digits-only.
 
 export const site = {
-  name: "Büyükyılmaz Oto Lastik",
-  legalName: "Büyükyılmaz Oto Lastik",
-  url: "https://buyukyilmazotolastik.com", // TODO: real domain when ready
+  name: "Bosna Oto Lastik",
+  legalName: "Bosna Oto Lastik",
+  url: "https://bosnaotolastik.com", // TODO: real domain when ready
   // TODO: replace with real phone (E.164 format, e.g. "+905551234567")
   phone: "+905555555555",
   phoneDisplay: "+90 555 555 55 55",
   // TODO: replace with real WhatsApp number (digits only, no +, e.g. "905551234567")
   whatsappNumber: "905555555555",
-  email: "info@buyukyilmazotolastik.com", // TODO
+  email: "info@bosnaotolastik.com", // TODO
   address: {
     street: "TODO: Sokak, No",
     district: "Selçuklu",
