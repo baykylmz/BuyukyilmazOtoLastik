@@ -45,6 +45,7 @@ bosnaotolastik/
 │   │   │   ├── layout.tsx   # Root layout: fonts, html/body, header, footer
 │   │   │   ├── page.tsx     # Home page
 │   │   │   ├── hizmetler/   # Services page
+│   │   │   ├── fiyatlar/    # Prices page
 │   │   │   ├── markalar/    # Brands page
 │   │   │   ├── hakkimizda/  # About page
 │   │   │   └── iletisim/    # Contact page
@@ -52,12 +53,14 @@ bosnaotolastik/
 │   │   ├── sitemap.ts       # Auto-generated sitemap with hreflang alternates
 │   │   └── robots.ts        # robots.txt
 │   ├── components/
-│   │   ├── site-header.tsx  # Sticky header with nav, language switcher, call button
-│   │   ├── site-footer.tsx  # Footer with links, contact info, brand
+│   │   ├── site-header.tsx      # Sticky header with nav, language switcher, call button
+│   │   ├── site-footer.tsx      # Footer with links, contact info, brand
 │   │   ├── language-switcher.tsx # TR / EN toggle
-│   │   ├── whatsapp-fab.tsx # Floating WhatsApp button (bottom-right, always visible)
-│   │   ├── motion.tsx       # Framer Motion animation primitives
-│   │   └── json-ld.tsx      # Google structured data (LocalBusiness / TireShop schema)
+│   │   ├── whatsapp-fab.tsx     # Floating WhatsApp button (bottom-right, always visible)
+│   │   ├── motion.tsx           # Framer Motion animation primitives
+│   │   ├── json-ld.tsx          # LocalBusiness / TireShop schema (all pages)
+│   │   ├── faq-schema.tsx       # FAQPage JSON-LD schema (home page)
+│   │   └── breadcrumb-schema.tsx # BreadcrumbList JSON-LD schema (inner pages)
 │   ├── i18n/
 │   │   ├── routing.ts       # Locale config + localized pathnames
 │   │   ├── navigation.ts    # next-intl Link, useRouter, usePathname wrappers
@@ -83,7 +86,7 @@ export const site = {
   name: "Bosna Oto Lastik",
   url: "https://bosnaotolastik.com",
 
-  phone: "+905357855587",        // E.164 — used in tel: links
+  phone: "+905357855587",         // E.164 — used in tel: links
   phoneDisplay: "0535 785 55 87", // Human-readable
   phone2: "+905378475138",
   phone2Display: "0537 847 51 38",
@@ -106,7 +109,14 @@ export const site = {
     sunday:   "08:30 – 00:00",
   },
 
-  brands: ["Michelin", "Bridgestone", "Continental", "Pirelli", ...],
+  brands: ["Lassa", "Bridgestone", "Dayton", "Michelin", "Continental", ...],
+
+  dealerNetwork: {
+    name: "Lastiğim",
+    operator: "Brisa (Bridgestone × Sabancı)",
+    url: "https://lastigim.com.tr",
+    primaryBrands: ["Lassa", "Bridgestone", "Dayton"],
+  },
 };
 ```
 
@@ -129,11 +139,12 @@ The site supports Turkish and English using **next-intl 4** with the App Router.
 |---|---|---|
 | Home | `/` | `/en` |
 | Services | `/hizmetler` | `/en/services` |
+| Prices | `/fiyatlar` | `/en/prices` |
 | Brands | `/markalar` | `/en/brands` |
 | About | `/hakkimizda` | `/en/about` |
 | Contact | `/iletisim` | `/en/contact` |
 
-Turkish has no prefix (`as-needed` mode). English gets `/en/`.
+Turkish has no prefix (`as-needed` mode). English gets `/en/`. `localeDetection: false` ensures the site always opens in Turkish regardless of the visitor's browser language.
 
 ### How it works
 
@@ -149,12 +160,19 @@ Open `messages/tr.json` and `messages/en.json`, edit the matching key in both fi
 ```json
 {
   "nav": { ... },
-  "home": { ... },
-  "services": { "title": "...", "items": { ... } },
-  "brands": { ... },
-  "about": { ... },
-  "contact": { ... },
-  "footer": { ... }
+  "common": { ... },
+  "home": {
+    "seoTitle": "...",
+    "seoDescription": "...",
+    "faq": { "q1": "...", "a1": "...", ... },
+    ...
+  },
+  "services": { "seoTitle": "...", "seoDescription": "...", "title": "...", "items": { ... } },
+  "prices":   { "seoTitle": "...", "seoDescription": "...", "items": { ... } },
+  "brands":   { "seoTitle": "...", "seoDescription": "...", ... },
+  "about":    { "seoTitle": "...", "seoDescription": "...", ... },
+  "contact":  { "seoTitle": "...", "seoDescription": "...", ... },
+  "footer":   { ... }
 }
 ```
 
@@ -197,7 +215,7 @@ Four semantic button classes — never use ad-hoc colors for buttons:
 |---|---|---|
 | `.btn-primary` | Black fill, white text | Phone call — trust, solidity |
 | `.btn-danger` | Red fill, white text | WhatsApp — highest urgency (max 1 per page) |
-| `.btn-ghost` | 2px black border, fills on hover | Secondary actions |
+| `.btn-ghost` | 2px black border, fills on hover | Secondary actions on light backgrounds |
 | `.btn-ghost-inv` | 2px white border | On dark/red backgrounds |
 
 All buttons have a mechanical press effect (`.btn:active { transform: scale(0.97) }`).
@@ -237,26 +255,32 @@ All scroll animations use `whileInView` with `once: true` — they fire once and
 Three sections:
 
 1. **Hero** — dark background with mechanical grid overlay, logo, headline with `StampHeadline`, two CTAs (WhatsApp = red, Services = ghost-inv)
-2. **Highlights** — three cards with stagger animation: experience (1993), brands (new+used), hours (7 days)
+2. **Highlights** — three staggered cards: experience (since 1993), authorized Lastiğim dealer, open 7 days
 3. **CTA band** — dark background, WhatsApp + phone buttons
+
+Includes `<FaqSchema>` for Google FAQ rich results.
 
 ### Services (`src/app/[locale]/hizmetler/page.tsx`)
 
-8 service cards in a responsive grid (1 → 2 → 3 columns). Each card has an icon, uppercase title, and description. All 8 service keys are defined as a typed constant and rendered from `messages.services.items`.
+7 service cards in a responsive grid (1 → 2 → 3 columns). Each card has an icon, uppercase title, and description. All service keys are defined as a typed constant and rendered from `messages.services.items`.
 
-Services: Tire Sales, Mounting, Balancing, Repair, Storage (Tire Hotel), Rim Sales, Fleet Service.
+Services: Tire Sales, Mounting, Balancing, Repair, Tire Hotel (Storage), Rim Sales, Fleet Service.
+
+### Prices (`src/app/[locale]/fiyatlar/page.tsx`)
+
+Price list with 12 service rows. Prices are hardcoded in the component as numbers; labels come from `messages.prices.items`. Displayed as a table on desktop and stacked cards on mobile. All prices are in ₺ excluding VAT.
 
 ### Brands (`src/app/[locale]/markalar/page.tsx`)
 
-Brand tiles pulled from `site.brands` array in `site.ts`. Adding a new brand = add one string to the array.
+Authorized Lastiğim dealer badge at the top, then primary brands (Lassa, Bridgestone, Dayton) in red tiles, then secondary brands in neutral tiles. Brand list pulled from `site.brands` in `site.ts`.
 
 ### About (`src/app/[locale]/hakkimizda/page.tsx`)
 
-Static text from `messages.about`. Content reflects the official Google Business Profile description: founded 2015, Mahmut Büyükyılmaz's craft journey since 1993.
+Static text from `messages.about`. Covers founding history (1993 craft journey, 2015 Bosna Oto Lastik), opening hours, and payment info.
 
 ### Contact (`src/app/[locale]/iletisim/page.tsx`)
 
-Six cards + Google Maps embed:
+Six info cards + Google Maps iframe:
 - Primary phone (tap to call)
 - Secondary phone (tap to call)
 - WhatsApp (pre-filled message)
@@ -272,33 +296,30 @@ Map embed uses exact GPS coordinates: `38.009564, 32.526168`.
 
 ### Metadata
 
-Every page exports `generateMetadata` with:
-- `title` using the `%s | Bosna Oto Lastik` template
-- `description` from the relevant translation key
-- `openGraph` with locale-specific settings
-- `alternates.languages` for hreflang (TR/EN)
+Every page exports `generateMetadata` pulling `seoTitle` and `seoDescription` from the matching translation namespace. The layout sets a `template: "%s | Bosna Oto Lastik"` fallback. OpenGraph and hreflang alternates are set in the layout.
+
+### Structured Data (JSON-LD)
+
+Three schema components:
+
+| Component | Schema type | Where rendered |
+|---|---|---|
+| `json-ld.tsx` | `TireShop` + `AutoRepair` + `LocalBusiness` | Every page (layout) |
+| `faq-schema.tsx` | `FAQPage` | Home page only |
+| `breadcrumb-schema.tsx` | `BreadcrumbList` | All 5 inner pages |
 
 ### Sitemap (`src/app/sitemap.ts`)
 
-Auto-generated at `/sitemap.xml`. Includes all pages in both languages with `alternates.languages` for each URL.
+Auto-generated at `/sitemap.xml`. Includes all pages in both languages with `alternates.languages` for each URL. Submitted to Google Search Console.
 
 ### Robots (`src/app/robots.ts`)
 
 Allows all crawlers, points to the sitemap.
 
-### JSON-LD (`src/components/json-ld.tsx`)
+### Google Search Console
 
-Google structured data injected in the `<body>` on every page:
-
-```json
-{
-  "@type": ["AutoRepair", "TireShop"],
-  "name": "Bosna Oto Lastik",
-  "telephone": ["+905357855587", "+905378475138"],
-  "openingHoursSpecification": [{ "dayOfWeek": [...all 7...], "opens": "08:30", "closes": "00:00" }],
-  "geo": { "latitude": "38.009564", "longitude": "32.526168" }
-}
-```
+- Property verified via DNS TXT record (added in Vercel DNS settings)
+- Sitemap submitted: `https://bosnaotolastik.com/sitemap.xml`
 
 ---
 
@@ -307,8 +328,9 @@ Google structured data injected in the `<body>` on every page:
 Hosting is on **Vercel**, connected to the GitHub repository.
 
 - Every `git push origin main` triggers an automatic production deploy (~1–2 min)
-- Domain: `bosnaotolastik.com` (Namecheap, nameservers pointed to `ns1/ns2.vercel-dns.com`)
+- Domain: `bosnaotolastik.com` (registered on Namecheap, nameservers pointed to `ns1/ns2.vercel-dns.com`)
 - HTTPS is automatic via Vercel
+- DNS records (including Google Search Console verification TXT) are managed in Vercel's DNS panel
 
 ### Local development
 
@@ -362,7 +384,10 @@ Edit `site.hours` in `src/lib/site.ts`.
 Add a string to `site.brands` array in `src/lib/site.ts`.
 
 **Edit page text:**
-Edit `messages/tr.json` and `messages/en.json` — keep both in sync.
+Edit `messages/tr.json` and `messages/en.json` — keep both files in sync.
+
+**Edit a service price:**
+Edit the `car` / `commercial` values in the `PRICES` array in `src/app/[locale]/fiyatlar/page.tsx`.
 
 **Update Google Maps embed:**
 Replace `site.mapsEmbedUrl` in `src/lib/site.ts` with the `src` value from Google Maps → Share → Embed a map.
@@ -372,3 +397,4 @@ Replace `site.mapsEmbedUrl` in `src/lib/site.ts` with the `src` value from Googl
 2. Add the path to `src/i18n/routing.ts` under `pathnames` (with EN equivalent)
 3. Add the nav link to `NAV` array in `src/components/site-header.tsx`
 4. Add translation keys to both `messages/*.json`
+5. Add `<BreadcrumbSchema>` to the new page
