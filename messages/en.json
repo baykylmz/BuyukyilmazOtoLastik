@@ -65,7 +65,30 @@
     "note2": "Listed prices apply to standard patch repairs.",
     "note3": "Additional charges may apply for large-scale repairs.",
     "ctaText": "For pricing info or to book:",
-    "ctaButton": "Message on WhatsApp"
+    "ctaButton": "Message on WhatsApp",
+    "items": {
+      "flatRepairWith":      "Flat Repair",
+      "flatRepairWithNote":  "Balancing included",
+      "flatRepairWithout":   "Flat Repair",
+      "flatRepairWithoutNote": "Balancing excluded",
+      "rimEdge":             "Rim Edge Treatment",
+      "valveSteelService":   "Valve Replacement",
+      "valveSteelNote":      "Steel",
+      "valvePlasticService": "Valve Replacement",
+      "valvePlasticNote":    "Plastic",
+      "mountBalance":        "Mount & Balance",
+      "rotation":            "Tire Rotation",
+      "rotationNote":        "Front-Rear",
+      "balanceOnly":         "Balancing Only",
+      "balanceOnlyNote":     "Full Set",
+      "sensorValve":         "Sensor Valve",
+      "sensorValveNote":     "Per Unit",
+      "tireHotel":           "Tire Storage",
+      "rimSwapNo":           "Wheel Swap",
+      "rimSwapNoNote":       "Without Balancing",
+      "rimSwapYes":          "Wheel Swap",
+      "rimSwapYesNote":      "With Balancing"
+    }
   },
   "brands": {
     "title": "Brands We Carry",

@@ -65,7 +65,30 @@
     "note2": "Belirtilen ücretler standart yama işlemleri içindir.",
     "note3": "Büyük yama gerektiren durumlarda fiyat farkı oluşabilir.",
     "ctaText": "Fiyat hakkında bilgi almak veya randevu için:",
-    "ctaButton": "WhatsApp'tan Yaz"
+    "ctaButton": "WhatsApp'tan Yaz",
+    "items": {
+      "flatRepairWith":    "Patlak Tamiri",
+      "flatRepairWithNote": "Balans dahil",
+      "flatRepairWithout":    "Patlak Tamiri",
+      "flatRepairWithoutNote": "Balans hariç",
+      "rimEdge":           "Jant Kenarı İlaçlama",
+      "valveSteelService": "Supap Değişimi",
+      "valveSteelNote":    "Çelik",
+      "valvePlasticService": "Supap Değişimi",
+      "valvePlasticNote":  "Plastik",
+      "mountBalance":      "Sök-Tak + Balans",
+      "rotation":          "Lastik Rotasyonu",
+      "rotationNote":      "Ön-Arka",
+      "balanceOnly":       "Sadece Balans",
+      "balanceOnlyNote":   "Takım",
+      "sensorValve":       "Sensörlü Supap",
+      "sensorValveNote":   "Adet",
+      "tireHotel":         "Lastik Oteli Konaklama",
+      "rimSwapNo":         "Jantlı Değişim",
+      "rimSwapNoNote":     "Balanssız",
+      "rimSwapYes":        "Jantlı Değişim",
+      "rimSwapYesNote":    "Balanslı"
+    }
   },
   "brands": {
     "title": "Çalıştığımız Markalar",

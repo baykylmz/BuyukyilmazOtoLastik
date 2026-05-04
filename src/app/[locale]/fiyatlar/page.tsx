@@ -1,7 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { RevealSection, StaggerGrid, StaggerItem, AccentLine } from "@/components/motion";
+import { RevealSection, StaggerGrid, StaggerItem, AccentLine, MotionButton, motionPress } from "@/components/motion";
 import { whatsappLink } from "@/lib/site";
-import { MotionButton, motionPress } from "@/components/motion";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -9,20 +8,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: t("title") };
 }
 
-// Price data — update here when prices change
+// Prices only — labels come from messages (TR/EN)
 const PRICES = [
-  { service: "Patlak Tamiri",        note: "Balans dahil",   car: 300, commercial: 350 },
-  { service: "Patlak Tamiri",        note: "Balans hariç",   car: 250, commercial: 300 },
-  { service: "Jant Kenarı İlaçlama", note: "",               car: 300, commercial: 350 },
-  { service: "Supap Değişimi",       note: "Çelik",          car: 350, commercial: 350 },
-  { service: "Supap Değişimi",       note: "Plastik",        car: 250, commercial: 250 },
-  { service: "Sök-Tak + Balans",     note: "",               car: 850, commercial: 950 },
-  { service: "Lastik Rotasyonu",     note: "Ön-Arka",        car: 350, commercial: 450 },
-  { service: "Sadece Balans",        note: "Takım",          car: 450, commercial: 550 },
-  { service: "Sensörlü Supap",       note: "Adet",           car: 400, commercial: 500 },
-  { service: "Lastik Oteli",         note: "Konaklama",      car: 450, commercial: 550 },
-  { service: "Jantlı Değişim",       note: "Balanssız",      car: 450, commercial: 550 },
-  { service: "Jantlı Değişim",       note: "Balanslı",       car: 550, commercial: 650 },
+  { serviceKey: "flatRepairWith",    noteKey: "flatRepairWithNote",    car: 300, commercial: 350 },
+  { serviceKey: "flatRepairWithout", noteKey: "flatRepairWithoutNote", car: 250, commercial: 300 },
+  { serviceKey: "rimEdge",           noteKey: null,                    car: 300, commercial: 350 },
+  { serviceKey: "valveSteelService", noteKey: "valveSteelNote",        car: 350, commercial: 350 },
+  { serviceKey: "valvePlasticService", noteKey: "valvePlasticNote",    car: 250, commercial: 250 },
+  { serviceKey: "mountBalance",      noteKey: null,                    car: 850, commercial: 950 },
+  { serviceKey: "rotation",          noteKey: "rotationNote",          car: 350, commercial: 450 },
+  { serviceKey: "balanceOnly",       noteKey: "balanceOnlyNote",       car: 450, commercial: 550 },
+  { serviceKey: "sensorValve",       noteKey: "sensorValveNote",       car: 400, commercial: 500 },
+  { serviceKey: "tireHotel",         noteKey: null,                    car: 450, commercial: 550 },
+  { serviceKey: "rimSwapNo",         noteKey: "rimSwapNoNote",         car: 450, commercial: 550 },
+  { serviceKey: "rimSwapYes",        noteKey: "rimSwapYesNote",        car: 550, commercial: 650 },
 ] as const;
 
 function fmt(n: number) {
@@ -32,7 +31,7 @@ function fmt(n: number) {
 export default async function PricesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("prices");
+  const t  = await getTranslations("prices");
   const tc = await getTranslations("contact");
 
   return (
@@ -47,13 +46,11 @@ export default async function PricesPage({ params }: { params: Promise<{ locale:
       {/* Table — desktop */}
       <RevealSection delay={0.1} className="mt-10 hidden md:block">
         <div className="overflow-hidden border-2 border-ink">
-          {/* Header */}
           <div className="grid grid-cols-[1fr_160px_160px] border-b-2 border-ink bg-ink text-paper">
             <div className="label-mech px-6 py-4">{t("colService")}</div>
             <div className="label-mech border-l-2 border-paper/20 px-6 py-4 text-center">{t("colCar")}</div>
             <div className="label-mech border-l-2 border-paper/20 px-6 py-4 text-center">{t("colCommercial")}</div>
           </div>
-          {/* Rows */}
           {PRICES.map((row, i) => (
             <div
               key={i}
@@ -62,9 +59,9 @@ export default async function PricesPage({ params }: { params: Promise<{ locale:
               }`}
             >
               <div className="px-6 py-4">
-                <span className="font-display text-lg font-bold">{row.service}</span>
-                {row.note && (
-                  <span className="ml-2 font-mono text-xs text-steel">({row.note})</span>
+                <span className="font-display text-lg font-bold">{t(`items.${row.serviceKey}`)}</span>
+                {row.noteKey && (
+                  <span className="ml-2 font-mono text-xs text-steel">({t(`items.${row.noteKey}`)})</span>
                 )}
               </div>
               <div className="border-l border-line px-6 py-4 text-center font-mono font-bold tabular-nums">
@@ -83,14 +80,10 @@ export default async function PricesPage({ params }: { params: Promise<{ locale:
         {PRICES.map((row, i) => (
           <StaggerItem key={i}>
             <div className="border-2 border-line bg-paper-dark p-4">
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <p className="font-display text-lg font-bold uppercase">{row.service}</p>
-                  {row.note && (
-                    <p className="font-mono text-xs text-steel">({row.note})</p>
-                  )}
-                </div>
-              </div>
+              <p className="font-display text-lg font-bold uppercase">{t(`items.${row.serviceKey}`)}</p>
+              {row.noteKey && (
+                <p className="font-mono text-xs text-steel">({t(`items.${row.noteKey}`)})</p>
+              )}
               <div className="mt-3 grid grid-cols-2 gap-2">
                 <div className="border border-line bg-paper p-3 text-center">
                   <p className="label-mech text-steel">{t("colCar")}</p>
