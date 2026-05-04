@@ -3,11 +3,12 @@ import {
   Wrench, Disc3, Gauge, Bandage, Snowflake, CircleDot, Truck,
 } from "lucide-react";
 import { RevealSection, StaggerGrid, StaggerItem, AccentLine } from "@/components/motion";
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "services" });
-  return { title: t("title") };
+  return { title: t("seoTitle"), description: t("seoDescription") };
 }
 
 const SERVICE_KEYS = [
@@ -25,7 +26,16 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
   setRequestLocale(locale);
   const t = await getTranslations("services");
 
+  const homeLabel = locale === "tr" ? "Anasayfa" : "Home";
+  const pageLabel = t("title");
+  const pageHref  = locale === "tr" ? "/hizmetler" : "/en/services";
+
   return (
+    <>
+    <BreadcrumbSchema items={[
+      { name: homeLabel, href: locale === "tr" ? "/" : "/en" },
+      { name: pageLabel, href: pageHref },
+    ]} />
     <section className="container-page py-16 md:py-24">
       <RevealSection className="max-w-2xl">
         <span className="label-mech text-steel">— {t("title")}</span>
@@ -52,5 +62,6 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         ))}
       </StaggerGrid>
     </section>
+    </>
   );
 }

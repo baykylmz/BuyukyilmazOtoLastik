@@ -9,11 +9,12 @@ import {
   MotionButton,
   motionPress,
 } from "@/components/motion";
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact" });
-  return { title: t("title") };
+  return { title: t("seoTitle"), description: t("seoDescription") };
 }
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -21,7 +22,16 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   setRequestLocale(locale);
   const t = await getTranslations("contact");
 
+  const homeLabel = locale === "tr" ? "Anasayfa" : "Home";
+  const pageLabel = t("title");
+  const pageHref  = locale === "tr" ? "/iletisim" : "/en/contact";
+
   return (
+    <>
+    <BreadcrumbSchema items={[
+      { name: homeLabel, href: locale === "tr" ? "/" : "/en" },
+      { name: pageLabel, href: pageHref },
+    ]} />
     <section className="container-page py-16 md:py-24">
       <RevealSection className="max-w-2xl">
         <span className="label-mech text-steel">— {t("title")}</span>
@@ -149,5 +159,6 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         </RevealSection>
       </div>
     </section>
+    </>
   );
 }

@@ -2,9 +2,9 @@
   "nav": {
     "home": "Home",
     "services": "Services",
+    "prices": "Prices",
     "brands": "Brands",
     "about": "About",
-    "prices": "Prices",
     "contact": "Contact"
   },
   "common": {
@@ -15,9 +15,11 @@
     "switchLanguage": "Language"
   },
   "home": {
+    "seoTitle": "Bosna Oto Lastik | Tire Shop in Konya Selçuklu — Mounting, Balancing & Repair",
+    "seoDescription": "Tire mounting, balancing, flat repair and sales in Konya Selçuklu. Authorized Lastiğim dealer (Lassa & Bridgestone). Open 7 days 08:30–00:00. +90 535 785 55 87",
     "heroEyebrow": "Konya Selçuklu",
     "heroTitle": "Where every safe journey starts",
-    "heroDescription": "Tire sales, mounting, balancing, alignment and repair since 2015 in Konya. New and used tires — everything your vehicle needs in one place.",
+    "heroDescription": "Tire sales, mounting, balancing and repair since 2015 in Konya. New and used tires — everything your vehicle needs in one place.",
     "heroPrimary": "Message on WhatsApp",
     "heroSecondary": "Our Services",
     "highlightsTitle": "Why Us?",
@@ -32,9 +34,25 @@
     "ctaTitle": "Let's find the right tire for your car",
     "ctaText": "Share your plate or vehicle model — we'll send matching sizes and price options.",
     "ctaPrimary": "Message on WhatsApp",
-    "ctaSecondary": "Call Us"
+    "ctaSecondary": "Call Us",
+    "faq": {
+      "q1": "Which tire brands do you carry?",
+      "a1": "We carry Lassa and Bridgestone as primary brands (as an authorized Lastiğim dealer), plus Michelin, Continental, Pirelli, Goodyear, Hankook and Petlas.",
+      "q2": "What are your opening hours?",
+      "a2": "We are open 7 days a week, Monday through Sunday, from 08:30 to midnight (00:00).",
+      "q3": "Do you sell used tires?",
+      "a3": "Yes, we stock both new and used tires. Contact us via WhatsApp or phone for budget-friendly options.",
+      "q4": "How long does a flat tire repair take?",
+      "a4": "A standard flat repair takes 15–30 minutes. Repair with balancing is 300 ₺, without balancing is 250 ₺ (VAT excluded).",
+      "q5": "When should I get wheel balancing done?",
+      "a5": "After every new tire fitting, after a tire change, and whenever you feel steering wheel vibration. Balancing extends tire life significantly.",
+      "q6": "Where are you located?",
+      "a6": "We are at Bosna Hersek Mah., Osmanlı Cd. No:14/20, 42250 Selçuklu/Konya. Easily reachable via Google Maps."
+    }
   },
   "services": {
+    "seoTitle": "Tire Mounting, Balancing & Repair in Konya Selçuklu | Bosna Oto Lastik",
+    "seoDescription": "Professional tire mounting, balancing, flat repair, rim sales and tire storage in Konya Selçuklu. All passenger and commercial vehicles.",
     "title": "Our Services",
     "subtitle": "From tire sales to maintenance and repair — everything your vehicle needs in one place.",
     "items": {
@@ -44,7 +62,7 @@
       "mountText": "Modern mounting machines — fast change without damaging your wheels or tires.",
       "balanceTitle": "Wheel Balancing",
       "balanceText": "Precise balancing that prevents steering wheel vibration and extends tire life.",
-"repairTitle": "Tire Repair",
+      "repairTitle": "Tire Repair",
       "repairText": "No quick-fix sealants — proper internal cord patches for lasting repairs.",
       "storageTitle": "Tire Hotel",
       "storageText": "Seasonal storage with controlled humidity and temperature.",
@@ -55,6 +73,8 @@
     }
   },
   "prices": {
+    "seoTitle": "Konya Tire Price List 2026 | Bosna Oto Lastik Selçuklu",
+    "seoDescription": "Bosna Oto Lastik service prices. Flat repair from 250₺, balancing from 450₺, mount & balance from 850₺. Konya Selçuklu. VAT excluded.",
     "title": "Price List",
     "subtitle": "All prices are per service and exclude VAT.",
     "colService": "Service",
@@ -67,30 +87,32 @@
     "ctaText": "For pricing info or to book:",
     "ctaButton": "Message on WhatsApp",
     "items": {
-      "flatRepairWith":      "Flat Repair",
-      "flatRepairWithNote":  "Balancing included",
-      "flatRepairWithout":   "Flat Repair",
-      "flatRepairWithoutNote": "Balancing excluded",
-      "rimEdge":             "Rim Edge Treatment",
-      "valveSteelService":   "Valve Replacement",
-      "valveSteelNote":      "Steel",
-      "valvePlasticService": "Valve Replacement",
-      "valvePlasticNote":    "Plastic",
-      "mountBalance":        "Mount & Balance",
-      "rotation":            "Tire Rotation",
-      "rotationNote":        "Front-Rear",
-      "balanceOnly":         "Balancing Only",
-      "balanceOnlyNote":     "Full Set",
-      "sensorValve":         "Sensor Valve",
-      "sensorValveNote":     "Per Unit",
-      "tireHotel":           "Tire Storage",
-      "rimSwapNo":           "Wheel Swap",
-      "rimSwapNoNote":       "Without Balancing",
-      "rimSwapYes":          "Wheel Swap",
-      "rimSwapYesNote":      "With Balancing"
+      "flatRepairWith":       "Flat Repair",
+      "flatRepairWithNote":   "Balancing included",
+      "flatRepairWithout":    "Flat Repair",
+      "flatRepairWithoutNote":"Balancing excluded",
+      "rimEdge":              "Rim Edge Treatment",
+      "valveSteelService":    "Valve Replacement",
+      "valveSteelNote":       "Steel",
+      "valvePlasticService":  "Valve Replacement",
+      "valvePlasticNote":     "Plastic",
+      "mountBalance":         "Mount & Balance",
+      "rotation":             "Tire Rotation",
+      "rotationNote":         "Front-Rear",
+      "balanceOnly":          "Balancing Only",
+      "balanceOnlyNote":      "Full Set",
+      "sensorValve":          "Sensor Valve",
+      "sensorValveNote":      "Per Unit",
+      "tireHotel":            "Tire Storage",
+      "rimSwapNo":            "Wheel Swap",
+      "rimSwapNoNote":        "Without Balancing",
+      "rimSwapYes":           "Wheel Swap",
+      "rimSwapYesNote":       "With Balancing"
     }
   },
   "brands": {
+    "seoTitle": "Authorized Lassa & Bridgestone Dealer in Konya | Lastiğim | Bosna Oto Lastik",
+    "seoDescription": "Authorized Lastiğim dealer in Konya Selçuklu. Lassa, Bridgestone, Michelin, Continental, Pirelli, Goodyear, Hankook and more in stock.",
     "title": "Brands We Carry",
     "subtitle": "Long-standing partnerships with the world's leading tire manufacturers.",
     "dealerBadgeLabel": "Authorized Dealer",
@@ -99,6 +121,8 @@
     "note": "Don't see a brand you need? Contact us — special orders welcome."
   },
   "about": {
+    "seoTitle": "About Us | Tire Shop in Konya Since 1993 | Bosna Oto Lastik",
+    "seoDescription": "Mahmut Büyükyılmaz's tire expertise started in 1993. Since 2015, Bosna Oto Lastik has been serving Konya Selçuklu with trusted tire services.",
     "title": "About Us",
     "lead": "Bosna Oto Lastik has been Konya's address for road safety and comfort since 2015.",
     "p1": "But our story goes back to Mahmut Büyükyılmaz's craft journey that began in 1993. Today, under one roof, we cover everything from tire replacement and auto care to new and used tire sales and professional repair services.",
@@ -106,6 +130,8 @@
     "p3": "We're open 7 days a week from 08:30 to midnight. We accept credit and debit cards (Mastercard, VISA)."
   },
   "contact": {
+    "seoTitle": "Contact & Location | Bosna Oto Lastik Selçuklu Konya",
+    "seoDescription": "Bosna Oto Lastik contact info. Osmanlı Cd. No:14/20 Selçuklu/Konya. +90 535 785 55 87. Open every day 08:30–00:00. Reach us fast via WhatsApp.",
     "title": "Contact",
     "subtitle": "WhatsApp or phone is the fastest way to reach us. Directions are on the map below.",
     "phoneLabel": "Phone",

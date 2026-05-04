@@ -2,9 +2,9 @@
   "nav": {
     "home": "Anasayfa",
     "services": "Hizmetler",
+    "prices": "Fiyatlar",
     "brands": "Markalar",
     "about": "Hakkımızda",
-    "prices": "Fiyatlar",
     "contact": "İletişim"
   },
   "common": {
@@ -15,9 +15,11 @@
     "switchLanguage": "Dil"
   },
   "home": {
+    "seoTitle": "Bosna Oto Lastik | Konya Selçuklu Lastik Değişimi, Balans & Tamir",
+    "seoDescription": "Konya Selçuklu'da lastik değişimi, balans, patlak tamiri ve montaj. Lassa & Bridgestone yetkili Lastiğim bayii. Haftanın 7 günü 08:30–00:00. 0535 785 55 87",
     "heroEyebrow": "Konya Selçuklu",
     "heroTitle": "Güvenli yolculuğun başladığı yer",
-    "heroDescription": "2015'ten bu yana Konya'da lastik satışı, değişim, balans, rot ve onarım. Sıfır ve ikinci el lastik — aracınızın tüm ihtiyacı tek adreste.",
+    "heroDescription": "2015'ten bu yana Konya'da lastik satışı, değişim, balans ve onarım. Sıfır ve ikinci el lastik — aracınızın tüm ihtiyacı tek adreste.",
     "heroPrimary": "WhatsApp ile Yaz",
     "heroSecondary": "Hizmetlerimiz",
     "highlightsTitle": "Neden Biz?",
@@ -32,9 +34,25 @@
     "ctaTitle": "Aracınız için doğru lastiği birlikte bulalım",
     "ctaText": "Plakanızı veya araç modelinizi söyleyin, uygun ebatları ve fiyat seçeneklerini paylaşalım.",
     "ctaPrimary": "WhatsApp'tan Yaz",
-    "ctaSecondary": "Bizi Arayın"
+    "ctaSecondary": "Bizi Arayın",
+    "faq": {
+      "q1": "Hangi lastik markalarını satıyorsunuz?",
+      "a1": "Lassa ve Bridgestone başta olmak üzere Michelin, Continental, Pirelli, Goodyear, Hankook ve Petlas markalarını satıyoruz. Lassa ve Bridgestone için yetkili Lastiğim bayiiyiz.",
+      "q2": "Çalışma saatleriniz nedir?",
+      "a2": "Haftanın 7 günü, pazartesiden pazara sabah 08:30'dan gece yarısına (00:00) kadar açığız.",
+      "q3": "İkinci el lastik satıyor musunuz?",
+      "a3": "Evet, sıfır ve ikinci el lastik stokumuz mevcuttur. Bütçenize uygun seçenekler için WhatsApp veya telefon ile ulaşabilirsiniz.",
+      "q4": "Patlak lastik tamiri ne kadar sürer?",
+      "a4": "Standart patlak tamir işlemi 15-30 dakika içinde tamamlanmaktadır. Balans dahil tamir 300 TL, balans hariç 250 TL'dir (KDV hariç).",
+      "q5": "Balans ayarı ne zaman yaptırılmalı?",
+      "a5": "Her yeni lastik montajında, lastik değişiminden sonra ve direksiyonda titreme hissedildiğinde balans yaptırılmalıdır. Balans ayarı lastiğin ömrünü uzatır.",
+      "q6": "Nerede bulunuyorsunuz?",
+      "a6": "Bosna Hersek Mah., Osmanlı Cd. No:14/20, 42250 Selçuklu/Konya adresindeyiz. Google Maps üzerinden kolayca ulaşabilirsiniz."
+    }
   },
   "services": {
+    "seoTitle": "Lastik Değişimi, Montaj, Balans & Tamir | Konya Selçuklu | Bosna Oto Lastik",
+    "seoDescription": "Konya Selçuklu'da lastik montajı, balans ayarı, patlak tamiri, jant satışı ve lastik oteli. Tüm binek ve ticari araçlar için profesyonel lastik servisi.",
     "title": "Hizmetlerimiz",
     "subtitle": "Lastik satışından bakım ve onarıma kadar aracınızın ihtiyacı olan her şey tek noktada.",
     "items": {
@@ -44,7 +62,7 @@
       "mountText": "Modern montaj makineleri ile jant ve lastiğinize zarar vermeden hızlı değişim.",
       "balanceTitle": "Balans Ayarı",
       "balanceText": "Direksiyon titremesini önleyen, lastik ömrünü uzatan hassas balans ayarı.",
-"repairTitle": "Lastik Tamiri",
+      "repairTitle": "Lastik Tamiri",
       "repairText": "Yamalama, sıvı tıkaç değil; içten profesyonel kord yaması ile kalıcı tamir.",
       "storageTitle": "Lastik Oteli",
       "storageText": "Sezonluk değiştirdiğiniz lastiklerinizi uygun nem ve sıcaklıkta saklıyoruz.",
@@ -55,6 +73,8 @@
     }
   },
   "prices": {
+    "seoTitle": "Konya Lastik Fiyat Listesi 2026 | Bosna Oto Lastik Selçuklu",
+    "seoDescription": "Bosna Oto Lastik hizmet fiyatları. Patlak tamir 250₺'den, balans 450₺'den, sök-tak 850₺'den başlar. Konya Selçuklu. KDV hariç.",
     "title": "Fiyat Listesi",
     "subtitle": "Tüm fiyatlarımız hizmet başına olup KDV dahil değildir.",
     "colService": "Hizmet",
@@ -67,30 +87,32 @@
     "ctaText": "Fiyat hakkında bilgi almak veya randevu için:",
     "ctaButton": "WhatsApp'tan Yaz",
     "items": {
-      "flatRepairWith":    "Patlak Tamiri",
-      "flatRepairWithNote": "Balans dahil",
+      "flatRepairWith":       "Patlak Tamiri",
+      "flatRepairWithNote":   "Balans dahil",
       "flatRepairWithout":    "Patlak Tamiri",
-      "flatRepairWithoutNote": "Balans hariç",
-      "rimEdge":           "Jant Kenarı İlaçlama",
-      "valveSteelService": "Supap Değişimi",
-      "valveSteelNote":    "Çelik",
-      "valvePlasticService": "Supap Değişimi",
-      "valvePlasticNote":  "Plastik",
-      "mountBalance":      "Sök-Tak + Balans",
-      "rotation":          "Lastik Rotasyonu",
-      "rotationNote":      "Ön-Arka",
-      "balanceOnly":       "Sadece Balans",
-      "balanceOnlyNote":   "Takım",
-      "sensorValve":       "Sensörlü Supap",
-      "sensorValveNote":   "Adet",
-      "tireHotel":         "Lastik Oteli Konaklama",
-      "rimSwapNo":         "Jantlı Değişim",
-      "rimSwapNoNote":     "Balanssız",
-      "rimSwapYes":        "Jantlı Değişim",
-      "rimSwapYesNote":    "Balanslı"
+      "flatRepairWithoutNote":"Balans hariç",
+      "rimEdge":              "Jant Kenarı İlaçlama",
+      "valveSteelService":    "Supap Değişimi",
+      "valveSteelNote":       "Çelik",
+      "valvePlasticService":  "Supap Değişimi",
+      "valvePlasticNote":     "Plastik",
+      "mountBalance":         "Sök-Tak + Balans",
+      "rotation":             "Lastik Rotasyonu",
+      "rotationNote":         "Ön-Arka",
+      "balanceOnly":          "Sadece Balans",
+      "balanceOnlyNote":      "Takım",
+      "sensorValve":          "Sensörlü Supap",
+      "sensorValveNote":      "Adet",
+      "tireHotel":            "Lastik Oteli Konaklama",
+      "rimSwapNo":            "Jantlı Değişim",
+      "rimSwapNoNote":        "Balanssız",
+      "rimSwapYes":           "Jantlı Değişim",
+      "rimSwapYesNote":       "Balanslı"
     }
   },
   "brands": {
+    "seoTitle": "Lassa & Bridgestone Yetkili Bayi Konya | Lastiğim | Bosna Oto Lastik",
+    "seoDescription": "Konya Selçuklu'da Lassa ve Bridgestone yetkili Lastiğim bayii. Michelin, Continental, Pirelli, Goodyear, Hankook ve daha fazlası stokta.",
     "title": "Çalıştığımız Markalar",
     "subtitle": "Birinci sınıf lastik üreticileriyle uzun yıllara dayanan iş birliği.",
     "dealerBadgeLabel": "Yetkili Bayi",
@@ -99,6 +121,8 @@
     "note": "Listemizde göremediğiniz bir marka için lütfen iletişime geçin — özel sipariş alabiliyoruz."
   },
   "about": {
+    "seoTitle": "Hakkımızda | 1993'ten Bu Yana Konya Lastikçisi | Bosna Oto Lastik",
+    "seoDescription": "Mahmut Büyükyılmaz'ın 1993'te başladığı lastik serüveni, 2015'ten itibaren Bosna Oto Lastik adıyla Konya Selçuklu'da devam ediyor.",
     "title": "Hakkımızda",
     "lead": "Bosna Oto Lastik, 2015'ten bu yana Konya'da yollardaki güvenliğinizin ve konforunuzun adresi.",
     "p1": "Ancak hikâyemiz, Mahmut Büyükyılmaz'ın 1993'te başlayan ustalık yolculuğuna kadar uzanıyor. Bugün, lastik değişiminden oto bakımına, sıfır ve ikinci el lastikten profesyonel onarım hizmetlerine kadar aracınızın tüm ihtiyaçlarını tek çatı altında karşılıyoruz.",
@@ -106,6 +130,8 @@
     "p3": "Haftanın 7 günü sabah 08:30'dan gece yarısına kadar açığız. Kredi kartı ve banka kartıyla ödeme kabul ediyoruz."
   },
   "contact": {
+    "seoTitle": "İletişim & Konum | Bosna Oto Lastik Selçuklu Konya",
+    "seoDescription": "Bosna Oto Lastik iletişim bilgileri. Osmanlı Cd. No:14/20 Selçuklu/Konya. 0535 785 55 87. Her gün 08:30–00:00 açık. WhatsApp ile hızlı ulaşın.",
     "title": "İletişim",
     "subtitle": "Bize ulaşmanın en hızlı yolu WhatsApp veya telefon. Yol tarifi için harita aşağıda.",
     "phoneLabel": "Telefon",

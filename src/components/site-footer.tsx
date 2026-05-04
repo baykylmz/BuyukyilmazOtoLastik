@@ -14,7 +14,7 @@ export function SiteFooter() {
 
         <div>
           <div className="flex items-center gap-3">
-            <Image src="/brand/logo-mark.svg" alt="" width={36} height={36} className="border border-paper/20 bg-paper p-1" />
+            <Image src="/brand/logo-mark.svg" alt="Bosna Oto Lastik" width={36} height={36} className="border border-paper/20 bg-paper p-1" />
             <span className="font-display text-lg font-bold uppercase tracking-wide">{site.name}</span>
           </div>
           <p className="mt-3 text-sm text-paper/60">{t("tagline")}</p>

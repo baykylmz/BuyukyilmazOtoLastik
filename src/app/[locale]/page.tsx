@@ -12,6 +12,7 @@ import {
   MotionButton,
   motionPress,
 } from "@/components/motion";
+import { FaqSchema } from "@/components/faq-schema";
 
 export default async function HomePage({
   params,
@@ -31,6 +32,7 @@ export default async function HomePage({
 
   return (
     <>
+      <FaqSchema locale={locale} />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-ink text-paper">
         {/* Subtle mechanical grid overlay */}
@@ -88,7 +90,7 @@ export default async function HomePage({
             <div className="relative aspect-square w-full max-w-sm justify-self-center md:justify-self-end">
               <div className="absolute inset-0 rounded-none bg-brand-700/10 blur-3xl" />
               <div className="relative flex h-full w-full items-center justify-center border-2 border-paper/10 bg-paper p-8">
-                <Image src="/brand/logo.svg" alt="" fill className="object-contain p-4" priority />
+                <Image src="/brand/logo.svg" alt="Bosna Oto Lastik logo" fill className="object-contain p-4" priority />
               </div>
             </div>
           </RevealSection>

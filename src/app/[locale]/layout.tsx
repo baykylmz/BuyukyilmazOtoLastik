@@ -45,14 +45,14 @@ export async function generateMetadata({
   return {
     metadataBase: new URL(site.url),
     title: {
-      default: `${site.name} — ${t("heroTitle")}`,
+      default: t("seoTitle"),
       template: `%s | ${site.name}`,
     },
-    description: t("heroDescription"),
+    description: t("seoDescription"),
     icons: { icon: "/brand/logo-mark.svg" },
     openGraph: {
-      title: site.name,
-      description: t("heroDescription"),
+      title: t("seoTitle"),
+      description: t("seoDescription"),
       url: site.url,
       siteName: site.name,
       locale: locale === "tr" ? "tr_TR" : "en_US",

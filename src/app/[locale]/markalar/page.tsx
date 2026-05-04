@@ -2,11 +2,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { BadgeCheck } from "lucide-react";
 import { site } from "@/lib/site";
 import { RevealSection, StaggerGrid, StaggerItem, AccentLine } from "@/components/motion";
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "brands" });
-  return { title: t("title") };
+  return { title: t("seoTitle"), description: t("seoDescription") };
 }
 
 export default async function BrandsPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -14,7 +15,16 @@ export default async function BrandsPage({ params }: { params: Promise<{ locale:
   setRequestLocale(locale);
   const t = await getTranslations("brands");
 
+  const homeLabel = locale === "tr" ? "Anasayfa" : "Home";
+  const pageLabel = t("title");
+  const pageHref  = locale === "tr" ? "/markalar" : "/en/brands";
+
   return (
+    <>
+    <BreadcrumbSchema items={[
+      { name: homeLabel, href: locale === "tr" ? "/" : "/en" },
+      { name: pageLabel, href: pageHref },
+    ]} />
     <section className="container-page py-16 md:py-24">
       <RevealSection className="max-w-2xl">
         <span className="label-mech text-steel">— {t("title")}</span>
@@ -81,5 +91,6 @@ export default async function BrandsPage({ params }: { params: Promise<{ locale:
         <p className="mt-10 max-w-2xl text-sm text-ink-muted">{t("note")}</p>
       </RevealSection>
     </section>
+    </>
   );
 }
