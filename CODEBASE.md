@@ -244,7 +244,7 @@ Three sections:
 
 8 service cards in a responsive grid (1 → 2 → 3 columns). Each card has an icon, uppercase title, and description. All 8 service keys are defined as a typed constant and rendered from `messages.services.items`.
 
-Services: Tire Sales, Mounting, Balancing, Alignment, Repair, Storage (Tire Hotel), Rim Sales, Fleet Service.
+Services: Tire Sales, Mounting, Balancing, Repair, Storage (Tire Hotel), Rim Sales, Fleet Service.
 
 ### Brands (`src/app/[locale]/markalar/page.tsx`)
 

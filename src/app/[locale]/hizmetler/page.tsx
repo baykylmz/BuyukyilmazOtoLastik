@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
-  Wrench, Disc3, Gauge, Crosshair, Bandage, Snowflake, CircleDot, Truck,
+  Wrench, Disc3, Gauge, Bandage, Snowflake, CircleDot, Truck,
 } from "lucide-react";
 import { RevealSection, StaggerGrid, StaggerItem, AccentLine } from "@/components/motion";
 
@@ -13,9 +13,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const SERVICE_KEYS = [
   { key: "sale",      icon: CircleDot },
   { key: "mount",     icon: Wrench },
-  { key: "balance",   icon: Gauge },
-  { key: "alignment", icon: Crosshair },
-  { key: "repair",    icon: Bandage },
+  { key: "balance", icon: Gauge },
+  { key: "repair",  icon: Bandage },
   { key: "storage",   icon: Snowflake },
   { key: "rim",       icon: Disc3 },
   { key: "fleet",     icon: Truck },
