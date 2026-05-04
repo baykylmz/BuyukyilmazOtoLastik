@@ -4,6 +4,7 @@
     "services": "Hizmetler",
     "brands": "Markalar",
     "about": "Hakkımızda",
+    "prices": "Fiyatlar",
     "contact": "İletişim"
   },
   "common": {
@@ -52,6 +53,19 @@
       "fleetTitle": "Filo Hizmeti",
       "fleetText": "Şirket filolarına özel toplu fiyatlandırma ve periyodik bakım planı."
     }
+  },
+  "prices": {
+    "title": "Fiyat Listesi",
+    "subtitle": "Tüm fiyatlarımız hizmet başına olup KDV dahil değildir.",
+    "colService": "Hizmet",
+    "colCar": "Otomobil",
+    "colCommercial": "Ticari Araç",
+    "notesLabel": "Notlar",
+    "note1": "Fiyatlarımıza KDV dahil değildir.",
+    "note2": "Belirtilen ücretler standart yama işlemleri içindir.",
+    "note3": "Büyük yama gerektiren durumlarda fiyat farkı oluşabilir.",
+    "ctaText": "Fiyat hakkında bilgi almak veya randevu için:",
+    "ctaButton": "WhatsApp'tan Yaz"
   },
   "brands": {
     "title": "Çalıştığımız Markalar",

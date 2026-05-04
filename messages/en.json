@@ -4,6 +4,7 @@
     "services": "Services",
     "brands": "Brands",
     "about": "About",
+    "prices": "Prices",
     "contact": "Contact"
   },
   "common": {
@@ -52,6 +53,19 @@
       "fleetTitle": "Fleet Service",
       "fleetText": "Bulk pricing and scheduled maintenance plans for company fleets."
     }
+  },
+  "prices": {
+    "title": "Price List",
+    "subtitle": "All prices are per service and exclude VAT.",
+    "colService": "Service",
+    "colCar": "Car",
+    "colCommercial": "Commercial",
+    "notesLabel": "Notes",
+    "note1": "Prices do not include VAT.",
+    "note2": "Listed prices apply to standard patch repairs.",
+    "note3": "Additional charges may apply for large-scale repairs.",
+    "ctaText": "For pricing info or to book:",
+    "ctaButton": "Message on WhatsApp"
   },
   "brands": {
     "title": "Brands We Carry",

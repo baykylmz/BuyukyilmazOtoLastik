@@ -11,6 +11,10 @@ export const routing = defineRouting({
       tr: "/hizmetler",
       en: "/services",
     },
+    "/fiyatlar": {
+      tr: "/fiyatlar",
+      en: "/prices",
+    },
     "/markalar": {
       tr: "/markalar",
       en: "/brands",

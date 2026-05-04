@@ -25,10 +25,16 @@ export function SiteFooter() {
         <div>
           <h3 className="label-mech mb-4 text-paper/50">{t("quickLinks")}</h3>
           <ul className="space-y-2 font-display text-sm font-semibold uppercase tracking-wide">
-            {(["home","services","brands","about","contact"] as const).map((k) => (
+            {(["home","services","prices","brands","about","contact"] as const).map((k) => (
               <li key={k}>
                 <Link
-                  href={k === "home" ? "/" : `/${k === "services" ? "hizmetler" : k === "brands" ? "markalar" : k === "about" ? "hakkimizda" : "iletisim"}`}
+                  href={k === "home" ? "/" : `/${
+                    k === "services" ? "hizmetler"
+                    : k === "prices"   ? "fiyatlar"
+                    : k === "brands"   ? "markalar"
+                    : k === "about"    ? "hakkimizda"
+                    : "iletisim"
+                  }`}
                   className="text-paper/70 hover:text-brand-400 transition-colors"
                 >
                   {tn(k)}

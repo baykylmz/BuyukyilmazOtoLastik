@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Menu, X, Phone } from "lucide-react";
@@ -11,6 +10,7 @@ import { site, telLink } from "@/lib/site";
 const NAV = [
   { href: "/",           key: "home" },
   { href: "/hizmetler",  key: "services" },
+  { href: "/fiyatlar",   key: "prices" },
   { href: "/markalar",   key: "brands" },
   { href: "/hakkimizda", key: "about" },
   { href: "/iletisim",   key: "contact" },
@@ -26,11 +26,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b-2 border-ink bg-paper/95 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between gap-4">
 
-        <Link href="/" className="flex items-center gap-3" aria-label={site.name}>
-          <Image src="/brand/logo-mark.svg" alt="" width={34} height={34} priority />
-          <span className="hidden font-display text-lg font-bold uppercase tracking-wide sm:block">
-            {site.name}
-          </span>
+        <Link href="/" className="font-display text-lg font-bold uppercase tracking-wide" aria-label={site.name}>
+          {site.name}
         </Link>
 
         {/* Desktop nav */}
