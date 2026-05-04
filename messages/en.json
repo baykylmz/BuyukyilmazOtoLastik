@@ -23,8 +23,8 @@
     "highlights": {
       "expertTitle": "Experience Since 1993",
       "expertText": "Mahmut Büyükyılmaz's craft journey started in 1993 — today serving Konya under the Bosna Oto Lastik name.",
-      "brandsTitle": "New & Used Tires",
-      "brandsText": "Michelin, Bridgestone, Pirelli and more — both brand-new and quality used tires in stock.",
+      "brandsTitle": "Official Lastiğim Dealer",
+      "brandsText": "We are an authorized member of Lastiğim — Brisa's (Bridgestone × Sabancı) dealer network. Campaign pricing and guaranteed products on Lassa and Bridgestone.",
       "fastTitle": "Open 7 Days a Week",
       "fastText": "Every day from 08:30 to midnight. We're here when you need us most."
     },
@@ -56,6 +56,9 @@
   "brands": {
     "title": "Brands We Carry",
     "subtitle": "Long-standing partnerships with the world's leading tire manufacturers.",
+    "dealerBadgeLabel": "Authorized Dealer",
+    "primaryLabel": "Our Primary Brands",
+    "othersLabel": "Other Brands",
     "note": "Don't see a brand you need? Contact us — special orders welcome."
   },
   "about": {

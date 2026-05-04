@@ -23,8 +23,8 @@
     "highlights": {
       "expertTitle": "1993'ten Gelen Deneyim",
       "expertText": "Mahmut Büyükyılmaz'ın 1993'te başlayan ustalık yolculuğu, bugün Bosna Oto Lastik çatısı altında Konya'ya hizmet veriyor.",
-      "brandsTitle": "Sıfır ve İkinci El",
-      "brandsText": "Michelin, Bridgestone, Pirelli ve daha fazlası — hem yeni hem de ikinci el geniş stok.",
+      "brandsTitle": "Yetkili Lastiğim Bayisi",
+      "brandsText": "Brisa'nın (Bridgestone × Sabancı) yetkili bayi ağı Lastiğim üyesiyiz. Lassa ve Bridgestone'da kampanya fiyatları, garantili ürün.",
       "fastTitle": "7/24'e Yakın Hizmet",
       "fastText": "Haftanın 7 günü sabah 08:30'dan gece yarısına kadar açık. Acil durumda da yanınızdayız."
     },
@@ -56,6 +56,9 @@
   "brands": {
     "title": "Çalıştığımız Markalar",
     "subtitle": "Birinci sınıf lastik üreticileriyle uzun yıllara dayanan iş birliği.",
+    "dealerBadgeLabel": "Yetkili Bayi",
+    "primaryLabel": "Ana Markalarımız",
+    "othersLabel": "Diğer Markalar",
     "note": "Listemizde göremediğiniz bir marka için lütfen iletişime geçin — özel sipariş alabiliyoruz."
   },
   "about": {

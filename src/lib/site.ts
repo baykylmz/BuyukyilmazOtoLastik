@@ -51,16 +51,26 @@ export const site = {
     facebook:  "",
   },
 
+  // Lassa + Bridgestone primary (Lastiğim / Brisa dealer)
   brands: [
-    "Michelin",
+    "Lassa",
     "Bridgestone",
+    "Dayton",
+    "Michelin",
     "Continental",
     "Pirelli",
     "Goodyear",
     "Hankook",
-    "Lassa",
     "Petlas",
   ],
+
+  // Official Lastiğim (Brisa) dealer
+  dealerNetwork: {
+    name: "Lastiğim",
+    operator: "Brisa (Bridgestone × Sabancı)",
+    url: "https://lastigim.com.tr",
+    primaryBrands: ["Lassa", "Bridgestone", "Dayton"],
+  },
 } as const;
 
 export function whatsappLink(message?: string) {
